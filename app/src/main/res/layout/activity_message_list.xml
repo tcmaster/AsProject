@@ -3,7 +3,7 @@
     style="@style/match"
     tools:context=".MessageListActivity" >
 
-    <com.android.tonight8.view.xlistview.XListView 
+    <com.android.tonight8.ui.view.xlistview.XListView
         android:id="@+id/lv_message_list"
         style="@style/match"/>
 </RelativeLayout>

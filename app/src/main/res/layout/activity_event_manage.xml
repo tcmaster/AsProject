@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="40dp" >
 
-        <com.android.tonight8.view.ColumnHorizontalScrollView
+        <com.android.tonight8.ui.view.ColumnHorizontalScrollView
             android:id="@+id/chsv_evnetmanage_tab"
             android:layout_width="match_parent"
             android:layout_height="40dp"
@@ -23,7 +23,7 @@
                 android:layout_centerVertical="true"
                 android:gravity="center_vertical"
                 android:orientation="horizontal" />
-        </com.android.tonight8.view.ColumnHorizontalScrollView>
+        </com.android.tonight8.ui.view.ColumnHorizontalScrollView>
 
         <ImageView
             android:id="@+id/shade_left"

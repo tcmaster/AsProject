@@ -100,7 +100,7 @@
 
         <View style="@style/line_full" />
 
-        <com.android.tonight8.view.ListViewForScrollView
+        <com.android.tonight8.ui.view.ListViewForScrollView
             android:id="@+id/lv_standard"
             style="@style/match_width" />
 
@@ -178,7 +178,7 @@
             android:textColor="@color/white"
             android:textSize="@dimen/middleTextSize" />
 
-        <com.android.tonight8.view.GridViewForScrollView
+        <com.android.tonight8.ui.view.GridViewForScrollView
             android:id="@+id/gv_promise_item"
             style="@style/match_width"
             android:layout_marginBottom="@dimen/topOrbottomPadding"

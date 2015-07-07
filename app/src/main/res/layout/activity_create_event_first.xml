@@ -159,12 +159,12 @@
                 style="@style/createeventtext_style"
                 android:text="详       情：" />
 
-            <com.android.tonight8.view.ListViewForScrollView
+            <com.android.tonight8.ui.view.ListViewForScrollView
                 android:id="@+id/lv_goodsAddList"
                 style="@style/match_width"
                 android:layout_width="match_parent"
-                android:layout_toRightOf="@+id/tv_goods_temp" >
-            </com.android.tonight8.view.ListViewForScrollView>
+                android:layout_toRightOf="@+id/tv_goods_temp" />
+
 
             <TextView
                 android:id="@+id/et_goodsName"

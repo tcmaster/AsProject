@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-    <com.android.tonight8.view.xlistview.XListView
+    <com.android.tonight8.ui.view.xlistview.XListView
         android:id="@+id/lv_wishsupportlist"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />

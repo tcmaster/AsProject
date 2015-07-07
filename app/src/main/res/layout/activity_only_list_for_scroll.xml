@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     style="@style/match"
     android:orientation="vertical" >
-    <com.android.tonight8.view.ListViewForScrollView
+    <com.android.tonight8.ui.view.ListViewForScrollView
         android:id="@+id/lv_only_list"
         style="@style/match"
         android:cacheColorHint="@color/transparent"

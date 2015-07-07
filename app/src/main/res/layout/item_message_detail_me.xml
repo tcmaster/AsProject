@@ -49,7 +49,7 @@
                 android:visibility="invisible"/>
         </FrameLayout>
 
-        <com.android.tonight8.view.CircleImageView
+        <com.android.tonight8.ui.view.CircleImageView
             android:id="@+id/iv_user_photo"
             android:layout_width="@dimen/popGoodsUserPhotoWidth"
             android:layout_height="@dimen/popGoodsUserPhotoHeight"

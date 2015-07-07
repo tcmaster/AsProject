@@ -112,9 +112,8 @@
             android:textColor="@color/red" />
     </LinearLayout>
 
-    <com.android.tonight8.view.ListViewForScrollView
+    <com.android.tonight8.ui.view.ListViewForScrollView
         android:id="@+id/lv_subject"
-        style="@style/match_width" >
-    </com.android.tonight8.view.ListViewForScrollView>
+        style="@style/match_width" />
 
 </LinearLayout>

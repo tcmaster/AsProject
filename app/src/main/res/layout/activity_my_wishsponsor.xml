@@ -91,7 +91,7 @@
         style="@style/line_full"
         android:layout_height="@dimen/common_margin_left" />
 
-    <com.android.tonight8.view.xlistview.XListView
+    <com.android.tonight8.ui.view.xlistview.XListView
         android:id="@+id/lv_mywishsponsor"
         style="@style/match"
         android:divider="@null"

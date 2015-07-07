@@ -3,7 +3,7 @@
     style="@style/match"
     android:orientation="vertical" >
 
-    <com.android.tonight8.view.WebViewForScrollView
+    <com.android.tonight8.ui.view.WebViewForScrollView
         android:id="@+id/wv_user_agreement"
         style="@style/match"
         android:layout_above="@+id/ll_bottom" />

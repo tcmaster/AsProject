@@ -69,7 +69,7 @@
                     style="@style/wrap"
                     android:text="主题图片：" />
 
-                <com.android.tonight8.view.GridViewForScrollView
+                <com.android.tonight8.ui.view.GridViewForScrollView
                     android:id="@+id/gv_wish_themepic"
                     style="@style/match_width"
                     android:horizontalSpacing="10dp"
@@ -82,7 +82,7 @@
             style="@style/match_width"
             android:orientation="vertical" >
 
-            <com.android.tonight8.view.ListViewForScrollView
+            <com.android.tonight8.ui.view.ListViewForScrollView
                 android:id="@+id/lv_wish_story"
                 style="@style/match_width"
                 android:layout_margin="@dimen/common_margin_left" />

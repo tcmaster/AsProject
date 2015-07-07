@@ -8,7 +8,7 @@
         style="@style/match"
         android:layout_gravity="center" />
 
-    <com.android.tonight8.view.sortlistview.SideBar
+    <com.android.tonight8.ui.view.sortlistview.SideBar
         android:id="@+id/sb_right"
         android:layout_width="@dimen/sideBarWidth"
         android:layout_height="match_parent"

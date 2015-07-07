@@ -72,7 +72,7 @@
 
             <View style="@style/line_full" />
 
-            <com.android.tonight8.view.GridViewForScrollView
+            <com.android.tonight8.ui.view.GridViewForScrollView
                 android:id="@+id/gv_postevents_main"
                 style="@style/match_width"
                 android:background="@color/white_gray"

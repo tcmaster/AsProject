@@ -3,7 +3,7 @@
     style="@style/match"
     android:padding="@dimen/common_margin_small" >
 
-    <com.android.tonight8.view.CircleImageView
+    <com.android.tonight8.ui.view.CircleImageView
         android:id="@+id/iv_live_talk_headpic"
         android:layout_width="@dimen/user_headpic_minheight"
         android:layout_height="@dimen/user_headpic_minheight"

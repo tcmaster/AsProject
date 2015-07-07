@@ -20,7 +20,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/wishImgHeight" />
 
-            <com.android.tonight8.view.PointLinearlayout
+            <com.android.tonight8.ui.view.PointLinearlayout
                 android:id="@+id/ll_wishlive_container"
                 style="@style/match_width"
                 android:layout_gravity="bottom"
@@ -162,7 +162,7 @@
                 android:text="我的心愿"
                 android:textSize="@dimen/middleTextSize" />
 
-            <com.android.tonight8.view.CollapsibleTextView
+            <com.android.tonight8.ui.view.CollapsibleTextView
                 android:id="@+id/ctv_wish_content"
                 style="@style/match_width"
                 android:text="我要车，要美女，要金钱，要房子"

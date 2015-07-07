@@ -5,7 +5,7 @@
     android:orientation="vertical"
     android:padding="@dimen/topOrbottomPadding" >
 
-    <com.android.tonight8.view.CircleImageView
+    <com.android.tonight8.ui.view.CircleImageView
         android:id="@+id/iv_live_comment_headpic"
         android:layout_height="@dimen/user_headpic_minheight"
         android:layout_width="@dimen/user_headpic_minheight"
