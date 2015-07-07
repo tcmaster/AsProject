@@ -30,6 +30,9 @@ import com.tencent.mm.sdk.openapi.IWXAPI;
 import com.tencent.mm.sdk.openapi.WXAPIFactory;
 import com.tencent.tauth.Tencent;
 
+/**
+ * 应用类，用于初始化项目的各个模块
+ */
 public class Tonight8App extends Application {
 
 	/** 保存当前Application实例，用于方便调用当前应用的全局变量 */
