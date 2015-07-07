@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/match"
+    android:padding="@dimen/common_margin_small" >
+
+    <com.android.tonight8.view.CircleImageView
+        android:id="@+id/iv_live_talk_headpic"
+        android:layout_width="@dimen/user_headpic_minheight"
+        android:layout_height="@dimen/user_headpic_minheight"
+        android:layout_marginRight="@dimen/item_left_hilive"
+        android:scaleType="fitXY"
+        android:src="@mipmap/ic_launcher" />
+	
+    <TextView
+        android:id="@+id/tv_live_talk_name"
+        style="@style/wrap"
+        android:layout_alignTop="@+id/iv_live_talk_headpic"
+        android:layout_toRightOf="@+id/iv_live_talk_headpic"
+        android:text="@string/app_name"
+        android:textColor="@color/red" />
+	<RatingBar 
+	    android:id="@+id/rab_score"
+	    style="@android:style/Widget.DeviceDefault.Light.RatingBar.Small"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_alignParentRight="true"
+	    android:layout_marginRight="@dimen/common_margin_small"
+	    android:numStars="5"
+	    android:rating="0"/>
+    <TextView
+        android:id="@+id/tv_live_talk_content"
+        style="@style/match_width"
+        android:layout_below="@+id/tv_live_talk_name"
+        android:layout_toRightOf="@+id/iv_live_talk_headpic"
+        android:text="@string/app_name"
+        android:textColor="@color/half_black" />
+
+    <FrameLayout
+        android:id="@+id/fg_container"
+        style="@style/wrap"
+        android:layout_below="@+id/tv_live_talk_content"
+        android:layout_marginTop="@dimen/topOrbottomPadding" >
+
+        <GridView
+            android:id="@+id/gv_more_info"
+            style="@style/match_width"
+            android:numColumns="3"
+            android:stretchMode="columnWidth"
+            android:visibility="gone" />
+
+        <RelativeLayout
+            android:id="@+id/rl_more_info"
+            style="@style/match_width"
+            android:visibility="gone" >
+        </RelativeLayout>
+    </FrameLayout>
+	<TextView
+	    android:id="@+id/tv_time"
+	    style="@style/wrap"
+	    android:text="@string/app_name"
+	    android:textColor="@color/gray"
+	    android:textSize="@dimen/smallTextSize"
+	    android:layout_below="@id/fg_container"
+	    android:layout_toRightOf="@id/iv_live_talk_headpic"
+	    android:layout_marginTop="@dimen/topOrBottomPaddingSmall"/>
+</RelativeLayout>

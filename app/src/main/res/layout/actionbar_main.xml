@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/match"
+    android:background="@color/black_half_transparent"
+    >
+
+    <ImageView
+        android:id="@+id/iv_left_btn"
+        style="@style/wrap"
+        android:scaleType="fitXY"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="@dimen/common_margin_left"
+        android:contentDescription="@string/app_name"
+        android:src="@mipmap/vme"
+        />
+
+    <TextView
+        android:id="@+id/tv_location"
+        style="@style/wrap"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@id/iv_left_btn"
+        android:text="@string/win"
+        android:textColor="@color/white"
+        android:visibility="gone" />
+
+    <RadioGroup
+        android:id="@+id/rg_center"
+        style="@style/wrap"
+        android:layout_centerInParent="true"
+        android:orientation="horizontal" >
+
+        <RadioButton
+            android:id="@+id/rb_left"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/rb_main_top_selector_left"
+            android:button="@null"
+            android:gravity="center"
+            android:checked="true"
+            android:padding="@dimen/common_margin_small"
+            android:text="@string/win"
+            android:textColor="@drawable/setting_text_selector" />
+
+        <RadioButton
+            android:id="@+id/rb_right"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/rb_main_top_selector_right"
+            android:button="@null"
+            android:gravity="center"
+            android:padding="@dimen/common_margin_small"
+            android:text="@string/win"
+            android:textColor="@drawable/setting_text_selector" />
+    </RadioGroup>
+
+    <ImageView
+        android:id="@+id/iv_right_btn"
+        style="@style/actionBar_btn_sty"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="@dimen/common_margin_left"
+        android:contentDescription="@string/app_name"
+        android:src="@mipmap/vsearch" />
+
+</RelativeLayout>

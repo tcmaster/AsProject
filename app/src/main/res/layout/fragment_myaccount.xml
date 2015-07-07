@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/match"
+    android:layout_margin="@dimen/common_margin_left"
+    android:background="@color/gray_half_transparent"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:id="@+id/rl_head"
+        style="@style/match_width"
+        android:layout_marginBottom="@dimen/topOrbottomPaddingLong"
+        android:layout_marginTop="@dimen/topOrbottomPadding" >
+
+        <ImageView
+            android:id="@+id/iv_user_photo"
+            style="@style/user_photo"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginBottom="@dimen/topOrbottomPadding"
+            android:layout_marginLeft="@dimen/common_margin_left_long"
+            android:layout_marginTop="@dimen/topOrbottomPaddingLong"
+            android:layout_marginRight="@dimen/common_margin_left"
+            android:contentDescription="@string/app_name"
+            android:scaleType="fitXY"
+            android:src="@mipmap/vme" />
+
+        <TextView
+            android:id="@+id/tv_user_name"
+            style="@style/wrap"
+            android:layout_marginLeft="@dimen/common_margin_small"
+            android:layout_marginTop="@dimen/topOrbottomPaddingLong"
+            android:layout_toRightOf="@id/iv_user_photo"
+            android:text="@string/usersimple"
+            android:textColor="@color/white"
+            android:textSize="@dimen/bigTextSize" />
+
+        <TextView
+            android:id="@+id/tv_user_address"
+            style="@style/wrap"
+            android:layout_below="@id/tv_user_name"
+            android:layout_marginLeft="@dimen/common_margin_small"
+            android:layout_marginTop="@dimen/topOrBottomPaddingSmall"
+            android:layout_toRightOf="@id/iv_user_photo"
+            android:text="@string/addresssimple"
+            android:textColor="@color/white"
+            android:textSize="@dimen/bigTextSize"
+            android:gravity="center" />
+
+        <TextView
+            android:id="@+id/tv_user_role"
+            style="@style/wrap"
+            android:layout_alignParentRight="true"
+            android:layout_alignTop="@id/tv_user_address"
+            android:layout_marginRight="@dimen/common_margin_left"
+            android:text="@string/app_name"
+            android:textColor="@color/white"
+            android:textSize="@dimen/bigTextSize"
+            android:gravity="center"
+            android:drawableRight="@mipmap/vwhitearrow" />
+    </RelativeLayout>
+
+    <View
+        style="@style/line_full"
+        android:layout_marginBottom="@dimen/topOrbottomPadding"
+        android:background="@color/white" />
+
+    <LinearLayout
+        android:id="@+id/ll_center_layout"
+        style="@style/match_width"
+        android:orientation="vertical" >
+
+        <include
+            android:id="@+id/layout_award_no"
+            style="@style/match_width"
+            layout="@layout/include_myaccount_item" />
+
+        <include
+            android:id="@+id/layout_my_redpacket"
+            style="@style/match_width"
+            layout="@layout/include_myaccount_item" />
+
+        <include
+            android:id="@+id/layout_my_orders"
+            style="@style/match_width"
+            layout="@layout/include_myaccount_item" />
+
+        <include
+            android:id="@+id/layout_my_address"
+            style="@style/match_width"
+            layout="@layout/include_myaccount_item" />
+
+        <include
+            android:id="@+id/layout_act_seller"
+            style="@style/match_width"
+            layout="@layout/include_myaccount_item" />
+
+        <include
+            android:id="@+id/layout_act_org"
+            style="@style/match_width"
+            layout="@layout/include_myaccount_item" />
+
+        <include
+            android:id="@+id/layout_my_money"
+            style="@style/match_width"
+            layout="@layout/include_myaccount_item" />
+
+        <View
+            style="@style/line_full"
+            android:layout_marginBottom="@dimen/topOrbottomPadding"
+            android:layout_marginTop="@dimen/topOrbottomPadding"
+            android:background="@color/white" />
+
+        <include
+            android:id="@+id/layout_my_event"
+            style="@style/match_width"
+            layout="@layout/include_myaccount_item"
+            android:visibility="gone" />
+        <include
+            android:id="@+id/layout_my_event_host"
+            style="@style/match_width"
+            layout="@layout/include_myaccount_item"
+            android:visibility="gone" />
+        <include
+            android:id="@+id/layout_my_wish"
+            style="@style/match_width"
+            layout="@layout/include_myaccount_item" />
+
+        <include
+            android:id="@+id/layout_my_save"
+            style="@style/match_width"
+            layout="@layout/include_myaccount_item" />
+
+        <include
+            android:id="@+id/layout_my_attention"
+            style="@style/match_width"
+            layout="@layout/include_myaccount_item" />
+
+        <View
+            style="@style/line_full"
+            android:layout_marginBottom="@dimen/topOrbottomPadding"
+            android:layout_marginTop="@dimen/topOrbottomPadding"
+            android:background="@color/white" />
+        <include
+            android:id="@+id/layout_my_message"
+            style="@style/match_width"
+            layout="@layout/include_myaccount_item" />
+
+        <include
+            android:id="@+id/layout_my_settings"
+            style="@style/match_width"
+            layout="@layout/include_myaccount_item" />
+    </LinearLayout>
+
+</LinearLayout>

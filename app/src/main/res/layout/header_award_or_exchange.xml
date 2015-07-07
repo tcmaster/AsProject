@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/match_width"
+    android:orientation="vertical" >
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/popgoodsHeight" >
+
+        <ImageView
+            android:id="@+id/iv_popgoods_icon"
+            style="@style/match"
+            android:contentDescription="@string/app_name"
+            android:scaleType="fitXY"
+            android:src="@mipmap/ic_launcher" />
+
+        <RelativeLayout
+            style="@style/match_width"
+            android:layout_gravity="bottom"
+            android:background="@color/trans_white"
+            android:paddingBottom="@dimen/topOrbottomPadding"
+            android:paddingTop="@dimen/topOrbottomPadding" >
+
+            <TextView
+                android:id="@+id/tv_event_name"
+                style="@style/wrap"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="@dimen/common_margin_left"
+                android:text="@string/app_name"
+                android:textColor="@color/black"
+                android:textSize="@dimen/middleTextSize" />
+
+            <TextView
+                android:id="@+id/tv_com_name_prompt"
+                style="@style/wrap"
+                android:layout_alignLeft="@id/tv_event_name"
+                android:layout_below="@id/tv_event_name"
+                android:layout_marginTop="@dimen/topOrBottomPaddingSmall"
+                android:padding="1dp"
+                android:background="@color/black"
+                android:text="@string/publish"
+                android:textColor="@color/white"
+                android:textSize="@dimen/smallTextSize" />
+
+            <TextView
+                android:id="@+id/tv_org_name"
+                style="@style/wrap"
+                android:layout_below="@id/tv_event_name"
+                android:layout_marginLeft="@dimen/common_margin_small"
+                android:layout_marginTop="@dimen/topOrBottomPaddingSmall"
+                android:layout_toRightOf="@id/tv_com_name_prompt"
+                android:text="@string/app_name"
+                android:textColor="@color/red_sys"
+                android:textSize="@dimen/smallTextSize" />
+
+            <TextView
+                android:id="@+id/tv_info"
+                style="@style/wrap"
+                android:layout_alignLeft="@id/tv_com_name_prompt"
+                android:layout_below="@id/tv_com_name_prompt"
+                android:layout_marginTop="@dimen/topOrBottomPaddingSmall"
+                android:text="@string/app_name"
+                android:textColor="@color/black"
+                android:textSize="@dimen/smallTextSize" />
+
+            <TextView
+                android:id="@+id/tv_value"
+                style="@style/wrap"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/common_margin_left_long"
+                android:text="@string/app_name"
+                android:textColor="@color/black"
+                android:textSize="@dimen/hugeTextSize" />
+        </RelativeLayout>
+    </FrameLayout>
+
+    <LinearLayout
+        style="@style/match_width"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingBottom="@dimen/topOrbottomPadding"
+        android:paddingTop="@dimen/topOrbottomPadding" >
+
+        <TextView
+            android:id="@+id/tv_exchange_time"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/common_margin_left"
+            android:layout_weight="1"
+            android:text="@string/app_name"
+            android:textColor="@color/black"
+            android:textSize="@dimen/smallTextSize" />
+
+        <TextView
+            android:id="@+id/tv_exchange_way"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/common_margin_left"
+            android:layout_weight="1"
+            android:text="@string/app_name"
+            android:textColor="@color/black"
+            android:textSize="@dimen/smallTextSize" />
+
+        <TextView
+            android:id="@+id/tv_see_exchange_location"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/common_margin_left"
+            android:layout_weight="1"
+            android:background="@drawable/setting_btn_selector"
+            android:drawableLeft="@mipmap/search_white"
+            android:gravity="center"
+            android:paddingBottom="@dimen/topOrBottomPaddingSmall"
+            android:paddingTop="@dimen/topOrBottomPaddingSmall"
+            android:text="@string/see_exchange_location"
+            android:textColor="@color/white"
+            android:textSize="@dimen/more_smallTextSize" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_award_count"
+        style="@style/match"
+        android:background="@color/red_sys"
+        android:gravity="center"
+        android:paddingBottom="@dimen/topOrBottomPaddingSmall"
+        android:paddingTop="@dimen/topOrBottomPaddingSmall"
+        android:text="@string/app_name"
+        android:textColor="@color/white"
+        android:textSize="@dimen/middleTextSize" />
+
+</LinearLayout>

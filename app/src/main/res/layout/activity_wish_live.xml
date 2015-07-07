@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:android_custom="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <FrameLayout
+            android:id="@+id/fl_header_events"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <android.support.v4.view.ViewPager
+                android:id="@+id/vp_wish_live"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/wishImgHeight" />
+
+            <com.android.tonight8.view.PointLinearlayout
+                android:id="@+id/ll_wishlive_container"
+                style="@style/match_width"
+                android:layout_gravity="bottom"
+                android:gravity="center"
+                android:orientation="horizontal" />
+        </FrameLayout>
+
+        <RelativeLayout
+            style="@style/match_width"
+            android:gravity="center_vertical"
+            android:paddingBottom="@dimen/topOrbottomPadding"
+            android:paddingTop="@dimen/topOrbottomPadding" >
+
+            <ImageView
+                android:id="@+id/iv_wishlive_previous"
+                style="@style/wrap"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/common_margin_left_long"
+                android:scaleType="fitXY"
+                android:src="@mipmap/vprev" />
+
+            <ImageView
+                android:id="@+id/iv_wishlive_pause"
+                style="@style/wrap"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/common_margin_left_long"
+                android:layout_toRightOf="@+id/iv_wishlive_previous"
+                android:scaleType="fitXY"
+                android:src="@mipmap/vpause" />
+
+            <ImageView
+                android:id="@+id/iv_wishlive_next"
+                style="@style/wrap"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/common_margin_left_long"
+                android:layout_toRightOf="@+id/iv_wishlive_pause"
+                android:scaleType="fitXY"
+                android:src="@mipmap/vfront" />
+
+            <TextView
+                android:id="@+id/tv_callme"
+                style="@style/wrap"
+                android:layout_alignParentRight="true"
+                android:layout_alignTop="@+id/iv_wishlive_next"
+                android:layout_centerVertical="true"
+                android:drawableLeft="@mipmap/vcallme"
+                android:paddingRight="@dimen/common_margin_left_long"
+                android:text="联系我"
+                android:drawablePadding="@dimen/common_margin_small"
+                android:textSize="@dimen/middleTextSize" />
+        </RelativeLayout>
+
+        <View style="@style/line_full" />
+
+        <View
+            style="@style/line_full"
+            android:layout_height="@dimen/common_margin_left"
+            android:background="@color/half_white" />
+
+        <View style="@style/line_full" />
+
+        <LinearLayout
+            android:id="@+id/rl_wish_item_root"
+            style="@style/match_width"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:background="@color/white"
+            android:orientation="horizontal"
+            android:padding="@dimen/common_margin_small" >
+
+            <ImageView
+                android:id="@+id/civ_wishlive_userpic"
+                style="@style/wrap"
+                android:layout_width="@dimen/wishUserPhotoWidth"
+                android:layout_height="@dimen/wishUserPhotoWidth"
+                android:layout_gravity="center_vertical"
+                android:src="@mipmap/ic_launcher" />
+
+            <TextView
+                android:id="@+id/tv_wish_username"
+                style="@style/wrap"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="@dimen/common_margin_small"
+                android:text="用户名"
+                android:textColor="@color/black_seven_purple" />
+
+            <View
+                style="@style/line_full_vertical"
+                android:layout_width="2dp"
+                android:layout_margin="@dimen/common_margin_small"
+                android:background="@color/black_seven_purple" />
+
+            <TextView
+                android:id="@+id/tv_wish_supportcount"
+                style="@style/wrap"
+                android:layout_gravity="center_vertical"
+                android:drawableLeft="@mipmap/vwish_supportcount"
+                android:drawablePadding="@dimen/common_margin_left"
+                android:gravity="center_vertical"
+                android:paddingLeft="@dimen/common_margin_small"
+                android:textColor="@color/black" />
+
+            <TextView
+                style="@style/wrap"
+                android:layout_weight="1" />
+
+            <TextView
+                style="@style/wrap"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="@dimen/common_margin_small"
+                android:text="实现进度"
+                android:textColor="@color/black" />
+
+            <ProgressBar
+                android:id="@+id/pb_wish_live"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginRight="@dimen/common_margin_left"
+                android:gravity="right"
+                 />
+        </LinearLayout>
+
+        <View style="@style/line_full" />
+
+        <View
+            style="@style/line_full"
+            android:layout_height="@dimen/common_margin_left"
+            android:background="@color/half_white" />
+
+        <View style="@style/line_full" />
+
+        <LinearLayout
+            style="@style/match_width"
+            android:orientation="vertical"
+            android:padding="@dimen/common_margin_left" >
+
+            <TextView
+                style="@style/wrap"
+                android:text="我的心愿"
+                android:textSize="@dimen/middleTextSize" />
+
+            <com.android.tonight8.view.CollapsibleTextView
+                android:id="@+id/ctv_wish_content"
+                style="@style/match_width"
+                android:text="我要车，要美女，要金钱，要房子"
+                android:textSize="@dimen/smallTextSize" />
+        </LinearLayout>
+
+        <View style="@style/line_full" />
+
+        <RadioGroup
+            android:id="@+id/rg_wish_detail"
+            style="@style/match_width"
+            android:orientation="horizontal"
+            android:paddingBottom="@dimen/common_margin_left"
+            android:paddingTop="@dimen/common_margin_left" >
+
+            <RadioButton
+                android:id="@+id/rb_wish_talk"
+                style="@style/wrap"
+                android:layout_weight="1"
+                android:button="@null"
+                android:checked="true"
+                android:gravity="center"
+                android:text="讨论区"
+                android:textColor="@drawable/text_black_to_purple" />
+
+            <View style="@style/line_full_vertical" />
+
+            <RadioButton
+                android:id="@+id/rb_wish_sponsor"
+                style="@style/wrap"
+                android:layout_weight="1"
+                android:button="@null"
+                android:gravity="center"
+                android:text="赞助者"
+                android:textColor="@drawable/text_black_to_purple" />
+        </RadioGroup>
+
+        <View style="@style/line_full" />
+
+        <LinearLayout
+            android:id="@+id/ll_wish_fourcontent"
+            style="@style/match"
+            android:layout_height="400dp"
+            android:orientation="horizontal" />
+    </LinearLayout>
+
+</ScrollView>

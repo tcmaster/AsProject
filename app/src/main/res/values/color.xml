@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="white">#ffffff</color>
+    <color name="black">#000000</color>
+    <color name="red">#ff0000</color>
+    <color name="gray">#9b9b9b</color>
+    <color name="line_gray">#d2d2d2</color>
+    <color name="base_header_red">#df3031</color>
+    <color name="base_header_btnpressed_red">#b2df3031</color>
+    <color name="red_sys">#f55061</color>
+    <color name="half_black">#838181</color>
+    <color name="half_white">#f2f2f2</color>
+    <color name="white_gray">#dcdcdc</color>
+    <color name="green">#029da1</color>
+    <color name="transparent">#00000000</color>
+    <color name="trans_white">#44ffffff</color>
+    <color name="blue">#0000FF</color>
+    <color name="yellow">#ffa500</color>
+    <!-- 橙色 -->
+    <color name="orange">#FF8000</color>
+    <!-- 扫描二维码用到的颜色 -->
+    <color name="result_view">#b0000000</color>
+    <color name="viewfinder_mask">#60000000</color>
+    <color name="possible_result_points">#c0ffff00</color>
+    <!-- 40%透明黑色 -->
+    <color name="black_half_transparent">#44000000</color>
+    <!-- 40%透明灰色 -->
+    <color name="gray_half_transparent">#44bebebe</color>
+    <!-- 70%透明黑色 -->
+    <color name="black_seven_transparent">#b2000000</color>
+    <!-- 40%透明紫色 -->
+    <color name="black_seven_purple">#66aa63c2</color>
+    <!-- 10%透明紫色 -->
+    <color name="ten_purple">#1aaa63c2</color>
+    <!-- 紫色 -->
+    <color name="purple">#ffaa63c2</color>
+    <!-- （标题）灰色 -->
+    <color name="title_gray">#9b9b9b</color>
+
+</resources>

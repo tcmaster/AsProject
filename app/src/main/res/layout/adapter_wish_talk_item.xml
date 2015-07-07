@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/common_margin_small" >
+
+    <com.android.tonight8.view.CircleImageView
+        android:id="@+id/iv_wish_talk_headpic"
+        android:layout_width="@dimen/wishUserPhotoWidth"
+        android:layout_height="@dimen/wishUserPhotoWidth"
+        android:layout_marginRight="@dimen/item_left_hilive"
+        android:background="@mipmap/ic_launcher" />
+
+    <TextView
+        android:id="@+id/tv_wish_talk_name"
+        style="@style/wrap"
+        android:layout_alignTop="@+id/iv_wish_talk_headpic"
+        android:layout_toRightOf="@+id/iv_wish_talk_headpic"
+        android:text="@string/app_name"
+        android:textColor="@color/red" />
+
+    <TextView
+        android:id="@+id/tv_wish_talk_time"
+        style="@style/wrap"
+        android:layout_alignParentRight="true"
+        android:text="@string/app_name"
+        android:textColor="@color/half_black" />
+
+    <TextView
+        android:id="@+id/tv_wish_talk_content"
+        style="@style/match_width"
+        android:layout_below="@+id/tv_wish_talk_name"
+        android:layout_toRightOf="@+id/iv_wish_talk_headpic"
+        android:text="@string/app_name"
+        android:textColor="@color/half_black" />
+
+    <CheckBox
+        android:id="@+id/cb_talk_dialog"
+        style="@style/wrap"
+        android:layout_alignRight="@+id/tv_wish_talk_content"
+        android:layout_below="@+id/tv_wish_talk_content"
+        android:button="@drawable/wishtalk_comment_selector"
+        android:checked="false" />
+
+    <com.android.tonight8.view.ListViewForScrollView
+        android:id="@+id/lv_wishitem"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/cb_talk_dialog"
+        android:divider="#b5b5b5"
+        android:dividerHeight="1dp" >
+    </com.android.tonight8.view.ListViewForScrollView>
+
+    <LinearLayout
+        android:id="@+id/ll_dialog_commit"
+        style="@style/match_width"
+        android:layout_below="@+id/lv_wishitem"
+        android:orientation="horizontal"
+        android:visibility="gone" >
+
+        <EditText
+            android:id="@+id/et_wish_commit"
+            style="@style/match_width" />
+
+        <Button
+            style="@style/ok_button_style"
+            android:layout_width="wrap_content"
+            android:layout_marginRight="0dp"
+            android:text="@string/send" />
+    </LinearLayout>
+
+</RelativeLayout>

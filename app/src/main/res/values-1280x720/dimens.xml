@@ -1,0 +1,39 @@
+<resources>
+	<!-- 系数为1 -->
+	<!-- 用户商家头像图片宽 -->
+	<dimen name="org_head_width">61px</dimen>
+	<!-- 用户商家头像图片高 -->
+	<dimen name="org_head_height">61px</dimen>
+	<!-- 商家logo图片宽 -->
+	<dimen name="logo_width">131px</dimen>
+	<!-- 商家logo图片高 -->
+	<dimen name="logo_height">131px</dimen>
+	<!-- 活动开奖 - 推荐活动 -海报奖品图片宽 -->
+	<dimen name="popgoodsImgwidth">720px</dimen>
+	<!-- 活动开奖 - 推荐活动 -海报奖品图片高 -->
+	<dimen name="popgoodsImgHeight">453px</dimen>
+	<!-- 活动开奖列表，海报奖品缩略图片宽 -->
+	<dimen name="popgoodsImgThumbWidth">217px</dimen>
+	<!-- 活动开奖列表，海报奖品缩略图片高 -->
+	<dimen name="popgoodsImgThumbHeight">173px</dimen>
+	<!-- 活动海报详情，海报奖品图片宽-->
+	<dimen name="popgoodsDetailPopgoodsWidth">720px</dimen>
+	<!-- 活动海报详情，海报奖品图片高 -->
+	<dimen name="popgoodsDetailPopgoodsHeight">363px</dimen>
+	<!--  活动开奖详情 - 奖品介绍图片宽 
+	<dimen name="popgoodDetailAwardIntroWidth"></dimen>
+	活动开奖详情 - 奖品介绍图片高 
+	<dimen name="popgoodDetailAwardIntroHeight"></dimen>-->
+	<!-- 我-用户头像图片宽 -->
+	<dimen name="popGoodsUserPhotoWidth">95px</dimen>
+	<!-- 我-用户头像图片高 -->
+	<dimen name="popGoodsUserPhotoHeight">95px</dimen>
+	<!-- 我-中奖码 签到签收效果图宽
+	<dimen name="userSignUpWidth"></dimen>
+	我-中奖码 签到签收效果图高 
+	<dimen name="userSignUpHeight"></dimen>-->
+	<!-- 我-优惠券宽 -->
+	<dimen name="couponWidth">313px</dimen>
+	<!-- 我-优惠券高 -->
+	<dimen name="couponHeight">313px</dimen>
+</resources>

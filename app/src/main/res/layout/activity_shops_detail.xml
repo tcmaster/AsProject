@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/match"
+    android:scrollbars="vertical" >
+
+    <LinearLayout
+        style="@style/match_width"
+        android:orientation="vertical" >
+
+        <ImageView
+            style="@style/match_width"
+            android:layout_height="300dp"
+            android:background="@mipmap/ic_launcher"
+            android:scaleType="fitXY" />
+
+        <RelativeLayout
+            style="@style/ll_orgdetail_style"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:padding="@dimen/common_margin_left" >
+
+            <TextView
+                style="@style/shoptext_left_style"
+                android:text="商家标识" />
+
+            <ImageView
+                android:id="@+id/iv_org_logo"
+                style="@style/wrap"
+                android:layout_alignParentRight="true"
+                android:background="@mipmap/ic_launcher"
+                android:gravity="right"
+                android:scaleType="fitXY" />
+        </RelativeLayout>
+
+        <LinearLayout
+            style="@style/ll_orgdetail_style"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:padding="@dimen/common_margin_left" >
+
+            <TextView
+                style="@style/shoptext_left_style"
+                android:text="商家名称" />
+
+            <TextView
+                android:id="@+id/tv_shop_name_value"
+                style="@style/shoptext_style"
+                android:text="北京俏江南" />
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/ll_orgdetail_style"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:padding="@dimen/common_margin_left" >
+
+            <TextView
+                style="@style/shoptext_left_style"
+                android:text="商家ID号" />
+
+            <TextView
+                android:id="@+id/tv_shop_id_value"
+                style="@style/shoptext_style"
+                android:text="123456789" />
+        </LinearLayout>
+
+        <RelativeLayout
+            style="@style/ll_orgdetail_style"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:padding="@dimen/common_margin_left" >
+
+            <TextView
+                style="@style/shoptext_left_style"
+                android:text="商家二维码" >
+            </TextView>
+
+            <ImageView
+                android:id="@+id/iv_org_dimension"
+                style="@style/wrap"
+                android:layout_alignParentRight="true"
+                android:background="@mipmap/ic_launcher"
+                android:gravity="right"
+                android:scaleType="fitXY" />
+        </RelativeLayout>
+
+        <TextView
+            style="@style/match_width"
+            android:background="@color/half_white"
+            android:gravity="center_horizontal"
+            android:paddingBottom="@dimen/common_margin_left"
+            android:paddingTop="@dimen/common_margin_left"
+            android:text="联系资料"
+            android:textSize="@dimen/bigTextSize" />
+
+        <include layout="@layout/include_org_detail" />
+
+        <!-- <TextView -->
+        <!-- style="@style/match_width" -->
+        <!-- android:background="@color/half_white" -->
+        <!-- android:gravity="center_horizontal" -->
+        <!-- android:paddingBottom="@dimen/common_margin_left" -->
+        <!-- android:paddingTop="@dimen/common_margin_left" -->
+        <!-- android:text="商家简介" -->
+        <!-- android:textSize="@dimen/bigTextSize" /> -->
+
+
+        <!-- <TextView -->
+        <!-- android:id="@+id/tv_org_description" -->
+        <!-- style="@style/shoptext_left_style" -->
+        <!-- android:layout_marginBottom="@dimen/common_margin_left" -->
+        <!-- android:padding="@dimen/common_margin_left" -->
+        <!-- android:text="很好的商家嗷嗷啊的很好的商家嗷好的商家嗷很好的商家嗷嗷啊的" /> -->
+    </LinearLayout>
+
+</ScrollView>

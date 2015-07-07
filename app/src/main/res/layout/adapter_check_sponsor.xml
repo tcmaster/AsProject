@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@color/white"
+    android:padding="@dimen/common_margin_small" >
+
+    <com.android.tonight8.view.CircleImageView
+        android:id="@+id/civ_mywishcheck_userpic"
+        style="@style/wrap"
+        android:layout_width="@dimen/wishUserPhotoWidth"
+        android:layout_height="@dimen/wishUserPhotoWidth"
+        android:layout_gravity="center_vertical"
+        android:src="@mipmap/ic_launcher" />
+
+    <TextView
+        android:id="@+id/tv_mywishcheck_username"
+        style="@style/wrap"
+        android:layout_gravity="center_vertical"
+        android:layout_toRightOf="@+id/civ_mywishcheck_userpic"
+        android:singleLine="true"
+        android:text="用户名"
+        android:textSize="@dimen/smallTextSize" />
+
+    <TextView
+        android:id="@+id/tv_mywishcheck_datetime"
+        style="@style/wrap"
+        android:layout_gravity="center_vertical"
+        android:layout_toLeftOf="@+id/iv_mywishcheck_status"
+        android:text="2015-12-12 12:14"
+        android:textSize="@dimen/more_smallTextSize"
+        android:textColor="@color/half_black" />
+
+    <ImageView
+        android:id="@+id/iv_mywishcheck_status"
+        style="@style/wrap"
+        android:layout_alignParentRight="true"
+        android:layout_marginLeft="@dimen/common_margin_small"
+        android:background="@mipmap/ic_launcher"
+        android:scaleType="fitXY"
+        android:visibility="invisible" />
+
+    <LinearLayout
+        android:id="@+id/ll_sponsortype"
+        style="@style/match_width"
+        android:layout_alignLeft="@+id/tv_mywishcheck_username"
+        android:layout_below="@+id/tv_mywishcheck_username"
+        android:layout_marginTop="@dimen/common_margin_small"
+        android:orientation="horizontal" >
+
+        <TextView
+            style="@style/wrap"
+            android:layout_marginRight="@dimen/common_margin_small"
+            android:background="@drawable/shape_purple_radius"
+            android:padding="2dp"
+            android:text="赞助类型"
+            android:textColor="@color/white"
+            android:textSize="@dimen/smallTextSize" />
+
+        <TextView
+            android:id="@+id/tv_mywishcheck_sponsortype"
+            style="@style/wrap"
+            android:text="现金"
+            android:textSize="@dimen/smallTextSize" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_sponsor_item"
+        style="@style/match_width"
+        android:layout_alignLeft="@+id/tv_mywishcheck_username"
+        android:layout_below="@+id/ll_sponsortype"
+        android:layout_marginTop="@dimen/common_margin_small"
+        android:orientation="horizontal" >
+
+        <TextView
+            style="@style/wrap"
+            android:layout_marginRight="@dimen/common_margin_small"
+            android:background="@drawable/shape_purple_radius"
+            android:padding="2dp"
+            android:text="赞助项目"
+            android:textColor="@color/white"
+            android:textSize="@dimen/smallTextSize" />
+
+        <TextView
+            android:id="@+id/tv_mywishcheck_sponsoritem"
+            style="@style/wrap"
+            android:textSize="@dimen/smallTextSize" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_sponsorrequest"
+        style="@style/match_width"
+        android:layout_alignLeft="@+id/tv_mywishcheck_username"
+        android:layout_below="@+id/ll_sponsor_item"
+        android:layout_marginTop="@dimen/common_margin_small"
+        android:orientation="horizontal" >
+
+        <TextView
+            style="@style/wrap"
+            android:layout_marginRight="@dimen/common_margin_small"
+            android:background="@drawable/shape_purple_radius"
+            android:padding="2dp"
+            android:text="赞助要求"
+            android:textColor="@color/white"
+            android:textSize="@dimen/smallTextSize" />
+
+        <TextView
+            android:id="@+id/tv_mywishcheck_sponsorrequest"
+            style="@style/wrap"
+            android:textSize="@dimen/smallTextSize" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_checksponsor_button"
+        style="@style/match_width"
+        android:layout_alignLeft="@+id/tv_mywishcheck_username"
+        android:layout_below="@+id/ll_sponsorrequest"
+        android:layout_marginRight="@dimen/common_margin_small"
+        android:layout_marginTop="@dimen/common_margin_small"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/btn_check_accept"
+            style="@style/ok_button_style"
+            android:layout_marginLeft="0dp"
+            android:layout_weight="1"
+            android:text="接受赞助"
+            android:textSize="@dimen/smallTextSize" />
+
+        <Button
+            android:id="@+id/btn_check_refuse"
+            style="@style/ok_button_style"
+            android:layout_marginLeft="0dp"
+            android:layout_weight="1"
+            android:text="拒绝赞助"
+            android:textSize="@dimen/smallTextSize" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="2dp"
+        android:layout_below="@+id/ll_checksponsor_button"
+        android:layout_marginTop="@dimen/common_margin_small"
+        android:background="@drawable/shape_dashgap" />
+
+</RelativeLayout>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <com.android.tonight8.view.xlistview.XListView
+        android:id="@+id/lv_mywishsponsor"
+        style="@style/match_width"
+        android:divider="@color/white_gray"
+        android:dividerHeight="@dimen/common_margin_left"
+        android:listSelector="@drawable/seletor_white_to_gray"
+        android:scrollbars="none" />
+
+</LinearLayout>

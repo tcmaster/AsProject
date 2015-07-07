@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/match"
+    android:layout_width="wrap_content"
+    android:orientation="vertical" >
+
+    <View
+        style="@style/line_full"
+        android:layout_marginTop="@dimen/topOrbottomPadding" />
+
+    <RelativeLayout
+        android:id="@+id/rl_show_more_info"
+        style="@style/match_width"
+        android:background="@color/white_gray" >
+
+        <TextView
+            android:id="@+id/tv_title"
+            style="@style/wrap"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/common_margin_left"
+            android:text="@string/app_name"
+            android:textColor="@color/purple"
+            android:textSize="@dimen/bigTextSize" />
+
+        <ImageView
+            android:id="@+id/iv_arrow"
+            style="@style/wrap"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/common_margin_left"
+            android:contentDescription="@string/app_name"
+            android:layout_centerVertical="true"
+            android:scaleType="fitXY"
+            android:src="@mipmap/vblackarrow" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/ll_info"
+        style="@style/match_width"
+        android:visibility="gone" >
+
+        <ProgressBar
+            android:id="@+id/pb_program_loading"
+            style="@android:style/Widget.DeviceDefault.ProgressBar.Small"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <com.android.tonight8.ui.view.ListViewForScrollView
+            android:id="@+id/lv_prgram"
+            style="@style/match_width"
+            android:divider="@null" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_top"
+        style="@style/match_width"
+        android:layout_margin="@dimen/common_margin_small"
+        android:orientation="horizontal" >
+
+        <FrameLayout
+            style="@style/wrap"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="@dimen/common_margin_small" >
+
+            <ImageView
+                android:id="@+id/iv_bpic"
+                android:layout_width="200dp"
+                android:layout_height="150dp"
+                android:contentDescription="@string/app_name"
+                android:scaleType="fitXY" />
+
+            <ImageView
+                android:id="@+id/iv_bg"
+                android:layout_width="120dp"
+                android:layout_height="150dp"
+                android:contentDescription="@string/app_name"
+                android:scaleType="fitXY"
+                android:src="@mipmap/label_genuine" />
+        </FrameLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_right"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:layout_marginBottom="@dimen/common_margin_small"
+            android:gravity="center_vertical"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/tv_awards"
+                style="@style/wrap"
+                android:layout_marginLeft="@dimen/common_margin_left"
+                android:text="@string/app_name"
+                android:textSize="@dimen/middleTextSize" />
+
+            <TextView
+                android:id="@+id/tv_prize"
+                style="@style/wrap"
+                android:layout_marginLeft="@dimen/common_margin_left"
+                android:layout_marginTop="@dimen/topOrbottomPadding"
+                android:text="@string/app_name"
+                android:textSize="@dimen/middleTextSize" />
+
+            <TextView
+                android:id="@+id/tv_count"
+                style="@style/wrap"
+                android:layout_marginLeft="@dimen/common_margin_left"
+                android:layout_marginTop="@dimen/topOrbottomPadding"
+                android:text="@string/app_name"
+                android:textSize="@dimen/middleTextSize" />
+
+            <TextView
+                android:id="@+id/tv_sign"
+                style="@style/wrap"
+                android:layout_marginLeft="@dimen/common_margin_left"
+                android:layout_marginTop="@dimen/topOrbottomPadding"
+                android:text="@string/app_name"
+                android:textSize="@dimen/middleTextSize" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <View style="@style/line_full" />
+
+    <LinearLayout
+        android:id="@+id/ll_bottom"
+        style="@style/match_width"
+        android:baselineAligned="false"
+        android:orientation="horizontal" >
+
+        <LinearLayout
+            android:id="@+id/ll_win"
+            style="@style/wrap"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingBottom="@dimen/topOrBottomPaddingSmall"
+            android:paddingTop="@dimen/topOrBottomPaddingSmall" >
+
+            <ImageView
+                android:id="@+id/iv_win"
+                style="@style/wrap"
+                android:layout_marginRight="@dimen/drawable_padding"
+                android:contentDescription="@string/app_name"
+                android:scaleType="fitXY"
+                android:src="@mipmap/vvideorecord" />
+
+            <TextView
+                android:id="@+id/tv_win"
+                style="@style/wrap"
+                android:text="@string/win"
+                android:textSize="@dimen/middleTextSize" />
+        </LinearLayout>
+
+        <View style="@style/line_full_vertical" />
+
+        <LinearLayout
+            android:id="@+id/ll_apply"
+            style="@style/wrap"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingBottom="@dimen/topOrBottomPaddingSmall"
+            android:paddingTop="@dimen/topOrBottomPaddingSmall" >
+
+            <ImageView
+                android:id="@+id/iv_apply"
+                style="@style/wrap"
+                android:layout_marginRight="@dimen/drawable_padding"
+                android:contentDescription="@string/app_name"
+                android:scaleType="fitXY"
+                android:src="@mipmap/vsignin" />
+
+            <TextView
+                android:id="@+id/tv_apply"
+                style="@style/wrap"
+                android:text="@string/signin"
+                android:textSize="@dimen/middleTextSize" />
+        </LinearLayout>
+    </LinearLayout>
+    <View style="@style/line_full"
+        />
+
+</LinearLayout>

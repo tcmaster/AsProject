@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="@dimen/topOrbottomPadding" >
+
+    <com.android.tonight8.view.CircleImageView
+        android:id="@+id/iv_live_comment_headpic"
+        android:layout_height="@dimen/user_headpic_minheight"
+        android:layout_width="@dimen/user_headpic_minheight"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="@dimen/item_left_hilive"
+        android:src="@mipmap/ic_launcher"
+        android:contentDescription="@string/app_name" />
+
+    <TextView
+        android:id="@+id/tv_live_comment_name"
+        style="@style/wrap"
+        android:layout_toRightOf="@+id/iv_live_comment_headpic"
+        android:text="小新"
+        android:textColor="@color/red" />
+
+    <TextView
+        android:id="@+id/tv_live_comment_titlename"
+        style="@style/wrap"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/tv_live_comment_name"
+        android:text="小新" >
+    </TextView>
+
+    <TextView
+        android:id="@+id/tv_live_comment_date"
+        style="@style/wrap"
+        android:layout_alignLeft="@+id/tv_live_comment_name"
+        android:layout_below="@+id/tv_live_comment_content"
+        android:text="2014-11-27 12:15:47" />
+
+    <TextView
+        android:id="@+id/tv_live_comment_content"
+        style="@style/wrap"
+        android:layout_alignLeft="@+id/tv_live_comment_name"
+        android:layout_below="@+id/tv_live_comment_name"
+        android:layout_centerVertical="true"
+        android:text="阿文分为阿泰gear哇嘎嘎嘎尔sagaerwge额外发个rage让广发额外人噶人噶尔方法" />
+
+</RelativeLayout>

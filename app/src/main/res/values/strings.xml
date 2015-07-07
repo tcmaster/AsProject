@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">tonight8</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <!-- 首页 -->
+    <string name="win">现场</string>
+    <string name="signin">报名</string>
+    <string name="main_left_tab">8点整</string>
+    <string name="main_right_tab">心愿墙</string>
+    <string name="compere">主持人</string>
+    <string name="program">节目单</string>
+    <string name="move_up_to_cancel">slide up cancel sending</string>
+    <string name="voice_prompt_init">长按说话</string>
+    <!-- 抽奖详情 -->
+    <string name="hour">时</string>
+    <string name="minute">分</string>
+    <string name="second">秒</string>
+    <string name="defaultTime">00</string>
+    <string name="toOpenAward">距开奖还有：</string>
+    <string name="activityTheme">活动：</string>
+    <string name="sponsor">主办方：</string>
+    <string name="coupon">赠券：</string>
+    <string name="have_apply">已报名：</string>
+    <string name="couponCount">发放数量：</string>
+    <string name="activityDetail">活动详情</string>
+    <string name="activityAward">活动奖品：</string>
+    <string name="activityCount">奖品数量：</string>
+    <string name="activityTime">活动时间：</string>
+    <string name="activityLocation">兑奖地点：</string>
+    <string name="activityRule">活动规则：1.兑奖时间：2015年5月5日-10月5日\n2.本活动优惠券不可与其他优惠券一同使用</string>
+    <string name="awardIntroduce">奖品介绍</string>
+    <string name="activityQ">活动咨询</string>
+    <string name="question">咨询</string>
+    <string name="commit">评价</string>
+    <string name="signup">报名</string>
+    <string name="havesignup">已经报名</string>
+    <!-- Hi现场 -->
+    <string name="share">分享</string>
+    <string name="comment">评论</string>
+    <string name="submit">提交</string>
+    <string name="inputinit">请输入评论</string>
+    <!-- 发活动 -->
+    <string name="email">邮&#160;&#160;&#160;&#160;箱：</string>
+    <string name="name">名&#160;&#160;&#160;&#160;称：</string>
+    <string name="phone">电&#160;&#160;&#160;&#160;话：</string>
+    <string name="shopid">ID&#160;&#160;&#160;&#160;&#160;号：</string>
+    <string name="findback">找&#160;&#160;&#160;&#160;回</string>
+    <string name="password">密&#160;&#160;&#160;&#160;码：</string>
+    <string name="auth_code">验&#160;证&#160;码&#160;:</string>
+    <string name="identity">证件号：</string>
+    <string name="input_id">请输入ID</string>
+    <string name="input_personname">请输入企业全称或个人全名</string>
+    <string name="input_identity">请输入执照或身份证号</string>
+    <string name="input_phone">请输入手机号码</string>
+    <string name="input_email">请输入邮箱地址</string>
+    <string name="input_password">密&#160;&#160;&#160;&#160;&#160;&#160;&#160;码:</string>
+    <string name="input_code">请输入验证码</string>
+    <string name="input_wordcount">6&#8211;20个字符</string>
+    <string name="sure">确定</string>
+    <string name="get_code">获取验证码</string>
+    <string name="pwd_again">确认密码:</string>
+    <string name="shop_id">您的商户ID：</string>
+    <string name="two_dimension">二维码：</string>
+    <string name="service_phone">客服热线：400&#8211;600&#8211;8935</string>
+    <string name="title_activity_about_us">AboutUsActivity</string>
+    <string name="up_popgoods_description">点击"+"上传奖品图片及描述</string>
+    <string name="user_agreement">我已详细阅读以上条款并同意其内容</string>
+    <string name="agree">同意</string>
+
+    <!-- 商家资料 -->
+    <string name="shopdetail_name">名称</string>
+    <string name="shopdetail_upflag">上传标识</string>
+    <string name="shopdetail_shopid">商家ID</string>
+    <string name="shopdetail_twocode">二维码</string>
+    <string name="shopdetail_place">地区</string>
+    <string name="shopdetail_person">联系人</string>
+    <string name="shopdetail_phone">联系电话</string>
+    <string name="shopdetail_email">邮箱地址</string>
+    <string name="shopdetail_id">证号</string>
+    <string name="shopdetail_password">密码</string>
+    <string name="org_more_info">完善商户资料</string>
+    <string name="org_about">简介</string>
+    <string name="website">网址</string>
+    <string name="email_name">邮箱</string>
+    <string name="weibo">微博</string>
+    <string name="weixinhao">微信号</string>
+    <string name="weixin_code">微信二维码</string>
+    <string name="other">其他</string>
+    <string name="org_change">修改</string>
+    <!-- 中奖名单 -->
+    <string name="publish">发布</string>
+    <string name="publish2">发布：</string>
+    <string name="award">奖品：</string>
+    <string name="award_count">中奖名额：</string>
+    <string name="get_award_nearby">就近兑奖：</string>
+    <string name="get_award_time">兑奖时间：</string>
+    <string name="get_award_phone">联系电话：</string>
+    <string name="get_award_way">兑奖方式：</string>
+    <string name="see_exchange_location">查看兑奖地点</string>
+    <string name="contact">和ta联系</string>
+    <!-- 主办方资料 -->
+    <string name="company_name">公司名称</string>
+    <string name="company_introduce">简介</string>
+    <string name="company_address">地址</string>
+    <string name="company_contact">联系人</string>
+    <string name="company_phone">联系电话</string>
+    <string name="company_net_address">网址</string>
+    <string name="company_email">邮箱地址</string>
+    <string name="company_weibo">微博</string>
+    <string name="company_weixin">微信号</string>
+    <string name="company_other">其他</string>
+    <!-- 我 -->
+    <string name="my_code">我的奖品</string>
+    <string name="my_redpecket">我的红包</string>
+    <string name="my_order">我的订单</string>
+    <string name="my_address">我的地址</string>
+    <string name="my_seller_role">我要当卖手</string>
+    <string name="my_org_role">我要当商家</string>
+    <string name="my_account">我的账户</string>
+    <string name="my_event">我的活动</string>
+    <string name="my_event_host">我的活动主持</string>
+    <string name="my_wish">我的心愿</string>
+    <string name="my_save">我的收藏</string>
+    <string name="my_attention">我的关注</string>
+    <string name="message_center">消息中心</string>
+    <string name="settings">设置</string>
+    <string name="nick_name">昵称</string>
+    <string name="sex">性别</string>
+    <string name="receiver_address">收货地址</string>
+    <string name="phone_num">手机号</string>
+    <string name="phone_num_2">手机号：</string>
+    <string name="three_party">第三方账号授权</string>
+    <string name="change_password">修改密码</string>
+    <string name="title_activity_event_award">EventAwardActivity</string>
+    <string name="title_activity_event_exchange">EventExchangeActivity</string>
+    <string name="user">用户</string>
+    <string name="org">商家</string>
+    <string name="seller">卖手</string>
+    <string name="change_bg">更换背景</string>
+    <string name="userphoto">头像</string>
+    <string name="location">所在地</string>
+    <!-- 中奖码列表 -->
+    <string name="award_no">中奖号码：</string>
+    <string name="value">价值：</string>
+    <string name="red_bag">红包：</string>
+    <string name="have_signin">已报名：</string>
+    <string name="consult">询问</string>
+    <string name="complain">举报/投诉</string>
+    <string name="present">转赠</string>
+    <string name="sign">签收</string>
+    <string name="takephoto">拍照</string>
+    <string name="getphoto">从相册中选择</string>
+    <string name="sign_photo_prompt">上传照片</string>
+    <!-- 设置 -->
+    <string name="exit_login">退出登录</string>
+    <string name="account_authorization">账号授权</string>
+    <string name="feed_back">意见反馈</string>
+    <string name="clear_cache">清理缓存</string>
+    <string name="version_update">版本更新</string>
+    <string name="private_policy">账号授权</string>
+    <string name="authorization">隐私说明</string>
+    <string name="license">许可协议</string>
+    <string name="rate_encourage">打分鼓励</string>
+    <string name="about">关于今晚8点</string>
+    <string name="get_message">接收消息</string>
+    <!-- 奖品签收 -->
+    <string name="sign_award">确认签收</string>
+    <!-- 用户优惠券包 -->
+    <string name="coupon_quick_mark">券二维码</string>
+    <string name="coupon_award_location">兑奖地点</string>
+    <!-- 用户抽奖历史 -->
+    <string name="delete">删除</string>
+    <string name="furture_award">待开奖</string>
+    <string name="no_award">未中奖</string>
+    <string name="achieve_award">已中奖</string>
+    <!-- 用户地址管理 -->
+    <string name="edit">编辑</string>
+    <!-- 用户收货地址 -->
+    <string name="my_receive_address">我的收货信息</string>
+    <string name="receiver_name">收货人姓名</string>
+    <string name="choice_province">选择省份</string>
+    <string name="detail_address">详细地址：</string>
+    <string name="save">保存</string>
+    <!-- 对话框取消 -->
+    <string name="cancel">取消</string>
+    <!-- 商家注册 -->
+    <string name="register">注册</string>
+    <string name="login">登录</string>
+    <string name="auto_login">自动登录</string>
+    <string name="forgotid">忘记ID号？</string>
+    <string name="forgotpwd">忘记密码？</string>
+    <string name="input_orgid_hint">请输入商家ID</string>
+    <string name="input_pwd_hint">请输入密码</string>
+    <string name="input_pwd_hint_retry">请再次输入密码</string>
+    <string name="auth_success">审核时间大概1~3个工作日,通过后ID号会以短信和邮件形式发送给您,请注意查收！</string>
+    <!-- 用户注册 -->
+    <string name="user_account_init">请输入手机号/邮箱</string>
+    <string name="three_party_login">第三方账号登录</string>
+    <!-- 用户转赠 -->
+    <string name="search_from_contacts">从通讯录查询</string>
+    <string name="title_activity_user_forget_password">UserForgetPasswordActivity</string>
+    <!-- 修改密码 -->
+    <string name="old_password">旧密码</string>
+    <string name="new_password">新密码</string>
+    <string name="ensure_password">确认新密码</string>
+    <string name="loading">获取中</string>
+    <string name="scan_text">将二维码放入框内, 即可自动扫描</string>
+    <string name="title_activity_message_list">MessageList</string>
+    <string name="title_activity_message_detail">MessageDetailActivity</string>
+    <string name="title_activity_event_live_play">EventLivePlayActivity</string>
+    <!-- 测试字符串 -->
+    <string name="usersimple">小明</string>
+    <string name="addresssimple">北京市海淀区</string>
+    <!-- 心愿 -->
+    <string name="desc_shrinkup">收起</string>
+    <string name="desc_spread">显示更多</string>
+    <string name="title_activity_user_info">UserInfoActivity</string>
+    <string name="title_activity_event_live">EventLiveActivity</string>
+    <string name="send">发送</string>
+    <!-- 活动现场 -->
+    <string name="live">现场\n(10302人)</string>
+    <string name="winnerlist">中奖名单\n(33345)人</string>
+    <string name="vote">投票\n(5499)人</string>
+    <string name="programlist">节目单\n(60)项</string>
+    <string name="title_activity_goods_info">GoodsInfoActivity</string>
+    <!-- 商品详情 -->
+    <string name="goods_detail">详情介绍</string>
+    <string name="product_style">商品规格</string>
+    <string name="goods_comment">口碑</string>
+    <string name="goods_coupon">使用优惠券</string>
+    <string name="fast_order">立即下单</string>
+    <string name="goods_promise">商品保障：</string>
+    <string name="count">数量</string>
+	<string name="countinit">输入数量</string>
+	<string name="use_coupon">使用优惠券：</string>
+	<string name="coupon_init">满100减50</string>
+	<string name="value_scene">现场价：</string>
+	<string name="value_net">实付：</string>
+	<string name="go_to_buy">去付款</string>
+</resources>

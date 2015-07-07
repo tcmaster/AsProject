@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        style="@style/match_width"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <TextView
+            style="@style/wrap"
+            android:layout_gravity="bottom"
+            android:text="赞助类型："
+            android:textSize="@dimen/middleTextSize" />
+
+        <Spinner
+            android:id="@+id/sp_request_type"
+            style="@style/wrap"
+            android:cursorVisible="true"
+            android:gravity="top"
+            android:singleLine="false" />
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/match_width"
+        android:layout_width="match_parent"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/tv_wishitem_thing"
+            style="@style/wrap"
+            android:layout_gravity="bottom"
+            android:text="物品名称："
+            android:textSize="@dimen/middleTextSize" />
+
+        <EditText
+            android:id="@+id/et_request_thing"
+            style="@style/et_comm_style"
+            android:cursorVisible="true"
+            android:gravity="top"
+            android:singleLine="false" />
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/match_width"
+        android:orientation="horizontal" >
+
+        <TextView
+            style="@style/wrap"
+            android:layout_gravity="bottom"
+            android:text="需求原因："
+            android:textSize="@dimen/middleTextSize" />
+
+        <EditText
+            android:id="@+id/et_request_reason"
+            style="@style/et_comm_style"
+            android:cursorVisible="true"
+            android:gravity="top"
+            android:singleLine="false" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_add_item"
+        style="@style/match_width"
+        android:layout_marginBottom="@dimen/common_margin_left"
+        android:layout_marginTop="@dimen/common_margin_left"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:background="@drawable/shape_white_raduis"
+        android:padding="@dimen/common_margin_small" >
+
+        <ImageView
+            android:id="@+id/iv_add_item"
+            style="@style/wrap"
+            android:scaleType="fitXY"
+            android:background="@mipmap/add_item" />
+
+        <TextView
+            android:id="@+id/tv_add_item"
+            style="@style/wrap"
+            android:layout_marginLeft="@dimen/common_margin_left"
+            android:text="添加赞助项"
+            android:textColor="@color/purple"
+            android:textSize="@dimen/middleTextSize" />
+    </LinearLayout>
+
+</LinearLayout>

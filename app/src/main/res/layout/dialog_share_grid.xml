@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/match_width"
+    android:layout_gravity="bottom"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:padding="@dimen/common_margin_left" >
+
+    <GridView
+        android:id="@+id/gv_share"
+        style="@style/match_width"
+        android:numColumns="4" />
+
+    <Button
+        android:id="@+id/btn_share_dialog_cancel"
+        style="@style/ok_button_style"
+        android:layout_below="@+id/gv_share"
+        android:text="@string/cancel" >
+    </Button>
+
+</RelativeLayout>

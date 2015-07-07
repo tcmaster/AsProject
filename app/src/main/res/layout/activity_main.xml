@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.android.tonight8.ui.view.SlideView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/sv_main_page"
+    style="@style/match"
+    android:background="@color/black_half_transparent" />

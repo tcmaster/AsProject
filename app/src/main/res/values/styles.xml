@@ -1,0 +1,170 @@
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--
+        Base application theme, dependent on API level. This theme is replaced
+        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+    -->
+    <style name="AppBaseTheme" parent="android:Theme.Light">
+        <!--
+            Theme customizations available in newer API levels can go in
+            res/values-vXX/styles.xml, while customizations related to
+            backward-compatibility can go here.
+        -->
+    </style>
+
+    <!-- Application theme. -->
+    <style name="AppTheme" parent="AppBaseTheme">
+        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+    </style>
+    <!-- 首页下方四个单选按钮组 -->
+    <style name="main_tab_bottom">
+        <item name="android:textSize">14sp</item>
+        <item name="android:ellipsize">marquee</item>
+        <item name="android:gravity">center|bottom</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:paddingTop">4dp</item>
+        <item name="android:paddingBottom">4dp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:button">@null</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:drawablePadding">1dp</item>
+        <item name="android:layout_weight">1.0</item>
+        <item name="android:textColor">@android:color/darker_gray</item>
+    </style>
+
+    <style name="wrap">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="match">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
+    <style name="match_width">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="match_height">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
+    <style name="line_full">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1px</item>
+        <item name="android:background">@color/line_gray</item>
+    </style>
+
+    <style name="line_full_vertical">
+        <item name="android:layout_width">1px</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:background">@color/line_gray</item>
+    </style>
+
+    <style name="actionBar_btn_sty">
+        <item name="android:layout_width">30dp</item>
+        <item name="android:layout_height">30dp</item>
+        <item name="android:scaleType">fitXY</item>
+    </style>
+    <!-- 通用编辑框样式 -->
+    <style name="et_comm_style" parent="match">
+        <item name="android:textSize">@dimen/middleTextSize</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:gravity">bottom</item>
+        <item name="android:layout_height">@dimen/et_comm_height</item>
+    </style>
+    <!-- 确定Button style -->
+    <style name="ok_button_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">35dp</item>
+        <item name="android:background">@drawable/setting_btn_selector</item>
+        <item name="android:paddingBottom">6dp</item>
+        <item name="android:paddingTop">6dp</item>
+        <item name="android:layout_marginLeft">@dimen/common_margin_left</item>
+        <item name="android:layout_marginRight">@dimen/common_margin_left</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">@dimen/middleTextSize</item>
+    </style>
+    <!-- 白色Button style -->
+    <style name="button_style_white">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/dialog_btn_height</item>
+        <item name="android:background">@drawable/btn_white_selector</item>
+        <item name="android:paddingBottom">6dp</item>
+        <item name="android:paddingTop">6dp</item>
+        <item name="android:layout_marginLeft">@dimen/common_margin_left</item>
+        <item name="android:layout_marginRight">@dimen/common_margin_left</item>
+        <item name="android:textSize">@dimen/middleTextSize</item>
+    </style>
+    <!-- 商家资料的 左侧文本style -->
+    <style name="shoptext_left_style" parent="wrap">
+        <item name="android:textSize">@dimen/bigTextSize</item>
+        <item name="android:gravity">left</item>
+    </style>
+    <!-- 商家资料的 文本style -->
+    <style name="shoptext_style" parent="match_width">
+        <item name="android:gravity">right</item>
+        <item name="android:textSize">@dimen/bigTextSize</item>
+    </style>
+    <!-- 发活动通用线性布局条目样式 -->
+    <style name="ll_comm_style" parent="match_width">
+        <item name="android:gravity">bottom</item>
+        <item name="android:padding">@dimen/common_margin_small</item>
+    </style>
+    <!-- 商家资料样式 -->
+    <style name="ll_orgdetail_style" parent="match_width">
+        <item name="android:gravity">bottom</item>
+        <item name="android:paddingTop">10dp</item>
+    </style>
+    <!-- 发活动的 文本style -->
+    <style name="createeventtext_style" parent="wrap">
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">@dimen/middleTextSize</item>
+    </style>
+    <!-- 发活动的 小字的文本style -->
+    <style name="createeventsmalltext_style" parent="wrap">
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">@dimen/smallTextSize</item>
+    </style>
+
+    <style name="AnimBottom" parent="@android:style/Animation">
+        <item name="android:windowEnterAnimation">@anim/push_bottom_in</item>
+        <item name="android:windowExitAnimation">@anim/push_bottom_out</item>
+    </style>
+    <!-- 设置与我的账号的item设置 -->
+    <style name="myAccountItem">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/item_height_of_myaccount</item>
+    </style>
+    <!-- 用户头像固定宽高 -->
+    <style name="user_photo">
+        <item name="android:layout_width">@dimen/user_headpic_minheight</item>
+        <item name="android:layout_height">@dimen/user_headpic_minheight</item>
+    </style>
+    <!-- popWindow显示和隐藏的动画 -->
+    <style name="popup_animation">
+        <item name="@android:windowEnterAnimation">@anim/pop_show</item>
+        <item name="@android:windowExitAnimation">@anim/pop_hide</item>
+    </style>
+
+    <style name="com_sina_weibo_sdk_loginview_default_style" parent="@android:style/Widget.Button">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <!--新浪微博需要修改-->
+        <item name="android:paddingTop">100dp</item>
+        <!--新浪微博需要修改-->
+        <item name="android:drawablePadding">100dp</item>
+        <item name="android:background">@null</item>
+        <item name="android:drawableLeft">@null</item>
+        <item name="android:gravity">center</item>
+    </style>
+    <style name="top_category_scroll_view_item_text">
+        <item name="android:textSize">@dimen/smallTextSize</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:gravity">center</item>
+    </style>
+</resources>
