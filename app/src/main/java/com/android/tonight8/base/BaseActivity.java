@@ -1,7 +1,5 @@
 package com.android.tonight8.base;
 
-import java.io.File;
-
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Context;
@@ -29,6 +27,8 @@ import com.android.tonight8.R;
 import com.android.tonight8.utils.Utils;
 import com.lidroid.xutils.BitmapUtils;
 import com.lidroid.xutils.ViewUtils;
+
+import java.io.File;
 
 public class BaseActivity extends FragmentActivity {
 
@@ -99,6 +99,7 @@ public class BaseActivity extends FragmentActivity {
 	}
 
 	protected void initCreateNomal(Bundle savedInstanceState, int res) {
+		getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
 		setContentView(res);
 		ViewUtils.inject(this);
 	}
