@@ -54,7 +54,7 @@
         android:gravity="left"
         android:orientation="horizontal" >
 
-        <com.android.tonight8.view.CircleImageView
+        <com.android.tonight8.ui.view.CircleImageView
             android:id="@+id/civ_realized_wish_userpic"
             style="@style/wrap"
             android:layout_width="@dimen/wishUserPhotoWidth"

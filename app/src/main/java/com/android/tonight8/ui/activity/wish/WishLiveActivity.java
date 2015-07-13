@@ -1,10 +1,5 @@
 package com.android.tonight8.ui.activity.wish;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -23,25 +18,30 @@ import android.widget.TextView;
 import android.widget.TextView.BufferType;
 
 import com.android.tonight8.R;
-import com.android.tonight8.ui.adapter.event.MyPagerAdapter;
 import com.android.tonight8.base.BaseActivity;
 import com.android.tonight8.base.BaseFragment;
 import com.android.tonight8.dao.entity.PopPic;
 import com.android.tonight8.dao.model.event.EventRecommends;
 import com.android.tonight8.dao.model.wish.WishDetailModel;
-import com.android.tonight8.ui.fragment.wish.WishSponsorFragment;
-import com.android.tonight8.ui.fragment.wish.WishTalkFragment;
 import com.android.tonight8.function.CirculateFunction;
 import com.android.tonight8.io.HandlerConstants;
 import com.android.tonight8.io.wish.WishIOController;
-import com.android.tonight8.utils.IntentUtils;
+import com.android.tonight8.ui.adapter.event.MyPagerAdapter;
+import com.android.tonight8.ui.fragment.wish.WishSponsorFragment;
+import com.android.tonight8.ui.fragment.wish.WishTalkFragment;
 import com.android.tonight8.ui.view.CircleImageView;
 import com.android.tonight8.ui.view.CollapsibleTextView;
 import com.android.tonight8.ui.view.MyProgressBar;
 import com.android.tonight8.ui.view.PointLinearlayout;
+import com.android.tonight8.utils.IntentUtils;
 import com.lidroid.xutils.util.LogUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * @author lz 心愿详情页面

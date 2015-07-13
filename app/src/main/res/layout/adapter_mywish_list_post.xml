@@ -46,7 +46,7 @@
         style="@style/match_width"
         android:layout_margin="@dimen/common_margin_small" >
 
-        <com.android.tonight8.view.MyProgressBar
+        <com.android.tonight8.ui.view.MyProgressBar
             android:id="@+id/pb_mywish_progress"
             android:layout_width="40dp"
             android:layout_height="40dp"

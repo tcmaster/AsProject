@@ -66,7 +66,7 @@
                 android:textColor="@color/white"
                 android:textSize="@dimen/middleTextSize" />
 
-            <com.android.tonight8.view.ListViewForScrollView
+            <com.android.tonight8.ui.view.ListViewForScrollView
                 android:id="@+id/lv_sponsor_something"
                 style="@style/match_width"
                 android:layout_toRightOf="@+id/tv_something_text"

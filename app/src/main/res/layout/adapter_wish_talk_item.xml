@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:padding="@dimen/common_margin_small" >
 
-    <com.android.tonight8.view.CircleImageView
+    <com.android.tonight8.ui.view.CircleImageView
         android:id="@+id/iv_wish_talk_headpic"
         android:layout_width="@dimen/wishUserPhotoWidth"
         android:layout_height="@dimen/wishUserPhotoWidth"
@@ -42,14 +42,13 @@
         android:button="@drawable/wishtalk_comment_selector"
         android:checked="false" />
 
-    <com.android.tonight8.view.ListViewForScrollView
+    <com.android.tonight8.ui.view.ListViewForScrollView
         android:id="@+id/lv_wishitem"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/cb_talk_dialog"
         android:divider="#b5b5b5"
-        android:dividerHeight="1dp" >
-    </com.android.tonight8.view.ListViewForScrollView>
+        android:dividerHeight="1dp" />
 
     <LinearLayout
         android:id="@+id/ll_dialog_commit"

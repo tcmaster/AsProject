@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     style="@style/match"
     android:orientation="vertical" >
-    <com.android.tonight8.view.GridViewForScrollView
+    <com.android.tonight8.ui.view.GridViewForScrollView
         style="@style/match"
         android:id="@+id/gv_goods_style"
         android:numColumns="2"

@@ -5,7 +5,7 @@
     android:paddingTop="@dimen/topOrBottomPaddingSmall"
     android:paddingBottom="@dimen/topOrBottomPaddingSmall" >
 
-    <com.android.tonight8.view.CircleImageView
+    <com.android.tonight8.ui.view.CircleImageView
         android:id="@+id/iv_user_pic"
         android:layout_width="@dimen/user_headpic_minheight"
         android:layout_height="@dimen/user_headpic_minheight"

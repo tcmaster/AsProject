@@ -27,7 +27,7 @@
         android:layout_height="20dp"
         android:background="@color/gray" />
 
-    <com.android.tonight8.view.xlistview.XListView
+    <com.android.tonight8.ui.view.xlistview.XListView
         android:id="@+id/lv_coupon_haveused"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />

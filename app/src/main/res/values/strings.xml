@@ -239,4 +239,5 @@
 	<string name="value_scene">现场价：</string>
 	<string name="value_net">实付：</string>
 	<string name="go_to_buy">去付款</string>
+
 </resources>

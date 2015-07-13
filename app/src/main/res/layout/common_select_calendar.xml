@@ -6,7 +6,7 @@
     android:layout_marginRight="@dimen/common_margin_left"
     android:orientation="vertical" >
 
-    <com.android.tonight8.view.MyCalendarView
+    <com.android.tonight8.ui.view.MyCalendarView
         android:id="@+id/calendarView_selected"
         style="@style/match_width" />
 

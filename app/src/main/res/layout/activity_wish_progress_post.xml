@@ -19,7 +19,7 @@
         android:singleLine="false"
         android:textSize="@dimen/middleTextSize" />
 
-    <com.android.tonight8.view.GridViewForScrollView
+    <com.android.tonight8.ui.view.GridViewForScrollView
         android:id="@+id/gv_wishprogress"
         style="@style/match_width"
         android:layout_width="match_parent"

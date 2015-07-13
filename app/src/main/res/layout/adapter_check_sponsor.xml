@@ -6,7 +6,7 @@
     android:background="@color/white"
     android:padding="@dimen/common_margin_small" >
 
-    <com.android.tonight8.view.CircleImageView
+    <com.android.tonight8.ui.view.CircleImageView
         android:id="@+id/civ_mywishcheck_userpic"
         style="@style/wrap"
         android:layout_width="@dimen/wishUserPhotoWidth"
