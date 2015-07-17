@@ -30,9 +30,7 @@ public class AudioPlayProxy {
      * 当前的代理是否有效
      */
     public boolean canUse() {
-        if (binder != null && binder.isBinderAlive())
-            return true;
-        else return false;
+        return binder != null && binder.isBinderAlive();
     }
 
     /**

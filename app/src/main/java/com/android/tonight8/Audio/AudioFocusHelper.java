@@ -45,10 +45,10 @@ public class AudioFocusHelper implements AudioManager.OnAudioFocusChangeListener
      */
     public interface FocusChangeCallBack{
         /**焦点暂时丢失*/
-        public void onLossTransient();
+        void onLossTransient();
         /**焦点丢失*/
-        public void onLoss();
+        void onLoss();
         /**获得焦点*/
-        public void onGain();
+        void onGain();
     }
 }

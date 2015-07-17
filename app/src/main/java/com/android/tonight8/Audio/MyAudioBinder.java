@@ -1,12 +1,12 @@
 package com.android.tonight8.Audio;
 
 import android.content.Context;
-import android.media.AudioManager;
-import android.media.MediaPlayer;
 import android.os.Binder;
 
 import java.io.FileDescriptor;
 import java.io.IOException;
+
+import io.vov.vitamio.MediaPlayer;
 
 /**
  * 音频服务的binder
@@ -50,7 +50,7 @@ class MyAudioBinder extends Binder {
     /**
      * 记录出现网络问题时，当前音乐播放的位置
      */
-    private int errorPos;
+    private long errorPos;
 
     public MyAudioBinder(Context context) {
         this.service = context;
@@ -81,16 +81,16 @@ class MyAudioBinder extends Binder {
             }
         });
         //初始化声音播放工具
-        mp = new MediaPlayer();
-        mp.setAudioStreamType(AudioManager.STREAM_MUSIC);
+        mp = new MediaPlayer(service);
         mp.setOnErrorListener(new AudioErrorListener(new AudioErrorListener.AudioErrorInterface() {
             @Override
-            public void onNetError(int currentPos) {//网络异常
+            public void onNetError(long currentPos) {
                 isPrepare = false;
                 hasNetError = true;
                 errorPos = currentPos;
                 releaseSounds();//释放音频源，取消准备状态
             }
+
         }));
         mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
             @Override
@@ -236,13 +236,13 @@ class MyAudioBinder extends Binder {
      *
      * @param msec
      */
-    public void seekTo(int msec) {
+    public void seekTo(long msec) {
         if (mp != null && state == PLAYING || state == PAUSE) {
             mp.seekTo(msec);
         }
     }
 
-    public int getCurrentPosition() {
+    public long getCurrentPosition() {
         if (mp != null)
             return mp.getCurrentPosition();
         else return 0;

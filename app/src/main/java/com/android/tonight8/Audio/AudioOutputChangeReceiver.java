@@ -11,14 +11,14 @@ import android.media.AudioManager;
  * Created by Administrator on 2015/7/10 0010.
  */
 public class AudioOutputChangeReceiver extends BroadcastReceiver {
+    private final int HEAD_SET = 1;
+    private final int SPEAKER = 2;
+    private final int OTHER = 3;
     private boolean isRegister;
     private Context context;
     private AudioManager manager;
     /**上个音频输出的源*/
     private int state;
-    private final int HEAD_SET = 1;
-    private final int SPEAKER = 2;
-    private final int OTHER = 3;
     public AudioOutputChangeReceiver(Context context) {
         isRegister = false;
         this.context = context;

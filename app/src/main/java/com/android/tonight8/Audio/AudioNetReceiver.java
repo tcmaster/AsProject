@@ -60,11 +60,11 @@ public class AudioNetReceiver extends BroadcastReceiver {
          * @param type 可连接的类型（手机，wifi,蓝牙等）
          *               以下类型的其中一种TYPE_MOBILE, TYPE_WIFI, TYPE_WIMAX, TYPE_ETHERNET, TYPE_BLUETOOTH,（这些类型定义在 ConnectivityManager中）
          */
-        public void onNetConnection(int type);
+        void onNetConnection(int type);
 
         /**
          * 当前没有可用的网络
          */
-        public void onNetUnconnection();
+        void onNetUnconnection();
     }
 }
