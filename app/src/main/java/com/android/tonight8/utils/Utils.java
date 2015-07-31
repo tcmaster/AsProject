@@ -26,6 +26,17 @@ import com.lidroid.xutils.util.LogUtils;
  */
 public class Utils {
 
+	/**
+	 * 获取网络连接类型
+	 *
+	 * @return -1表示没有网络
+	 */
+	public static final int TYPE_WIFI = 0;
+	public static final int TYPE_3G = 1;
+	public static final int TYPE_GPRS = 2;
+	// QQ登录加载对话框
+	private static Dialog mProgressDialog;
+
 	public static void toast(String strMsg) {
 		if (StringUtils.isNullOrEmpty(strMsg)) {
 			return;
@@ -44,7 +55,7 @@ public class Utils {
 
 	/**
 	 * 判断是否联网
-	 * 
+	 *
 	 * @param context
 	 * @return
 	 */
@@ -66,15 +77,6 @@ public class Utils {
 		}
 		return false;
 	}
-
-	/**
-	 * 获取网络连接类型
-	 * 
-	 * @return -1表示没有网络
-	 */
-	public static final int TYPE_WIFI = 0;
-	public static final int TYPE_3G = 1;
-	public static final int TYPE_GPRS = 2;
 
 	public static final int getNetWorkType(Context c) {
 		ConnectivityManager conn = (ConnectivityManager) c
@@ -122,7 +124,6 @@ public class Utils {
 		Cursor cursor = context.getContentResolver().query(contentUri, proj,
 				null, null, null);
 		if (cursor.moveToFirst()) {
-			;
 			int column_index = cursor
 					.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
 			res = cursor.getString(column_index);
@@ -132,9 +133,9 @@ public class Utils {
 	}
 
 	/**
-	 * 
+	 *
 	 * 判断是否尽在Wifi环境下上传图片 "0"为仅在Wifi环境环境下上传 "1"为在3G和Wifi都能上传
-	 * 
+	 *
 	 * @author:LiuBing
 	 * @see:
 	 * @since:
@@ -188,9 +189,19 @@ public class Utils {
 		return (int) (pxValue / scale + 0.5f);
 	}
 
+	public static int sp2px(Context context, float spValue) {
+		final float fontScale = context.getResources().getDisplayMetrics().scaledDensity;
+		return (int) (spValue * fontScale + 0.5f);
+	}
+
+	public static int px2sp(Context context, float pxValue) {
+		final float fontScale = context.getResources().getDisplayMetrics().scaledDensity;
+		return (int) (pxValue / fontScale + 0.5f);
+	}
+
 	/**
 	 * 隐藏软键盘
-	 * 
+	 *
 	 * @param activity
 	 *            要隐藏软键盘的activity
 	 */
@@ -211,21 +222,18 @@ public class Utils {
 
 	/**
 	 * 显示软键盘
-	 * 
+	 *
 	 * @param context
 	 * @param editText
 	 */
 	public static void showSoftKeyBroad(Context context, EditText editText) {
-		editText.setFocusable(true); 
-        editText.setFocusableInTouchMode(true); 
-        editText.requestFocus(); 
+		editText.setFocusable(true);
+		editText.setFocusableInTouchMode(true);
+		editText.requestFocus();
 		InputMethodManager mgr = (InputMethodManager) context
 				.getSystemService(Context.INPUT_METHOD_SERVICE);
 		mgr.showSoftInput(editText, InputMethodManager.SHOW_IMPLICIT);
 	}
-
-	// QQ登录加载对话框
-	private static Dialog mProgressDialog;
 
 	public static final void showProgressDialog(Context context, String title,
 			String message) {

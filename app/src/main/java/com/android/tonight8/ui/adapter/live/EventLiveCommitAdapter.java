@@ -8,6 +8,9 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.android.tonight8.R;
@@ -30,19 +33,8 @@ import com.android.tonight8.ui.view.TitlePopup.OnItemOnClickListener;
  * @Tonight8
  */
 public class EventLiveCommitAdapter extends BaseListAdapter<SubjectList> {
-	/** 赞成和评论按钮弹出框 */
-	private TitlePopup titlePopup;
-	/** 评论提交弹出框 */
-	private CommitPopup commitPopup;
-
 	public EventLiveCommitAdapter(Context context, List<SubjectList> values) {
 		super(context, values);
-		titlePopup = new TitlePopup(mContext, Utils.dip2px(context, 165),
-				Utils.dip2px(context, 40));
-		titlePopup.addAction(new ActionItem(mContext, "赞",
-				R.mipmap.ic_launcher));
-		titlePopup.addAction(new ActionItem(mContext, "评论",
-				R.mipmap.ic_launcher));
 	}
 
 	@Override
@@ -50,75 +42,25 @@ public class EventLiveCommitAdapter extends BaseListAdapter<SubjectList> {
 		SubjectList subjectList = mValues.get(position);
 		if (convertView == null)
 			convertView = mInflater.inflate(R.layout.item_live_commit, null);
-		final CheckBox cb_live_dialog = ViewHolder.get(convertView,
-				R.id.cb_live_dialog);
 		CircleImageView iv_live_comment_headpic = ViewHolder.get(convertView,
 				R.id.iv_live_talk_headpic);// 用户头像
 		TextView tv_live_talk_name = ViewHolder.get(convertView,
-				R.id.tv_live_talk_name);
+				R.id.tv_live_talk_name);//姓名
 		TextView tv_live_talk_time = ViewHolder.get(convertView,
-				R.id.tv_live_talk_time);
+				R.id.tv_live_talk_time);//时间
 		TextView tv_live_talk_content = ViewHolder.get(convertView,
-				R.id.tv_live_talk_content);
+				R.id.tv_live_talk_content);//文字内容
+		FrameLayout fl_container = ViewHolder.get(convertView, R.id.fl_container);//红包或额外内容
+		TextView tv_live_talk_role = ViewHolder.get(convertView, R.id.tv_live_talk_role);//角色
+		ImageView iv_img_contant = ViewHolder.get(convertView, R.id.iv_img_contant);//图片内容
+		LinearLayout ll_more_info = ViewHolder.get(convertView, R.id.ll_more_info);//红包或者开奖说明
+		ImageView iv_red_more_info = ViewHolder.get(convertView, R.id.iv_red_more_info);//附加内容图片
+		TextView tv_more_info = ViewHolder.get(convertView, R.id.tv_more_info);//附加内容文字说明
 		tv_live_talk_name.setText(subjectList.getUser().getName());
 		tv_live_talk_time.setText(subjectList.getSubject().getDate()
 				+ subjectList.getSubject().getTime());
 		tv_live_talk_content.setText(subjectList.getSubject().getContent());
 		bmUtils.display(iv_live_comment_headpic, subjectList.getUser().getPic());
-		cb_live_dialog.setTag(position);
-		cb_live_dialog.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				Utils.toast(((Integer) v.getTag()) + "测试第几个");
-				titlePopup.show(v, cb_live_dialog);
-			}
-		});
-		cb_live_dialog.setTag(position);
-		titlePopup.setItemOnClickListener(new OnItemOnClickListener() {
-
-			@Override
-			public void onItemClick(View v, View itemPosView, ActionItem item,
-					int position) {
-				if (position == 1) {
-					commitPopup.show(v, itemPosView);
-				} else {
-					Utils.toast(((Integer) itemPosView.getTag()) + "赞+1");
-				}
-			}
-		});
-		commitPopup = new CommitPopup(mContext, LayoutParams.MATCH_PARENT,
-				Utils.dip2px(mContext, 40));
-		commitPopup.setPostClick(new onPostClick() {
-
-			@Override
-			public void onButtonClick(View v, View itemPosView,
-					EditText et_commit) {
-				Utils.toast("第" + ((Integer) itemPosView.getTag()) + "个");
-			}
-		});
 		return convertView;
 	}
-
-	/**
-	 * 增加数据源
-	 * 
-	 * @param models
-	 */
-	public void addData(List<SubjectList> models) {
-		mValues.addAll(models);
-		notifyDataSetChanged();
-	}
-
-	/**
-	 * 重置数据源
-	 * 
-	 * @param models
-	 */
-	public void initData(List<SubjectList> models) {
-		mValues.clear();
-		mValues.addAll(models);
-		notifyDataSetChanged();
-	}
-
 }

@@ -1,226 +1,219 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    style="@style/match" >
+    style="@style/match">
 
-   <ScrollView
-       android:id="@+id/sv_lv_main"
-       style="@style/match"
-       android:layout_gravity="center"
-       android:scrollbars="none"
-       >
-    <LinearLayout
-        style="@style/match_width"
-        android:orientation="vertical"
-        tools:context=".EventLivePlayActivity" >
+    <ScrollView
+        android:id="@+id/sv_lv_main"
+        style="@style/match"
+        android:layout_gravity="center"
+        android:scrollbars="none">
 
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/popgoodsImgHeight" >
+        <LinearLayout
+            style="@style/match_width"
+            android:orientation="vertical"
+            tools:context=".EventLivePlayActivity">
 
-            <android.support.v4.view.ViewPager
-                android:id="@+id/vp_play_screen"
+            <com.android.tonight8.ui.view.BarrageView
+                android:id="@+id/bv_live"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/popgoodsImgHeight"
-                android:layout_gravity="center" />
+                android:layout_height="60dp"
+                android:background="@color/white_gray" />
 
-            <ImageView
-                android:id="@+id/iv_function"
-                style="@style/wrap"
-                android:layout_gravity="left|top"
-                android:layout_marginLeft="@dimen/common_margin_left"
-                android:layout_marginTop="@dimen/topOrbottomPadding"
-                android:contentDescription="@string/app_name"
-                android:scaleType="fitXY"
-                android:src="@mipmap/ic_launcher" />
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/popgoodsImgHeight">
+
+                <android.support.v4.view.ViewPager
+                    android:id="@+id/vp_play_screen"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/popgoodsImgHeight"
+                    android:layout_gravity="center" />
+
+                <RelativeLayout
+                    style="@style/match_width"
+                    android:layout_gravity="bottom"
+                    android:background="@color/gray_half_transparent">
+
+                    <ImageView
+                        android:id="@+id/iv_extra"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_margin="@dimen/common_margin_left"
+                        android:contentDescription="@string/app_name"
+                        android:src="@mipmap/vemail" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:contentDescription="@string/app_name"
+                        android:src="@mipmap/vpause" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_margin="@dimen/common_margin_left"
+                        android:src="@mipmap/vsetting" />
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_left"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left|center_vertical"
+                    android:layout_marginLeft="@dimen/common_margin_left"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/iv_share"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="@string/app_name"
+                        android:src="@mipmap/vphone" />
+
+                    <ImageView
+                        android:id="@+id/iv_save"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/common_margin_left"
+                        android:contentDescription="@string/app_name"
+                        android:src="@mipmap/vphone" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_right"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right|center_vertical"
+                    android:layout_marginRight="@dimen/common_margin_left"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/iv_voice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="@string/app_name"
+                        android:src="@mipmap/vphone" />
+
+                    <ImageView
+                        android:id="@+id/iv_barrage_on_off"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/common_margin_left"
+                        android:contentDescription="@string/app_name"
+                        android:src="@mipmap/vphone" />
+                </LinearLayout>
+            </FrameLayout>
+
+            <View style="@style/line_full" />
 
             <TextView
-                android:id="@+id/tv_play_num"
-                style="@style/wrap"
-                android:layout_gravity="right|top"
-                android:layout_marginRight="@dimen/common_margin_left"
-                android:layout_marginTop="@dimen/topOrbottomPadding"
+                android:id="@+id/tv_ppt_discribe"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingBottom="@dimen/topOrbottomPadding"
+                android:paddingTop="@dimen/topOrbottomPadding"
+                android:text="@string/app_name"
+                android:textSize="@dimen/middleTextSize" />
+
+            <RadioGroup
+                android:id="@+id/rg_tab"
+                style="@style/match_width"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/rb_live"
+                    android:layout_width="0dp"
+                    android:layout_height="80dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/tab_selector"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:text="@string/live"
+                    android:textColor="@drawable/selector_tab_text_color"
+                    android:textSize="@dimen/middleTextSize" />
+
+                <View
+                    style="@style/line_full_vertical"
+                    android:layout_marginBottom="@dimen/topOrbottomPadding"
+                    android:layout_marginTop="@dimen/topOrbottomPadding" />
+
+                <RadioButton
+                    android:id="@+id/rb_winner_list"
+                    android:layout_width="0dp"
+                    android:layout_height="80dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/tab_selector"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:text="@string/winnerlist"
+                    android:textColor="@drawable/selector_tab_text_color"
+                    android:textSize="@dimen/middleTextSize" />
+
+                <View
+                    style="@style/line_full_vertical"
+                    android:layout_marginBottom="@dimen/topOrbottomPadding"
+                    android:layout_marginTop="@dimen/topOrbottomPadding" />
+
+                <RadioButton
+                    android:id="@+id/rb_vote"
+                    android:layout_width="0dp"
+                    android:layout_height="80dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/tab_selector"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:text="@string/vote"
+                    android:textColor="@drawable/selector_tab_text_color"
+                    android:textSize="@dimen/middleTextSize" />
+
+                <View
+                    style="@style/line_full_vertical"
+                    android:layout_marginBottom="@dimen/topOrbottomPadding"
+                    android:layout_marginTop="@dimen/topOrbottomPadding" />
+
+                <RadioButton
+                    android:id="@+id/rb_program_list"
+                    android:layout_width="0dp"
+                    android:layout_height="80dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/tab_selector"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:text="@string/programlist"
+                    android:textColor="@drawable/selector_tab_text_color"
+                    android:textSize="@dimen/middleTextSize" />
+            </RadioGroup>
+
+            <View style="@style/line_full" />
+
+            <TextView
+                android:id="@+id/tv_goods_info"
+                style="@style/match_width"
+                android:ellipsize="marquee"
+                android:gravity="center"
+                android:paddingBottom="@dimen/topOrbottomPadding"
+                android:paddingTop="@dimen/topOrbottomPadding"
                 android:text="@string/app_name"
                 android:textColor="@color/black"
                 android:textSize="@dimen/middleTextSize" />
-        </FrameLayout>
-
-        <LinearLayout
-            style="@style/match_width"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:paddingBottom="@dimen/topOrbottomPadding"
-            android:paddingTop="@dimen/topOrbottomPadding" >
-
-            <ImageView
-                android:id="@+id/iv_prev_page"
-                style="@style/wrap"
-                android:layout_marginLeft="@dimen/common_margin_left_long"
-                android:contentDescription="@string/app_name"
-                android:scaleType="fitXY"
-                android:src="@mipmap/vprev" />
-
-            <ImageView
-                android:id="@+id/iv_play_or_pause"
-                style="@style/wrap"
-                android:layout_marginLeft="@dimen/common_margin_left_long"
-                android:contentDescription="@string/app_name"
-                android:scaleType="fitXY"
-                android:src="@mipmap/vpause" />
-
-            <ImageView
-                android:id="@+id/iv_next_page"
-                style="@style/wrap"
-                android:layout_marginLeft="@dimen/common_margin_left_long"
-                android:contentDescription="@string/app_name"
-                android:scaleType="fitXY"
-                android:src="@mipmap/vfront" />
+            <!-- 有一个界面用到了item_event_award(用于用户中奖名单界面） -->
 
             <LinearLayout
+                android:id="@+id/ll_lv_container"
                 style="@style/match_width"
-                android:gravity="right|center_vertical"
-                android:orientation="horizontal" >
-
-                <ImageView
-                    android:id="@+id/iv_power_off"
-                    style="@style/wrap"
-                    android:layout_marginLeft="@dimen/common_margin_left_long"
-                    android:contentDescription="@string/app_name"
-                    android:scaleType="fitXY"
-                    android:src="@mipmap/vpower" />
-
-                <ImageView
-                    android:id="@+id/iv_prompt"
-                    style="@style/wrap"
-                    android:layout_marginLeft="@dimen/common_margin_left_long"
-                    android:contentDescription="@string/app_name"
-                    android:scaleType="fitXY"
-                    android:src="@mipmap/vdownload"
-                    android:visibility="gone" />
-
-                <ImageView
-                    android:id="@+id/iv_download"
-                    style="@style/wrap"
-                    android:layout_marginLeft="@dimen/common_margin_left_long"
-                    android:contentDescription="@string/app_name"
-                    android:scaleType="fitXY"
-                    android:src="@mipmap/vdownload" />
-
-                <ImageView
-                    android:id="@+id/iv_volume"
-                    style="@style/wrap"
-                    android:layout_marginLeft="@dimen/common_margin_left_long"
-                    android:contentDescription="@string/app_name"
-                    android:scaleType="fitXY"
-                    android:src="@mipmap/vsound" />
-
-                <ImageView
-                    android:id="@+id/iv_full_screen"
-                    style="@style/wrap"
-                    android:layout_marginLeft="@dimen/common_margin_left_long"
-                    android:layout_marginRight="@dimen/common_margin_left_long"
-                    android:contentDescription="@string/app_name"
-                    android:scaleType="fitXY"
-                    android:src="@mipmap/vfullscreen" />
-            </LinearLayout>
+                android:orientation="vertical" />
         </LinearLayout>
-
-        <View style="@style/line_full" />
-
-        <RadioGroup
-            android:id="@+id/rg_tab"
-            style="@style/match_width"
-            android:orientation="horizontal" >
-
-            <RadioButton
-                android:id="@+id/rb_live"
-                android:layout_width="0dp"
-                android:layout_height="80dp"
-                android:layout_weight="1"
-                android:background="@drawable/tab_selector"
-                android:button="@null"
-                android:gravity="center"
-                android:text="@string/live"
-                android:textColor="@drawable/selector_tab_text_color"
-                android:textSize="@dimen/middleTextSize" />
-
-            <View
-                style="@style/line_full_vertical"
-                android:layout_marginBottom="@dimen/topOrbottomPadding"
-                android:layout_marginTop="@dimen/topOrbottomPadding" />
-
-            <RadioButton
-                android:id="@+id/rb_winner_list"
-                android:layout_width="0dp"
-                android:layout_height="80dp"
-                android:layout_weight="1"
-                android:background="@drawable/tab_selector"
-                android:button="@null"
-                android:gravity="center"
-                android:text="@string/winnerlist"
-                android:textColor="@drawable/selector_tab_text_color"
-                android:textSize="@dimen/middleTextSize" />
-
-            <View
-                style="@style/line_full_vertical"
-                android:layout_marginBottom="@dimen/topOrbottomPadding"
-                android:layout_marginTop="@dimen/topOrbottomPadding" />
-
-            <RadioButton
-                android:id="@+id/rb_vote"
-                android:layout_width="0dp"
-                android:layout_height="80dp"
-                android:layout_weight="1"
-                android:background="@drawable/tab_selector"
-                android:button="@null"
-                android:gravity="center"
-                android:text="@string/vote"
-                android:textColor="@drawable/selector_tab_text_color"
-                android:textSize="@dimen/middleTextSize" />
-
-            <View
-                style="@style/line_full_vertical"
-                android:layout_marginBottom="@dimen/topOrbottomPadding"
-                android:layout_marginTop="@dimen/topOrbottomPadding" />
-
-            <RadioButton
-                android:id="@+id/rb_program_list"
-                android:layout_width="0dp"
-                android:layout_height="80dp"
-                android:layout_weight="1"
-                android:background="@drawable/tab_selector"
-                android:button="@null"
-                android:gravity="center"
-                android:text="@string/programlist"
-                android:textColor="@drawable/selector_tab_text_color"
-                android:textSize="@dimen/middleTextSize" />
-        </RadioGroup>
-
-        <View style="@style/line_full" />
-
-        <TextView
-            android:id="@+id/tv_goods_info"
-            style="@style/match_width"
-            android:ellipsize="marquee"
-            android:gravity="center"
-            android:paddingBottom="@dimen/topOrbottomPadding"
-            android:paddingTop="@dimen/topOrbottomPadding"
-            android:text="@string/app_name"
-            android:textColor="@color/black"
-            android:textSize="@dimen/middleTextSize" />
-        <!-- 有一个界面用到了item_event_award(用于用户中奖名单界面） -->
-
-        <LinearLayout
-            android:id="@+id/ll_lv_container"
-            style="@style/match_width"
-            android:orientation="vertical" />
-    </LinearLayout>
     </ScrollView>
 
     <LinearLayout
         style="@style/match_width"
         android:layout_gravity="bottom"
         android:background="@color/white"
-        android:orientation="vertical" >
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/tv_process"
@@ -236,7 +229,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/talk_width"
             android:gravity="center_vertical"
-            android:orientation="horizontal" >
+            android:orientation="horizontal">
 
             <ImageView
                 android:id="@+id/iv_attachment"
@@ -259,8 +252,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/app_name"
-                />
+                android:text="@string/app_name" />
         </LinearLayout>
         <!-- 传送图片/声音的附加框 -->
 
@@ -272,7 +264,7 @@
             android:layout_height="@dimen/talk_attachments_height"
             android:orientation="horizontal"
             android:padding="@dimen/topOrbottomPadding"
-            android:visibility="gone" >
+            android:visibility="gone">
 
             <ImageButton
                 android:id="@+id/ib_gallery"
@@ -297,7 +289,7 @@
             <FrameLayout
                 android:layout_width="0dp"
                 android:layout_height="@dimen/talk_attachments_button_height"
-                android:layout_weight="1" >
+                android:layout_weight="1">
 
                 <ImageButton
                     android:id="@+id/ib_voice"

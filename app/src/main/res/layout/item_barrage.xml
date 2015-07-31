@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/tv_barrage"
+    android:layout_width="2000dp"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="-100dp"
+    android:ellipsize="none"
+    android:singleLine="true"
+    android:text="diiawdiiaid迪赛低矮低矮落到了王老大多万吨达瓦大大爱的伟大达瓦达瓦大打完打到啊" />

@@ -40,6 +40,7 @@ public class AudioFocusHelper implements AudioManager.OnAudioFocusChangeListener
         }
     }
 
+
     /**
      * 焦点变化的回调
      */

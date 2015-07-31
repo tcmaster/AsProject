@@ -22,10 +22,10 @@
     <uses-permission android:name="android.permission.BROADCAST_STICKY" />
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
     <!-- 这个权限用于进行网络定位 -->
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"></uses-permission>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <!-- 这个权限用于访问GPS定位 -->
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"></uses-permission>
-    <uses-permission android:name="android.permission.CALL_PHONE"></uses-permission>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.FLASHLIGHT" />
@@ -58,11 +58,6 @@
             android:name=".ui.activity.MainActivity"
             android:label="@string/app_name"
             android:theme="@android:style/Theme.Black.NoTitleBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
 
         </activity>
         <!-- 忘记商家密码 -->
@@ -70,38 +65,38 @@
             android:name=".ui.activity.org.OrgForgotPwdActivity"
             android:alwaysRetainTaskState="true"
             android:configChanges="keyboardHidden|orientation"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <!-- 忘记商家ID -->
         <activity
             android:name=".ui.activity.org.OrgForgotIDActivity"
             android:alwaysRetainTaskState="true"
             android:configChanges="keyboardHidden|orientation"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <!-- 商家 注册 -->
         <activity
             android:name=".ui.activity.org.OrgRegisterActivity"
             android:alwaysRetainTaskState="true"
             android:configChanges="keyboardHidden|orientation"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <!-- 商家消息列表 -->
         <activity
             android:name=".ui.activity.org.OrgMessageListActivity"
             android:alwaysRetainTaskState="true"
             android:configChanges="keyboardHidden|orientation"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
 
         <!-- 创建活动第一步 -->
         <activity
             android:name=".ui.activity.event.CreatEventFirstActivity"
             android:alwaysRetainTaskState="true"
             android:configChanges="keyboardHidden|orientation"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <!-- 创建活动第二步 -->
         <activity
             android:name=".ui.activity.event.CreateEventSecondActivity"
             android:alwaysRetainTaskState="true"
             android:configChanges="keyboardHidden|orientation"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <!-- 创建活动第三步 -->
         <activity
             android:name=".ui.activity.event.CreateEventThirdActivity"
@@ -156,7 +151,8 @@
             android:name="com.baidu.location.f"
             android:enabled="true"
             android:process=":remote"></service>
-        <service android:name=".Audio.AudioPlayService"
+        <service
+            android:name=".Audio.AudioPlayService"
             android:enabled="true"
             android:exported="false">
             <intent-filter>
@@ -243,8 +239,15 @@
         <!-- 活动现场直播界面 -->
         <activity
             android:name=".ui.activity.live.EventLivePlayActivity"
+            android:hardwareAccelerated="true"
             android:label="@string/title_activity_event_live_play"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <!-- QQ分享需要注册的 -->
         <activity
             android:name="com.tencent.connect.common.AssistActivity"
