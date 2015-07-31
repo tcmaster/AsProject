@@ -13,6 +13,9 @@ import com.android.tonight8.ui.adapter.BaseListAdapter;
 import com.android.tonight8.dao.model.live.EventAward;
 import com.android.tonight8.ui.view.CircleImageView;
 
+/**
+ * 开奖名单适配器
+ */
 public class EventLiveWinnerListAdapter extends BaseListAdapter<EventAward> {
 	private List<String> times;// 测试时间控件
 
@@ -68,8 +71,6 @@ public class EventLiveWinnerListAdapter extends BaseListAdapter<EventAward> {
 				contentHolder = new ContentHolder();
 				convertView = mInflater
 						.inflate(R.layout.item_event_award, null);
-				contentHolder.iv_have_do = (ImageView) convertView
-						.findViewById(R.id.iv_have_do);
 				contentHolder.iv_user_pic = (CircleImageView) convertView
 						.findViewById(R.id.iv_user_pic);
 				contentHolder.tv_location = (TextView) convertView
@@ -99,8 +100,6 @@ public class EventLiveWinnerListAdapter extends BaseListAdapter<EventAward> {
 					contentHolder = new ContentHolder();
 					convertView = mInflater.inflate(R.layout.item_event_award,
 							null);
-					contentHolder.iv_have_do = (ImageView) convertView
-							.findViewById(R.id.iv_have_do);
 					contentHolder.iv_user_pic = (CircleImageView) convertView
 							.findViewById(R.id.iv_user_pic);
 					contentHolder.tv_location = (TextView) convertView
@@ -145,8 +144,8 @@ public class EventLiveWinnerListAdapter extends BaseListAdapter<EventAward> {
 	}
 
 	/**
-	 * 
-	 * @Descripton特殊的adapter，使用自己的ViewHolder，不能用万能ViewHolder
+	 *
+	 * @Descripton特殊的adapter,未使用万能ViewHolder
 	 * @author LiXiaoSong
 	 * @2015-6-15
 	 * @Tonight8

@@ -1,5 +1,6 @@
 package com.android.tonight8.ui.fragment.livemanage;
 
+import java.lang.ref.WeakReference;
 import java.util.List;
 
 import android.annotation.SuppressLint;
@@ -31,35 +32,11 @@ public class WinnerListFragment extends BaseFragment {
 	@ViewInject(R.id.lv_winner_list)
 	private ListViewForScrollView lv_winner_list;
 	private EventLiveWinnerListAdapter adapter;
-	@SuppressLint("HandlerLeak")
-	private Handler handler = new Handler() {
-		@SuppressWarnings("unchecked")
-		@Override
-		public void handleMessage(android.os.Message msg) {
-			switch (msg.what) {
-			case HandlerConstants.Live.LIVE_WINNER_LIST:
-				switch (msg.arg1) {
-				case HandlerConstants.RESULT_OK:
-					if (adapter == null) {
-						adapter = new EventLiveWinnerListAdapter(getActivity(),
-								(List<EventAward>) msg.obj);
-						lv_winner_list.setAdapter(adapter);
-					} else {
-						adapter.notifyDataSetChanged();
-					}
+	private MyHandler handler;
 
-					break;
-
-				default:
-					break;
-				}
-				break;
-
-			default:
-				break;
-			}
-		};
-	};
+	public static WinnerListFragment newInstance() {
+		return new WinnerListFragment();
+	}
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -77,11 +54,39 @@ public class WinnerListFragment extends BaseFragment {
 		initDatas();
 	}
 
-	public static WinnerListFragment newInstance() {
-		return new WinnerListFragment();
+	private void initDatas() {
+		handler = new MyHandler(this);
+		LiveIOController.readLiveWinnerList(handler);
 	}
 
-	private void initDatas() {
-		LiveIOController.readLiveWinnerList(handler);
+	private static class MyHandler extends Handler {
+		WeakReference<WinnerListFragment> ref;
+
+		public MyHandler(WinnerListFragment wf) {
+			ref = new WeakReference<WinnerListFragment>(wf);
+		}
+
+		@Override
+		public void handleMessage(android.os.Message msg) {
+			switch (msg.what) {
+				case HandlerConstants.Live.LIVE_WINNER_LIST:
+					switch (msg.arg1) {
+						case HandlerConstants.RESULT_OK:
+							if (ref.get().adapter == null) {
+								ref.get().adapter = new EventLiveWinnerListAdapter(ref.get().getActivity(),
+										(List<EventAward>) msg.obj);
+								ref.get().lv_winner_list.setAdapter(ref.get().adapter);
+							} else {
+								ref.get().adapter.notifyDataSetChanged();
+							}
+							break;
+						default:
+							break;
+					}
+					break;
+				default:
+					break;
+			}
+		}
 	}
 }

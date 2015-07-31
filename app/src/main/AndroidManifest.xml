@@ -161,9 +161,6 @@
         </service>
 
         <activity
-            android:name=".ui.activity.event.EventAwardActivity"
-            android:label="@string/title_activity_event_award"></activity>
-        <activity
             android:name=".ui.activity.event.EventExchangeActivity"
             android:label="@string/title_activity_event_exchange"></activity>
         <!-- 用户中奖码列表 -->
