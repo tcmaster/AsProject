@@ -39,10 +39,6 @@ public class NetRequest {
 
 	/**
 	 * @Description:多任务请求方法(用于请求多个任务)，每个map与同位置的callback一一对应(此方法不能上传大文件,参数必需均为String),在每个map中，必需传送含有"method"和"requesUrl"的字段
-	 * @param params
-	 *            所有请求的参数集合
-	 * @param callbacks
-	 *            所有请求结果的回调集合
 	 * @author: LiXiaoSong
 	 * @date:2014-12-26
 	 */
@@ -221,6 +217,16 @@ public class NetRequest {
 
 	}
 
+	private static void addHeader(RequestParams rP) {
+		rP.addQueryStringParameter("version", AppConstants.version);
+		rP.addQueryStringParameter("device_type", AppConstants.device_type);
+		rP.addQueryStringParameter("imei", AppConstants.imei);
+		rP.addQueryStringParameter("dpi", AppConstants.dpi);
+		rP.addQueryStringParameter("os_version", AppConstants.os_version);
+		rP.addQueryStringParameter("phone_model", AppConstants.phone_model);
+		rP.addQueryStringParameter("auth_code", AppConstants.auth_code);
+	}
+
 	public abstract static class RequestResult<T> extends
 			RequestCallBack<String> {
 
@@ -337,16 +343,6 @@ public class NetRequest {
 
 		public abstract void getDataList(NetEntityBase netEntityBase,
 				List<T> t, Handler handler);
-	}
-
-	private static void addHeader(RequestParams rP) {
-		rP.addQueryStringParameter("version", AppConstants.version);
-		rP.addQueryStringParameter("device_type", AppConstants.device_type);
-		rP.addQueryStringParameter("imei", AppConstants.imei);
-		rP.addQueryStringParameter("dpi", AppConstants.dpi);
-		rP.addQueryStringParameter("os_version", AppConstants.os_version);
-		rP.addQueryStringParameter("phone_model", AppConstants.phone_model);
-		rP.addQueryStringParameter("auth_code", AppConstants.auth_code);
 	}
 
 }

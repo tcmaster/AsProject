@@ -22,9 +22,7 @@ import com.lidroid.xutils.util.LogUtils;
 public class JsonUtils {
 
 	public static String newJsonkey = "";
-	private static String key1 = "";//
-	private static List<String> classList;// 实体类列表
-	private static String[] imgs = {
+	public static String[] imgs = {
 			"http://img4.imgtn.bdimg.com/it/u=2352711400,4289515900&fm=11&gp=0.jpg",
 			"http://img4.imgtn.bdimg.com/it/u=3923171974,2721923014&fm=21&gp=0.jpg",
 			"http://img0.imgtn.bdimg.com/it/u=3934165751,994592123&fm=21&gp=0.jpg",
@@ -33,6 +31,8 @@ public class JsonUtils {
 			"http://img1.gamersky.com/image2013/05/20130518u_6/gamersky_24small_48_20135181047D16.jpg",
 			"http://image.tianjimedia.com/uploadImages/2013/081/77E8DL96VPZ4_0000784667.jpg",
 			"http://img4.imgtn.bdimg.com/it/u=1195536478,3585633064&fm=21&gp=0.jpg" };
+	private static String key1 = "";//
+	private static List<String> classList;// 实体类列表
 
 	public static <T> T parseJsonStr(String jsonStr, Class<T> clazz) {
 		T t = JSON.parseObject(jsonStr, clazz);
@@ -40,7 +40,7 @@ public class JsonUtils {
 		return t;
 	}
 	public static <T> List<T> parseJsonList(String jsonStr, Class<T> clazz) {
-		List<T> t = (List<T>) JSON.parseArray(jsonStr, clazz);
+		List<T> t = JSON.parseArray(jsonStr, clazz);
 		LogUtils.v(t.toString());
 		return t;
 	}

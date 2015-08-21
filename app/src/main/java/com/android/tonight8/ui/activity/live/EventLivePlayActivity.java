@@ -8,9 +8,11 @@ import android.os.SystemClock;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
+import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.RadioGroup;
 import android.widget.RadioGroup.OnCheckedChangeListener;
@@ -214,6 +216,7 @@ public class EventLivePlayActivity extends BaseActivity {
         WeakReference<EventLivePlayActivity> ref;
         private int i = 0;
 
+
         public MyHandler(EventLivePlayActivity context) {
             ref = new WeakReference<EventLivePlayActivity>(context);
         }
@@ -253,6 +256,7 @@ public class EventLivePlayActivity extends BaseActivity {
                     for (int i = 20; i < 150; i++) {
                         BarrageView.BarrageModel model = new BarrageView.BarrageModel(ref.get().texts[(int) (Math.random() * 3)] + i, Color.BLACK, ref.get().types[(Math.random() > 0.3d ? 0 : 1)]);
                         models2.add(model);
+
                     }
                     ref.get().bv_live.getData(models2);
                 default:
