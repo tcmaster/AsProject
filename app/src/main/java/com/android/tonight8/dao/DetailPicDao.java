@@ -18,24 +18,11 @@ public class DetailPicDao extends AbstractDao<DetailPic, Long> {
 
     public static final String TABLENAME = "DETAIL_PIC";
 
-    /**
-     * Properties of entity DetailPic.<br/>
-     * Can be used for QueryBuilder and for referencing column names.
-    */
-    public static class Properties {
-        public final static Property Id = new Property(0, long.class, "id", true, "ID");
-        public final static Property Type = new Property(1, Integer.class, "type", false, "TYPE");
-        public final static Property RelateId = new Property(2, Long.class, "relateId", false, "RELATE_ID");
-        public final static Property Url = new Property(3, String.class, "url", false, "URL");
-        public final static Property Size = new Property(4, String.class, "size", false, "SIZE");
-        public final static Property Describe = new Property(5, String.class, "describe", false, "DESCRIBE");
-    };
-
-
     public DetailPicDao(DaoConfig config) {
         super(config);
     }
-    
+
+
     public DetailPicDao(DaoConfig config, DaoSession daoSession) {
         super(config, daoSession);
     }
@@ -45,7 +32,7 @@ public class DetailPicDao extends AbstractDao<DetailPic, Long> {
         String constraint = ifNotExists? "IF NOT EXISTS ": "";
         db.execSQL("CREATE TABLE " + constraint + "'DETAIL_PIC' (" + //
                 "'ID' INTEGER PRIMARY KEY NOT NULL ," + // 0: id
-                "'TYPE' INTEGER," + // 1: type
+                "'RELATE_TYPE' INTEGER," + // 1: relateType
                 "'RELATE_ID' INTEGER," + // 2: relateId
                 "'URL' TEXT," + // 3: url
                 "'SIZE' TEXT," + // 4: size
@@ -63,27 +50,27 @@ public class DetailPicDao extends AbstractDao<DetailPic, Long> {
     protected void bindValues(SQLiteStatement stmt, DetailPic entity) {
         stmt.clearBindings();
         stmt.bindLong(1, entity.getId());
- 
-        Integer type = entity.getType();
-        if (type != null) {
-            stmt.bindLong(2, type);
+
+        Integer relateType = entity.getRelateType();
+        if (relateType != null) {
+            stmt.bindLong(2, relateType);
         }
- 
+
         Long relateId = entity.getRelateId();
         if (relateId != null) {
             stmt.bindLong(3, relateId);
         }
- 
+
         String url = entity.getUrl();
         if (url != null) {
             stmt.bindString(4, url);
         }
- 
+
         String size = entity.getSize();
         if (size != null) {
             stmt.bindString(5, size);
         }
- 
+
         String describe = entity.getDescribe();
         if (describe != null) {
             stmt.bindString(6, describe);
@@ -94,14 +81,14 @@ public class DetailPicDao extends AbstractDao<DetailPic, Long> {
     @Override
     public Long readKey(Cursor cursor, int offset) {
         return cursor.getLong(offset + 0);
-    }    
+    }
 
     /** @inheritdoc */
     @Override
     public DetailPic readEntity(Cursor cursor, int offset) {
         DetailPic entity = new DetailPic( //
             cursor.getLong(offset + 0), // id
-            cursor.isNull(offset + 1) ? null : cursor.getInt(offset + 1), // type
+                cursor.isNull(offset + 1) ? null : cursor.getInt(offset + 1), // relateType
             cursor.isNull(offset + 2) ? null : cursor.getLong(offset + 2), // relateId
             cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3), // url
             cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4), // size
@@ -109,18 +96,18 @@ public class DetailPicDao extends AbstractDao<DetailPic, Long> {
         );
         return entity;
     }
-     
+
     /** @inheritdoc */
     @Override
     public void readEntity(Cursor cursor, DetailPic entity, int offset) {
         entity.setId(cursor.getLong(offset + 0));
-        entity.setType(cursor.isNull(offset + 1) ? null : cursor.getInt(offset + 1));
+        entity.setRelateType(cursor.isNull(offset + 1) ? null : cursor.getInt(offset + 1));
         entity.setRelateId(cursor.isNull(offset + 2) ? null : cursor.getLong(offset + 2));
         entity.setUrl(cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3));
         entity.setSize(cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4));
         entity.setDescribe(cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5));
      }
-    
+
     /** @inheritdoc */
     @Override
     protected Long updateKeyAfterInsert(DetailPic entity, long rowId) {
@@ -139,9 +126,22 @@ public class DetailPicDao extends AbstractDao<DetailPic, Long> {
     }
 
     /** @inheritdoc */
-    @Override    
+    @Override
     protected boolean isEntityUpdateable() {
         return true;
+    }
+
+    /**
+     * Properties of entity DetailPic.<br/>
+     * Can be used for QueryBuilder and for referencing column names.
+     */
+    public static class Properties {
+        public final static Property Id = new Property(0, long.class, "id", true, "ID");
+        public final static Property RelateType = new Property(1, Integer.class, "relateType", false, "RELATE_TYPE");
+        public final static Property RelateId = new Property(2, Long.class, "relateId", false, "RELATE_ID");
+        public final static Property Url = new Property(3, String.class, "url", false, "URL");
+        public final static Property Size = new Property(4, String.class, "size", false, "SIZE");
+        public final static Property Describe = new Property(5, String.class, "describe", false, "DESCRIBE");
     }
     
 }

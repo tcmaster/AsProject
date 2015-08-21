@@ -7,7 +7,7 @@ package com.android.tonight8.dao.entity;
 public class PopPic {
 
     private long id;
-    private Integer type;
+    private Integer relateType;
     private Long relateId;
     private String url;
     private String describe;
@@ -19,9 +19,9 @@ public class PopPic {
         this.id = id;
     }
 
-    public PopPic(long id, Integer type, Long relateId, String url, String describe) {
+    public PopPic(long id, Integer relateType, Long relateId, String url, String describe) {
         this.id = id;
-        this.type = type;
+        this.relateType = relateType;
         this.relateId = relateId;
         this.url = url;
         this.describe = describe;
@@ -35,12 +35,12 @@ public class PopPic {
         this.id = id;
     }
 
-    public Integer getType() {
-        return type;
+    public Integer getRelateType() {
+        return relateType;
     }
 
-    public void setType(Integer type) {
-        this.type = type;
+    public void setRelateType(Integer relateType) {
+        this.relateType = relateType;
     }
 
     public Long getRelateId() {

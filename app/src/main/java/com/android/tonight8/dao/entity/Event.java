@@ -15,6 +15,7 @@ public class Event {
     private long id;
     private Long orgId;
     private String name;
+    private Integer type;
     private Integer status;
     private String timeRangeStart;
     private String timeRangeEnd;
@@ -28,7 +29,9 @@ public class Event {
     private Integer orderCount;
     private Integer orderShippingCount;
     private Integer audienceCount;
-    private Integer type;
+    private Integer praiseCount;
+    private Boolean hasPPT;
+    private Integer pptDefaultId;
 
     /** Used to resolve relations */
     private transient DaoSession daoSession;
@@ -47,10 +50,11 @@ public class Event {
         this.id = id;
     }
 
-    public Event(long id, Long orgId, String name, Integer status, String timeRangeStart, String timeRangeEnd, String publishTime, Long timeStamp, String ruleDescription, Integer winningLimit, Integer applyCount, Integer awardCount, Integer awardShippingCount, Integer orderCount, Integer orderShippingCount, Integer audienceCount, Integer type) {
+    public Event(long id, Long orgId, String name, Integer type, Integer status, String timeRangeStart, String timeRangeEnd, String publishTime, Long timeStamp, String ruleDescription, Integer winningLimit, Integer applyCount, Integer awardCount, Integer awardShippingCount, Integer orderCount, Integer orderShippingCount, Integer audienceCount, Integer praiseCount, Boolean hasPPT, Integer pptDefaultId) {
         this.id = id;
         this.orgId = orgId;
         this.name = name;
+        this.type = type;
         this.status = status;
         this.timeRangeStart = timeRangeStart;
         this.timeRangeEnd = timeRangeEnd;
@@ -64,7 +68,9 @@ public class Event {
         this.orderCount = orderCount;
         this.orderShippingCount = orderShippingCount;
         this.audienceCount = audienceCount;
-        this.type = type;
+        this.praiseCount = praiseCount;
+        this.hasPPT = hasPPT;
+        this.pptDefaultId = pptDefaultId;
     }
 
     /** called by internal mechanisms, do not call yourself. */
@@ -95,6 +101,14 @@ public class Event {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Integer getType() {
+        return type;
+    }
+
+    public void setType(Integer type) {
+        this.type = type;
     }
 
     public Integer getStatus() {
@@ -201,12 +215,28 @@ public class Event {
         this.audienceCount = audienceCount;
     }
 
-    public Integer getType() {
-        return type;
+    public Integer getPraiseCount() {
+        return praiseCount;
     }
 
-    public void setType(Integer type) {
-        this.type = type;
+    public void setPraiseCount(Integer praiseCount) {
+        this.praiseCount = praiseCount;
+    }
+
+    public Boolean getHasPPT() {
+        return hasPPT;
+    }
+
+    public void setHasPPT(Boolean hasPPT) {
+        this.hasPPT = hasPPT;
+    }
+
+    public Integer getPptDefaultId() {
+        return pptDefaultId;
+    }
+
+    public void setPptDefaultId(Integer pptDefaultId) {
+        this.pptDefaultId = pptDefaultId;
     }
 
     /** To-one relationship, resolved on first access. */

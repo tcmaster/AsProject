@@ -22,29 +22,8 @@ import com.android.tonight8.dao.entity.CouponProvide;
 public class CouponProvideDao extends AbstractDao<CouponProvide, Long> {
 
     public static final String TABLENAME = "COUPON_PROVIDE";
-
-    /**
-     * Properties of entity CouponProvide.<br/>
-     * Can be used for QueryBuilder and for referencing column names.
-    */
-    public static class Properties {
-        public final static Property Id = new Property(0, long.class, "id", true, "ID");
-        public final static Property Rid = new Property(1, Long.class, "rid", false, "RID");
-        public final static Property Type = new Property(2, Integer.class, "type", false, "TYPE");
-        public final static Property Value = new Property(3, Float.class, "value", false, "VALUE");
-        public final static Property Content = new Property(4, String.class, "content", false, "CONTENT");
-        public final static Property DispatchContent = new Property(5, String.class, "dispatchContent", false, "DISPATCH_CONTENT");
-        public final static Property ProvideNumber = new Property(6, Integer.class, "provideNumber", false, "PROVIDE_NUMBER");
-        public final static Property DispatchNumber = new Property(7, Integer.class, "dispatchNumber", false, "DISPATCH_NUMBER");
-        public final static Property ProvideAll = new Property(8, Boolean.class, "provideAll", false, "PROVIDE_ALL");
-        public final static Property IsLiveUse = new Property(9, Boolean.class, "isLiveUse", false, "IS_LIVE_USE");
-        public final static Property DateRangeStart = new Property(10, String.class, "dateRangeStart", false, "DATE_RANGE_START");
-        public final static Property DateRangeEnd = new Property(11, String.class, "dateRangeEnd", false, "DATE_RANGE_END");
-        public final static Property TemplatePic = new Property(12, String.class, "templatePic", false, "TEMPLATE_PIC");
-        public final static Property PublishTime = new Property(13, String.class, "publishTime", false, "PUBLISH_TIME");
-    };
-
     private DaoSession daoSession;
+    private String selectDeep;
 
 
     public CouponProvideDao(DaoConfig config) {
@@ -61,19 +40,21 @@ public class CouponProvideDao extends AbstractDao<CouponProvide, Long> {
         String constraint = ifNotExists? "IF NOT EXISTS ": "";
         db.execSQL("CREATE TABLE " + constraint + "'COUPON_PROVIDE' (" + //
                 "'ID' INTEGER PRIMARY KEY NOT NULL ," + // 0: id
-                "'RID' INTEGER," + // 1: rid
+                "'EVENT_ID' INTEGER," + // 1: eventId
                 "'TYPE' INTEGER," + // 2: type
                 "'VALUE' REAL," + // 3: value
-                "'CONTENT' TEXT," + // 4: content
-                "'DISPATCH_CONTENT' TEXT," + // 5: dispatchContent
-                "'PROVIDE_NUMBER' INTEGER," + // 6: provideNumber
-                "'DISPATCH_NUMBER' INTEGER," + // 7: dispatchNumber
-                "'PROVIDE_ALL' INTEGER," + // 8: provideAll
-                "'IS_LIVE_USE' INTEGER," + // 9: isLiveUse
-                "'DATE_RANGE_START' TEXT," + // 10: dateRangeStart
-                "'DATE_RANGE_END' TEXT," + // 11: dateRangeEnd
-                "'TEMPLATE_PIC' TEXT," + // 12: templatePic
-                "'PUBLISH_TIME' TEXT);"); // 13: publishTime
+                "'CONDITION_NUMBER' INTEGER," + // 4: conditionNumber
+                "'CONTENT' TEXT," + // 5: content
+                "'DISPATCH_CONTENT' TEXT," + // 6: dispatchContent
+                "'PROVIDE_NUMBER' INTEGER," + // 7: provideNumber
+                "'DISPATCH_NUMBER' INTEGER," + // 8: dispatchNumber
+                "'PROVIDE_ALL' INTEGER," + // 9: provideAll
+                "'IS_LIVE_USE' INTEGER," + // 10: isLiveUse
+                "'DATE_RANGE_START' TEXT," + // 11: dateRangeStart
+                "'DATE_RANGE_END' TEXT," + // 12: dateRangeEnd
+                "'TEMPLATE_PIC' TEXT," + // 13: templatePic
+                "'DATE' TEXT," + // 14: date
+                "'TIME' TEXT);"); // 15: time
     }
 
     /** Drops the underlying database table. */
@@ -87,10 +68,10 @@ public class CouponProvideDao extends AbstractDao<CouponProvide, Long> {
     protected void bindValues(SQLiteStatement stmt, CouponProvide entity) {
         stmt.clearBindings();
         stmt.bindLong(1, entity.getId());
- 
-        Long rid = entity.getRid();
-        if (rid != null) {
-            stmt.bindLong(2, rid);
+
+        Long eventId = entity.getEventId();
+        if (eventId != null) {
+            stmt.bindLong(2, eventId);
         }
  
         Integer type = entity.getType();
@@ -102,55 +83,65 @@ public class CouponProvideDao extends AbstractDao<CouponProvide, Long> {
         if (value != null) {
             stmt.bindDouble(4, value);
         }
+
+        Integer conditionNumber = entity.getConditionNumber();
+        if (conditionNumber != null) {
+            stmt.bindLong(5, conditionNumber);
+        }
  
         String content = entity.getContent();
         if (content != null) {
-            stmt.bindString(5, content);
+            stmt.bindString(6, content);
         }
  
         String dispatchContent = entity.getDispatchContent();
         if (dispatchContent != null) {
-            stmt.bindString(6, dispatchContent);
+            stmt.bindString(7, dispatchContent);
         }
  
         Integer provideNumber = entity.getProvideNumber();
         if (provideNumber != null) {
-            stmt.bindLong(7, provideNumber);
+            stmt.bindLong(8, provideNumber);
         }
  
         Integer dispatchNumber = entity.getDispatchNumber();
         if (dispatchNumber != null) {
-            stmt.bindLong(8, dispatchNumber);
+            stmt.bindLong(9, dispatchNumber);
         }
  
         Boolean provideAll = entity.getProvideAll();
         if (provideAll != null) {
-            stmt.bindLong(9, provideAll ? 1l: 0l);
+            stmt.bindLong(10, provideAll ? 1l : 0l);
         }
  
         Boolean isLiveUse = entity.getIsLiveUse();
         if (isLiveUse != null) {
-            stmt.bindLong(10, isLiveUse ? 1l: 0l);
+            stmt.bindLong(11, isLiveUse ? 1l : 0l);
         }
  
         String dateRangeStart = entity.getDateRangeStart();
         if (dateRangeStart != null) {
-            stmt.bindString(11, dateRangeStart);
+            stmt.bindString(12, dateRangeStart);
         }
  
         String dateRangeEnd = entity.getDateRangeEnd();
         if (dateRangeEnd != null) {
-            stmt.bindString(12, dateRangeEnd);
+            stmt.bindString(13, dateRangeEnd);
         }
  
         String templatePic = entity.getTemplatePic();
         if (templatePic != null) {
-            stmt.bindString(13, templatePic);
+            stmt.bindString(14, templatePic);
         }
- 
-        String publishTime = entity.getPublishTime();
-        if (publishTime != null) {
-            stmt.bindString(14, publishTime);
+
+        String date = entity.getDate();
+        if (date != null) {
+            stmt.bindString(15, date);
+        }
+
+        String time = entity.getTime();
+        if (time != null) {
+            stmt.bindString(16, time);
         }
     }
 
@@ -171,19 +162,21 @@ public class CouponProvideDao extends AbstractDao<CouponProvide, Long> {
     public CouponProvide readEntity(Cursor cursor, int offset) {
         CouponProvide entity = new CouponProvide( //
             cursor.getLong(offset + 0), // id
-            cursor.isNull(offset + 1) ? null : cursor.getLong(offset + 1), // rid
+                cursor.isNull(offset + 1) ? null : cursor.getLong(offset + 1), // eventId
             cursor.isNull(offset + 2) ? null : cursor.getInt(offset + 2), // type
             cursor.isNull(offset + 3) ? null : cursor.getFloat(offset + 3), // value
-            cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4), // content
-            cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5), // dispatchContent
-            cursor.isNull(offset + 6) ? null : cursor.getInt(offset + 6), // provideNumber
-            cursor.isNull(offset + 7) ? null : cursor.getInt(offset + 7), // dispatchNumber
-            cursor.isNull(offset + 8) ? null : cursor.getShort(offset + 8) != 0, // provideAll
-            cursor.isNull(offset + 9) ? null : cursor.getShort(offset + 9) != 0, // isLiveUse
-            cursor.isNull(offset + 10) ? null : cursor.getString(offset + 10), // dateRangeStart
-            cursor.isNull(offset + 11) ? null : cursor.getString(offset + 11), // dateRangeEnd
-            cursor.isNull(offset + 12) ? null : cursor.getString(offset + 12), // templatePic
-            cursor.isNull(offset + 13) ? null : cursor.getString(offset + 13) // publishTime
+                cursor.isNull(offset + 4) ? null : cursor.getInt(offset + 4), // conditionNumber
+                cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5), // content
+                cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6), // dispatchContent
+                cursor.isNull(offset + 7) ? null : cursor.getInt(offset + 7), // provideNumber
+                cursor.isNull(offset + 8) ? null : cursor.getInt(offset + 8), // dispatchNumber
+                cursor.isNull(offset + 9) ? null : cursor.getShort(offset + 9) != 0, // provideAll
+                cursor.isNull(offset + 10) ? null : cursor.getShort(offset + 10) != 0, // isLiveUse
+                cursor.isNull(offset + 11) ? null : cursor.getString(offset + 11), // dateRangeStart
+                cursor.isNull(offset + 12) ? null : cursor.getString(offset + 12), // dateRangeEnd
+                cursor.isNull(offset + 13) ? null : cursor.getString(offset + 13), // templatePic
+                cursor.isNull(offset + 14) ? null : cursor.getString(offset + 14), // date
+                cursor.isNull(offset + 15) ? null : cursor.getString(offset + 15) // time
         );
         return entity;
     }
@@ -192,19 +185,21 @@ public class CouponProvideDao extends AbstractDao<CouponProvide, Long> {
     @Override
     public void readEntity(Cursor cursor, CouponProvide entity, int offset) {
         entity.setId(cursor.getLong(offset + 0));
-        entity.setRid(cursor.isNull(offset + 1) ? null : cursor.getLong(offset + 1));
+        entity.setEventId(cursor.isNull(offset + 1) ? null : cursor.getLong(offset + 1));
         entity.setType(cursor.isNull(offset + 2) ? null : cursor.getInt(offset + 2));
         entity.setValue(cursor.isNull(offset + 3) ? null : cursor.getFloat(offset + 3));
-        entity.setContent(cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4));
-        entity.setDispatchContent(cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5));
-        entity.setProvideNumber(cursor.isNull(offset + 6) ? null : cursor.getInt(offset + 6));
-        entity.setDispatchNumber(cursor.isNull(offset + 7) ? null : cursor.getInt(offset + 7));
-        entity.setProvideAll(cursor.isNull(offset + 8) ? null : cursor.getShort(offset + 8) != 0);
-        entity.setIsLiveUse(cursor.isNull(offset + 9) ? null : cursor.getShort(offset + 9) != 0);
-        entity.setDateRangeStart(cursor.isNull(offset + 10) ? null : cursor.getString(offset + 10));
-        entity.setDateRangeEnd(cursor.isNull(offset + 11) ? null : cursor.getString(offset + 11));
-        entity.setTemplatePic(cursor.isNull(offset + 12) ? null : cursor.getString(offset + 12));
-        entity.setPublishTime(cursor.isNull(offset + 13) ? null : cursor.getString(offset + 13));
+        entity.setConditionNumber(cursor.isNull(offset + 4) ? null : cursor.getInt(offset + 4));
+        entity.setContent(cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5));
+        entity.setDispatchContent(cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6));
+        entity.setProvideNumber(cursor.isNull(offset + 7) ? null : cursor.getInt(offset + 7));
+        entity.setDispatchNumber(cursor.isNull(offset + 8) ? null : cursor.getInt(offset + 8));
+        entity.setProvideAll(cursor.isNull(offset + 9) ? null : cursor.getShort(offset + 9) != 0);
+        entity.setIsLiveUse(cursor.isNull(offset + 10) ? null : cursor.getShort(offset + 10) != 0);
+        entity.setDateRangeStart(cursor.isNull(offset + 11) ? null : cursor.getString(offset + 11));
+        entity.setDateRangeEnd(cursor.isNull(offset + 12) ? null : cursor.getString(offset + 12));
+        entity.setTemplatePic(cursor.isNull(offset + 13) ? null : cursor.getString(offset + 13));
+        entity.setDate(cursor.isNull(offset + 14) ? null : cursor.getString(offset + 14));
+        entity.setTime(cursor.isNull(offset + 15) ? null : cursor.getString(offset + 15));
      }
     
     /** @inheritdoc */
@@ -230,8 +225,6 @@ public class CouponProvideDao extends AbstractDao<CouponProvide, Long> {
         return true;
     }
     
-    private String selectDeep;
-
     protected String getSelectDeep() {
         if (selectDeep == null) {
             StringBuilder builder = new StringBuilder("SELECT ");
@@ -239,13 +232,13 @@ public class CouponProvideDao extends AbstractDao<CouponProvide, Long> {
             builder.append(',');
             SqlUtils.appendColumns(builder, "T0", daoSession.getEventDao().getAllColumns());
             builder.append(" FROM COUPON_PROVIDE T");
-            builder.append(" LEFT JOIN EVENT T0 ON T.'RID'=T0.'ID'");
+            builder.append(" LEFT JOIN EVENT T0 ON T.'EVENT_ID'=T0.'ID'");
             builder.append(' ');
             selectDeep = builder.toString();
         }
         return selectDeep;
     }
-    
+
     protected CouponProvide loadCurrentDeep(Cursor cursor, boolean lock) {
         CouponProvide entity = loadCurrent(cursor, 0, lock);
         int offset = getAllColumns().length;
@@ -253,7 +246,7 @@ public class CouponProvideDao extends AbstractDao<CouponProvide, Long> {
         Event event = loadCurrentOther(daoSession.getEventDao(), cursor, offset);
         entity.setEvent(event);
 
-        return entity;    
+        return entity;
     }
 
     public CouponProvide loadDeep(Long key) {
@@ -266,10 +259,10 @@ public class CouponProvideDao extends AbstractDao<CouponProvide, Long> {
         builder.append("WHERE ");
         SqlUtils.appendColumnsEqValue(builder, "T", getPkColumns());
         String sql = builder.toString();
-        
+
         String[] keyArray = new String[] { key.toString() };
         Cursor cursor = db.rawQuery(sql, keyArray);
-        
+
         try {
             boolean available = cursor.moveToFirst();
             if (!available) {
@@ -282,12 +275,12 @@ public class CouponProvideDao extends AbstractDao<CouponProvide, Long> {
             cursor.close();
         }
     }
-    
+
     /** Reads all available rows from the given cursor and returns a list of new ImageTO objects. */
     public List<CouponProvide> loadAllDeepFromCursor(Cursor cursor) {
         int count = cursor.getCount();
         List<CouponProvide> list = new ArrayList<CouponProvide>(count);
-        
+
         if (cursor.moveToFirst()) {
             if (identityScope != null) {
                 identityScope.lock();
@@ -314,11 +307,33 @@ public class CouponProvideDao extends AbstractDao<CouponProvide, Long> {
         }
     }
     
-
     /** A raw-style query where you can pass any WHERE clause and arguments. */
     public List<CouponProvide> queryDeep(String where, String... selectionArg) {
         Cursor cursor = db.rawQuery(getSelectDeep() + where, selectionArg);
         return loadDeepAllAndCloseCursor(cursor);
+    }
+
+    /**
+     * Properties of entity CouponProvide.<br/>
+     * Can be used for QueryBuilder and for referencing column names.
+     */
+    public static class Properties {
+        public final static Property Id = new Property(0, long.class, "id", true, "ID");
+        public final static Property EventId = new Property(1, Long.class, "eventId", false, "EVENT_ID");
+        public final static Property Type = new Property(2, Integer.class, "type", false, "TYPE");
+        public final static Property Value = new Property(3, Float.class, "value", false, "VALUE");
+        public final static Property ConditionNumber = new Property(4, Integer.class, "conditionNumber", false, "CONDITION_NUMBER");
+        public final static Property Content = new Property(5, String.class, "content", false, "CONTENT");
+        public final static Property DispatchContent = new Property(6, String.class, "dispatchContent", false, "DISPATCH_CONTENT");
+        public final static Property ProvideNumber = new Property(7, Integer.class, "provideNumber", false, "PROVIDE_NUMBER");
+        public final static Property DispatchNumber = new Property(8, Integer.class, "dispatchNumber", false, "DISPATCH_NUMBER");
+        public final static Property ProvideAll = new Property(9, Boolean.class, "provideAll", false, "PROVIDE_ALL");
+        public final static Property IsLiveUse = new Property(10, Boolean.class, "isLiveUse", false, "IS_LIVE_USE");
+        public final static Property DateRangeStart = new Property(11, String.class, "dateRangeStart", false, "DATE_RANGE_START");
+        public final static Property DateRangeEnd = new Property(12, String.class, "dateRangeEnd", false, "DATE_RANGE_END");
+        public final static Property TemplatePic = new Property(13, String.class, "templatePic", false, "TEMPLATE_PIC");
+        public final static Property Date = new Property(14, String.class, "date", false, "DATE");
+        public final static Property Time = new Property(15, String.class, "time", false, "TIME");
     }
  
 }

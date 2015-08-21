@@ -18,23 +18,11 @@ public class PopPicDao extends AbstractDao<PopPic, Long> {
 
     public static final String TABLENAME = "POP_PIC";
 
-    /**
-     * Properties of entity PopPic.<br/>
-     * Can be used for QueryBuilder and for referencing column names.
-    */
-    public static class Properties {
-        public final static Property Id = new Property(0, long.class, "id", true, "ID");
-        public final static Property Type = new Property(1, Integer.class, "type", false, "TYPE");
-        public final static Property RelateId = new Property(2, Long.class, "relateId", false, "RELATE_ID");
-        public final static Property Url = new Property(3, String.class, "url", false, "URL");
-        public final static Property Describe = new Property(4, String.class, "describe", false, "DESCRIBE");
-    };
-
-
     public PopPicDao(DaoConfig config) {
         super(config);
     }
-    
+
+
     public PopPicDao(DaoConfig config, DaoSession daoSession) {
         super(config, daoSession);
     }
@@ -44,7 +32,7 @@ public class PopPicDao extends AbstractDao<PopPic, Long> {
         String constraint = ifNotExists? "IF NOT EXISTS ": "";
         db.execSQL("CREATE TABLE " + constraint + "'POP_PIC' (" + //
                 "'ID' INTEGER PRIMARY KEY NOT NULL ," + // 0: id
-                "'TYPE' INTEGER," + // 1: type
+                "'RELATE_TYPE' INTEGER," + // 1: relateType
                 "'RELATE_ID' INTEGER," + // 2: relateId
                 "'URL' TEXT," + // 3: url
                 "'DESCRIBE' TEXT);"); // 4: describe
@@ -61,22 +49,22 @@ public class PopPicDao extends AbstractDao<PopPic, Long> {
     protected void bindValues(SQLiteStatement stmt, PopPic entity) {
         stmt.clearBindings();
         stmt.bindLong(1, entity.getId());
- 
-        Integer type = entity.getType();
-        if (type != null) {
-            stmt.bindLong(2, type);
+
+        Integer relateType = entity.getRelateType();
+        if (relateType != null) {
+            stmt.bindLong(2, relateType);
         }
- 
+
         Long relateId = entity.getRelateId();
         if (relateId != null) {
             stmt.bindLong(3, relateId);
         }
- 
+
         String url = entity.getUrl();
         if (url != null) {
             stmt.bindString(4, url);
         }
- 
+
         String describe = entity.getDescribe();
         if (describe != null) {
             stmt.bindString(5, describe);
@@ -87,31 +75,31 @@ public class PopPicDao extends AbstractDao<PopPic, Long> {
     @Override
     public Long readKey(Cursor cursor, int offset) {
         return cursor.getLong(offset + 0);
-    }    
+    }
 
     /** @inheritdoc */
     @Override
     public PopPic readEntity(Cursor cursor, int offset) {
         PopPic entity = new PopPic( //
             cursor.getLong(offset + 0), // id
-            cursor.isNull(offset + 1) ? null : cursor.getInt(offset + 1), // type
+                cursor.isNull(offset + 1) ? null : cursor.getInt(offset + 1), // relateType
             cursor.isNull(offset + 2) ? null : cursor.getLong(offset + 2), // relateId
             cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3), // url
             cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4) // describe
         );
         return entity;
     }
-     
+
     /** @inheritdoc */
     @Override
     public void readEntity(Cursor cursor, PopPic entity, int offset) {
         entity.setId(cursor.getLong(offset + 0));
-        entity.setType(cursor.isNull(offset + 1) ? null : cursor.getInt(offset + 1));
+        entity.setRelateType(cursor.isNull(offset + 1) ? null : cursor.getInt(offset + 1));
         entity.setRelateId(cursor.isNull(offset + 2) ? null : cursor.getLong(offset + 2));
         entity.setUrl(cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3));
         entity.setDescribe(cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4));
      }
-    
+
     /** @inheritdoc */
     @Override
     protected Long updateKeyAfterInsert(PopPic entity, long rowId) {
@@ -130,9 +118,21 @@ public class PopPicDao extends AbstractDao<PopPic, Long> {
     }
 
     /** @inheritdoc */
-    @Override    
+    @Override
     protected boolean isEntityUpdateable() {
         return true;
+    }
+
+    /**
+     * Properties of entity PopPic.<br/>
+     * Can be used for QueryBuilder and for referencing column names.
+     */
+    public static class Properties {
+        public final static Property Id = new Property(0, long.class, "id", true, "ID");
+        public final static Property RelateType = new Property(1, Integer.class, "relateType", false, "RELATE_TYPE");
+        public final static Property RelateId = new Property(2, Long.class, "relateId", false, "RELATE_ID");
+        public final static Property Url = new Property(3, String.class, "url", false, "URL");
+        public final static Property Describe = new Property(4, String.class, "describe", false, "DESCRIBE");
     }
     
 }

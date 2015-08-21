@@ -13,9 +13,10 @@ import com.android.tonight8.dao.EventDao;
 public class CouponProvide {
 
     private long id;
-    private Long rid;
+    private Long eventId;
     private Integer type;
     private Float value;
+    private Integer conditionNumber;
     private String content;
     private String dispatchContent;
     private Integer provideNumber;
@@ -25,7 +26,8 @@ public class CouponProvide {
     private String dateRangeStart;
     private String dateRangeEnd;
     private String templatePic;
-    private String publishTime;
+    private String date;
+    private String time;
 
     /** Used to resolve relations */
     private transient DaoSession daoSession;
@@ -44,11 +46,12 @@ public class CouponProvide {
         this.id = id;
     }
 
-    public CouponProvide(long id, Long rid, Integer type, Float value, String content, String dispatchContent, Integer provideNumber, Integer dispatchNumber, Boolean provideAll, Boolean isLiveUse, String dateRangeStart, String dateRangeEnd, String templatePic, String publishTime) {
+    public CouponProvide(long id, Long eventId, Integer type, Float value, Integer conditionNumber, String content, String dispatchContent, Integer provideNumber, Integer dispatchNumber, Boolean provideAll, Boolean isLiveUse, String dateRangeStart, String dateRangeEnd, String templatePic, String date, String time) {
         this.id = id;
-        this.rid = rid;
+        this.eventId = eventId;
         this.type = type;
         this.value = value;
+        this.conditionNumber = conditionNumber;
         this.content = content;
         this.dispatchContent = dispatchContent;
         this.provideNumber = provideNumber;
@@ -58,7 +61,8 @@ public class CouponProvide {
         this.dateRangeStart = dateRangeStart;
         this.dateRangeEnd = dateRangeEnd;
         this.templatePic = templatePic;
-        this.publishTime = publishTime;
+        this.date = date;
+        this.time = time;
     }
 
     /** called by internal mechanisms, do not call yourself. */
@@ -75,12 +79,12 @@ public class CouponProvide {
         this.id = id;
     }
 
-    public Long getRid() {
-        return rid;
+    public Long getEventId() {
+        return eventId;
     }
 
-    public void setRid(Long rid) {
-        this.rid = rid;
+    public void setEventId(Long eventId) {
+        this.eventId = eventId;
     }
 
     public Integer getType() {
@@ -97,6 +101,14 @@ public class CouponProvide {
 
     public void setValue(Float value) {
         this.value = value;
+    }
+
+    public Integer getConditionNumber() {
+        return conditionNumber;
+    }
+
+    public void setConditionNumber(Integer conditionNumber) {
+        this.conditionNumber = conditionNumber;
     }
 
     public String getContent() {
@@ -171,17 +183,25 @@ public class CouponProvide {
         this.templatePic = templatePic;
     }
 
-    public String getPublishTime() {
-        return publishTime;
+    public String getDate() {
+        return date;
     }
 
-    public void setPublishTime(String publishTime) {
-        this.publishTime = publishTime;
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
     }
 
     /** To-one relationship, resolved on first access. */
     public Event getEvent() {
-        Long __key = this.rid;
+        Long __key = this.eventId;
         if (event__resolvedKey == null || !event__resolvedKey.equals(__key)) {
             if (daoSession == null) {
                 throw new DaoException("Entity is detached from DAO context");
@@ -199,8 +219,8 @@ public class CouponProvide {
     public void setEvent(Event event) {
         synchronized (this) {
             this.event = event;
-            rid = event == null ? null : event.getId();
-            event__resolvedKey = rid;
+            eventId = event == null ? null : event.getId();
+            event__resolvedKey = eventId;
         }
     }
 

@@ -7,7 +7,7 @@ package com.android.tonight8.dao.entity;
 public class DetailPic {
 
     private long id;
-    private Integer type;
+    private Integer relateType;
     private Long relateId;
     private String url;
     private String size;
@@ -20,9 +20,9 @@ public class DetailPic {
         this.id = id;
     }
 
-    public DetailPic(long id, Integer type, Long relateId, String url, String size, String describe) {
+    public DetailPic(long id, Integer relateType, Long relateId, String url, String size, String describe) {
         this.id = id;
-        this.type = type;
+        this.relateType = relateType;
         this.relateId = relateId;
         this.url = url;
         this.size = size;
@@ -37,12 +37,12 @@ public class DetailPic {
         this.id = id;
     }
 
-    public Integer getType() {
-        return type;
+    public Integer getRelateType() {
+        return relateType;
     }
 
-    public void setType(Integer type) {
-        this.type = type;
+    public void setRelateType(Integer relateType) {
+        this.relateType = relateType;
     }
 
     public Long getRelateId() {

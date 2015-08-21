@@ -18,24 +18,11 @@ public class SignInDao extends AbstractDao<SignIn, Long> {
 
     public static final String TABLENAME = "SIGN_IN";
 
-    /**
-     * Properties of entity SignIn.<br/>
-     * Can be used for QueryBuilder and for referencing column names.
-    */
-    public static class Properties {
-        public final static Property Id = new Property(0, long.class, "id", true, "ID");
-        public final static Property RelateType = new Property(1, Integer.class, "relateType", false, "RELATE_TYPE");
-        public final static Property RelateId = new Property(2, Long.class, "relateId", false, "RELATE_ID");
-        public final static Property Content = new Property(3, String.class, "content", false, "CONTENT");
-        public final static Property ServiceMark = new Property(4, Integer.class, "serviceMark", false, "SERVICE_MARK");
-        public final static Property Time = new Property(5, String.class, "time", false, "TIME");
-    };
-
-
     public SignInDao(DaoConfig config) {
         super(config);
     }
-    
+
+
     public SignInDao(DaoConfig config, DaoSession daoSession) {
         super(config, daoSession);
     }
@@ -49,7 +36,8 @@ public class SignInDao extends AbstractDao<SignIn, Long> {
                 "'RELATE_ID' INTEGER," + // 2: relateId
                 "'CONTENT' TEXT," + // 3: content
                 "'SERVICE_MARK' INTEGER," + // 4: serviceMark
-                "'TIME' TEXT);"); // 5: time
+                "'DATE' TEXT," + // 5: date
+                "'TIME' TEXT);"); // 6: time
     }
 
     /** Drops the underlying database table. */
@@ -63,30 +51,35 @@ public class SignInDao extends AbstractDao<SignIn, Long> {
     protected void bindValues(SQLiteStatement stmt, SignIn entity) {
         stmt.clearBindings();
         stmt.bindLong(1, entity.getId());
- 
+
         Integer relateType = entity.getRelateType();
         if (relateType != null) {
             stmt.bindLong(2, relateType);
         }
- 
+
         Long relateId = entity.getRelateId();
         if (relateId != null) {
             stmt.bindLong(3, relateId);
         }
- 
+
         String content = entity.getContent();
         if (content != null) {
             stmt.bindString(4, content);
         }
- 
+
         Integer serviceMark = entity.getServiceMark();
         if (serviceMark != null) {
             stmt.bindLong(5, serviceMark);
         }
- 
+
+        String date = entity.getDate();
+        if (date != null) {
+            stmt.bindString(6, date);
+        }
+
         String time = entity.getTime();
         if (time != null) {
-            stmt.bindString(6, time);
+            stmt.bindString(7, time);
         }
     }
 
@@ -94,7 +87,7 @@ public class SignInDao extends AbstractDao<SignIn, Long> {
     @Override
     public Long readKey(Cursor cursor, int offset) {
         return cursor.getLong(offset + 0);
-    }    
+    }
 
     /** @inheritdoc */
     @Override
@@ -105,11 +98,12 @@ public class SignInDao extends AbstractDao<SignIn, Long> {
             cursor.isNull(offset + 2) ? null : cursor.getLong(offset + 2), // relateId
             cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3), // content
             cursor.isNull(offset + 4) ? null : cursor.getInt(offset + 4), // serviceMark
-            cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5) // time
+                cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5), // date
+                cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6) // time
         );
         return entity;
     }
-     
+
     /** @inheritdoc */
     @Override
     public void readEntity(Cursor cursor, SignIn entity, int offset) {
@@ -118,9 +112,10 @@ public class SignInDao extends AbstractDao<SignIn, Long> {
         entity.setRelateId(cursor.isNull(offset + 2) ? null : cursor.getLong(offset + 2));
         entity.setContent(cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3));
         entity.setServiceMark(cursor.isNull(offset + 4) ? null : cursor.getInt(offset + 4));
-        entity.setTime(cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5));
+        entity.setDate(cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5));
+        entity.setTime(cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6));
      }
-    
+
     /** @inheritdoc */
     @Override
     protected Long updateKeyAfterInsert(SignIn entity, long rowId) {
@@ -139,9 +134,23 @@ public class SignInDao extends AbstractDao<SignIn, Long> {
     }
 
     /** @inheritdoc */
-    @Override    
+    @Override
     protected boolean isEntityUpdateable() {
         return true;
+    }
+
+    /**
+     * Properties of entity SignIn.<br/>
+     * Can be used for QueryBuilder and for referencing column names.
+     */
+    public static class Properties {
+        public final static Property Id = new Property(0, long.class, "id", true, "ID");
+        public final static Property RelateType = new Property(1, Integer.class, "relateType", false, "RELATE_TYPE");
+        public final static Property RelateId = new Property(2, Long.class, "relateId", false, "RELATE_ID");
+        public final static Property Content = new Property(3, String.class, "content", false, "CONTENT");
+        public final static Property ServiceMark = new Property(4, Integer.class, "serviceMark", false, "SERVICE_MARK");
+        public final static Property Date = new Property(5, String.class, "date", false, "DATE");
+        public final static Property Time = new Property(6, String.class, "time", false, "TIME");
     }
     
 }

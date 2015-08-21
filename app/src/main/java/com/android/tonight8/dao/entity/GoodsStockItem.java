@@ -14,7 +14,6 @@ public class GoodsStockItem {
 
     private long id;
     private Long goodsSpecificationId;
-    private String code;
     private String name;
 
     /** Used to resolve relations */
@@ -34,10 +33,9 @@ public class GoodsStockItem {
         this.id = id;
     }
 
-    public GoodsStockItem(long id, Long goodsSpecificationId, String code, String name) {
+    public GoodsStockItem(long id, Long goodsSpecificationId, String name) {
         this.id = id;
         this.goodsSpecificationId = goodsSpecificationId;
-        this.code = code;
         this.name = name;
     }
 
@@ -61,14 +59,6 @@ public class GoodsStockItem {
 
     public void setGoodsSpecificationId(Long goodsSpecificationId) {
         this.goodsSpecificationId = goodsSpecificationId;
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
     }
 
     public String getName() {

@@ -11,6 +11,7 @@ public class SignIn {
     private Long relateId;
     private String content;
     private Integer serviceMark;
+    private String date;
     private String time;
 
     public SignIn() {
@@ -20,12 +21,13 @@ public class SignIn {
         this.id = id;
     }
 
-    public SignIn(long id, Integer relateType, Long relateId, String content, Integer serviceMark, String time) {
+    public SignIn(long id, Integer relateType, Long relateId, String content, Integer serviceMark, String date, String time) {
         this.id = id;
         this.relateType = relateType;
         this.relateId = relateId;
         this.content = content;
         this.serviceMark = serviceMark;
+        this.date = date;
         this.time = time;
     }
 
@@ -67,6 +69,14 @@ public class SignIn {
 
     public void setServiceMark(Integer serviceMark) {
         this.serviceMark = serviceMark;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 
     public String getTime() {

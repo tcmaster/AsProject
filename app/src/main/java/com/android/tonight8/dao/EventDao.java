@@ -22,32 +22,8 @@ import com.android.tonight8.dao.entity.Event;
 public class EventDao extends AbstractDao<Event, Long> {
 
     public static final String TABLENAME = "EVENT";
-
-    /**
-     * Properties of entity Event.<br/>
-     * Can be used for QueryBuilder and for referencing column names.
-    */
-    public static class Properties {
-        public final static Property Id = new Property(0, long.class, "id", true, "ID");
-        public final static Property OrgId = new Property(1, Long.class, "orgId", false, "ORG_ID");
-        public final static Property Name = new Property(2, String.class, "name", false, "NAME");
-        public final static Property Status = new Property(3, Integer.class, "status", false, "STATUS");
-        public final static Property TimeRangeStart = new Property(4, String.class, "timeRangeStart", false, "TIME_RANGE_START");
-        public final static Property TimeRangeEnd = new Property(5, String.class, "timeRangeEnd", false, "TIME_RANGE_END");
-        public final static Property PublishTime = new Property(6, String.class, "publishTime", false, "PUBLISH_TIME");
-        public final static Property TimeStamp = new Property(7, Long.class, "timeStamp", false, "TIME_STAMP");
-        public final static Property RuleDescription = new Property(8, String.class, "ruleDescription", false, "RULE_DESCRIPTION");
-        public final static Property WinningLimit = new Property(9, Integer.class, "winningLimit", false, "WINNING_LIMIT");
-        public final static Property ApplyCount = new Property(10, Integer.class, "applyCount", false, "APPLY_COUNT");
-        public final static Property AwardCount = new Property(11, Integer.class, "awardCount", false, "AWARD_COUNT");
-        public final static Property AwardShippingCount = new Property(12, Integer.class, "awardShippingCount", false, "AWARD_SHIPPING_COUNT");
-        public final static Property OrderCount = new Property(13, Integer.class, "orderCount", false, "ORDER_COUNT");
-        public final static Property OrderShippingCount = new Property(14, Integer.class, "orderShippingCount", false, "ORDER_SHIPPING_COUNT");
-        public final static Property AudienceCount = new Property(15, Integer.class, "audienceCount", false, "AUDIENCE_COUNT");
-        public final static Property Type = new Property(16, Integer.class, "type", false, "TYPE");
-    };
-
     private DaoSession daoSession;
+    private String selectDeep;
 
 
     public EventDao(DaoConfig config) {
@@ -66,20 +42,23 @@ public class EventDao extends AbstractDao<Event, Long> {
                 "'ID' INTEGER PRIMARY KEY NOT NULL ," + // 0: id
                 "'ORG_ID' INTEGER," + // 1: orgId
                 "'NAME' TEXT," + // 2: name
-                "'STATUS' INTEGER," + // 3: status
-                "'TIME_RANGE_START' TEXT," + // 4: timeRangeStart
-                "'TIME_RANGE_END' TEXT," + // 5: timeRangeEnd
-                "'PUBLISH_TIME' TEXT," + // 6: publishTime
-                "'TIME_STAMP' INTEGER," + // 7: timeStamp
-                "'RULE_DESCRIPTION' TEXT," + // 8: ruleDescription
-                "'WINNING_LIMIT' INTEGER," + // 9: winningLimit
-                "'APPLY_COUNT' INTEGER," + // 10: applyCount
-                "'AWARD_COUNT' INTEGER," + // 11: awardCount
-                "'AWARD_SHIPPING_COUNT' INTEGER," + // 12: awardShippingCount
-                "'ORDER_COUNT' INTEGER," + // 13: orderCount
-                "'ORDER_SHIPPING_COUNT' INTEGER," + // 14: orderShippingCount
-                "'AUDIENCE_COUNT' INTEGER," + // 15: audienceCount
-                "'TYPE' INTEGER);"); // 16: type
+                "'TYPE' INTEGER," + // 3: type
+                "'STATUS' INTEGER," + // 4: status
+                "'TIME_RANGE_START' TEXT," + // 5: timeRangeStart
+                "'TIME_RANGE_END' TEXT," + // 6: timeRangeEnd
+                "'PUBLISH_TIME' TEXT," + // 7: publishTime
+                "'TIME_STAMP' INTEGER," + // 8: timeStamp
+                "'RULE_DESCRIPTION' TEXT," + // 9: ruleDescription
+                "'WINNING_LIMIT' INTEGER," + // 10: winningLimit
+                "'APPLY_COUNT' INTEGER," + // 11: applyCount
+                "'AWARD_COUNT' INTEGER," + // 12: awardCount
+                "'AWARD_SHIPPING_COUNT' INTEGER," + // 13: awardShippingCount
+                "'ORDER_COUNT' INTEGER," + // 14: orderCount
+                "'ORDER_SHIPPING_COUNT' INTEGER," + // 15: orderShippingCount
+                "'AUDIENCE_COUNT' INTEGER," + // 16: audienceCount
+                "'PRAISE_COUNT' INTEGER," + // 17: praiseCount
+                "'HAS_PPT' INTEGER," + // 18: hasPPT
+                "'PPT_DEFAULT_ID' INTEGER);"); // 19: pptDefaultId
     }
 
     /** Drops the underlying database table. */
@@ -103,75 +82,90 @@ public class EventDao extends AbstractDao<Event, Long> {
         if (name != null) {
             stmt.bindString(3, name);
         }
+
+        Integer type = entity.getType();
+        if (type != null) {
+            stmt.bindLong(4, type);
+        }
  
         Integer status = entity.getStatus();
         if (status != null) {
-            stmt.bindLong(4, status);
+            stmt.bindLong(5, status);
         }
  
         String timeRangeStart = entity.getTimeRangeStart();
         if (timeRangeStart != null) {
-            stmt.bindString(5, timeRangeStart);
+            stmt.bindString(6, timeRangeStart);
         }
  
         String timeRangeEnd = entity.getTimeRangeEnd();
         if (timeRangeEnd != null) {
-            stmt.bindString(6, timeRangeEnd);
+            stmt.bindString(7, timeRangeEnd);
         }
  
         String publishTime = entity.getPublishTime();
         if (publishTime != null) {
-            stmt.bindString(7, publishTime);
+            stmt.bindString(8, publishTime);
         }
  
         Long timeStamp = entity.getTimeStamp();
         if (timeStamp != null) {
-            stmt.bindLong(8, timeStamp);
+            stmt.bindLong(9, timeStamp);
         }
  
         String ruleDescription = entity.getRuleDescription();
         if (ruleDescription != null) {
-            stmt.bindString(9, ruleDescription);
+            stmt.bindString(10, ruleDescription);
         }
  
         Integer winningLimit = entity.getWinningLimit();
         if (winningLimit != null) {
-            stmt.bindLong(10, winningLimit);
+            stmt.bindLong(11, winningLimit);
         }
  
         Integer applyCount = entity.getApplyCount();
         if (applyCount != null) {
-            stmt.bindLong(11, applyCount);
+            stmt.bindLong(12, applyCount);
         }
  
         Integer awardCount = entity.getAwardCount();
         if (awardCount != null) {
-            stmt.bindLong(12, awardCount);
+            stmt.bindLong(13, awardCount);
         }
  
         Integer awardShippingCount = entity.getAwardShippingCount();
         if (awardShippingCount != null) {
-            stmt.bindLong(13, awardShippingCount);
+            stmt.bindLong(14, awardShippingCount);
         }
  
         Integer orderCount = entity.getOrderCount();
         if (orderCount != null) {
-            stmt.bindLong(14, orderCount);
+            stmt.bindLong(15, orderCount);
         }
  
         Integer orderShippingCount = entity.getOrderShippingCount();
         if (orderShippingCount != null) {
-            stmt.bindLong(15, orderShippingCount);
+            stmt.bindLong(16, orderShippingCount);
         }
  
         Integer audienceCount = entity.getAudienceCount();
         if (audienceCount != null) {
-            stmt.bindLong(16, audienceCount);
+            stmt.bindLong(17, audienceCount);
         }
- 
-        Integer type = entity.getType();
-        if (type != null) {
-            stmt.bindLong(17, type);
+
+        Integer praiseCount = entity.getPraiseCount();
+        if (praiseCount != null) {
+            stmt.bindLong(18, praiseCount);
+        }
+
+        Boolean hasPPT = entity.getHasPPT();
+        if (hasPPT != null) {
+            stmt.bindLong(19, hasPPT ? 1l : 0l);
+        }
+
+        Integer pptDefaultId = entity.getPptDefaultId();
+        if (pptDefaultId != null) {
+            stmt.bindLong(20, pptDefaultId);
         }
     }
 
@@ -194,20 +188,23 @@ public class EventDao extends AbstractDao<Event, Long> {
             cursor.getLong(offset + 0), // id
             cursor.isNull(offset + 1) ? null : cursor.getLong(offset + 1), // orgId
             cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2), // name
-            cursor.isNull(offset + 3) ? null : cursor.getInt(offset + 3), // status
-            cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4), // timeRangeStart
-            cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5), // timeRangeEnd
-            cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6), // publishTime
-            cursor.isNull(offset + 7) ? null : cursor.getLong(offset + 7), // timeStamp
-            cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8), // ruleDescription
-            cursor.isNull(offset + 9) ? null : cursor.getInt(offset + 9), // winningLimit
-            cursor.isNull(offset + 10) ? null : cursor.getInt(offset + 10), // applyCount
-            cursor.isNull(offset + 11) ? null : cursor.getInt(offset + 11), // awardCount
-            cursor.isNull(offset + 12) ? null : cursor.getInt(offset + 12), // awardShippingCount
-            cursor.isNull(offset + 13) ? null : cursor.getInt(offset + 13), // orderCount
-            cursor.isNull(offset + 14) ? null : cursor.getInt(offset + 14), // orderShippingCount
-            cursor.isNull(offset + 15) ? null : cursor.getInt(offset + 15), // audienceCount
-            cursor.isNull(offset + 16) ? null : cursor.getInt(offset + 16) // type
+                cursor.isNull(offset + 3) ? null : cursor.getInt(offset + 3), // type
+                cursor.isNull(offset + 4) ? null : cursor.getInt(offset + 4), // status
+                cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5), // timeRangeStart
+                cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6), // timeRangeEnd
+                cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7), // publishTime
+                cursor.isNull(offset + 8) ? null : cursor.getLong(offset + 8), // timeStamp
+                cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9), // ruleDescription
+                cursor.isNull(offset + 10) ? null : cursor.getInt(offset + 10), // winningLimit
+                cursor.isNull(offset + 11) ? null : cursor.getInt(offset + 11), // applyCount
+                cursor.isNull(offset + 12) ? null : cursor.getInt(offset + 12), // awardCount
+                cursor.isNull(offset + 13) ? null : cursor.getInt(offset + 13), // awardShippingCount
+                cursor.isNull(offset + 14) ? null : cursor.getInt(offset + 14), // orderCount
+                cursor.isNull(offset + 15) ? null : cursor.getInt(offset + 15), // orderShippingCount
+                cursor.isNull(offset + 16) ? null : cursor.getInt(offset + 16), // audienceCount
+                cursor.isNull(offset + 17) ? null : cursor.getInt(offset + 17), // praiseCount
+                cursor.isNull(offset + 18) ? null : cursor.getShort(offset + 18) != 0, // hasPPT
+                cursor.isNull(offset + 19) ? null : cursor.getInt(offset + 19) // pptDefaultId
         );
         return entity;
     }
@@ -218,20 +215,23 @@ public class EventDao extends AbstractDao<Event, Long> {
         entity.setId(cursor.getLong(offset + 0));
         entity.setOrgId(cursor.isNull(offset + 1) ? null : cursor.getLong(offset + 1));
         entity.setName(cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2));
-        entity.setStatus(cursor.isNull(offset + 3) ? null : cursor.getInt(offset + 3));
-        entity.setTimeRangeStart(cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4));
-        entity.setTimeRangeEnd(cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5));
-        entity.setPublishTime(cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6));
-        entity.setTimeStamp(cursor.isNull(offset + 7) ? null : cursor.getLong(offset + 7));
-        entity.setRuleDescription(cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8));
-        entity.setWinningLimit(cursor.isNull(offset + 9) ? null : cursor.getInt(offset + 9));
-        entity.setApplyCount(cursor.isNull(offset + 10) ? null : cursor.getInt(offset + 10));
-        entity.setAwardCount(cursor.isNull(offset + 11) ? null : cursor.getInt(offset + 11));
-        entity.setAwardShippingCount(cursor.isNull(offset + 12) ? null : cursor.getInt(offset + 12));
-        entity.setOrderCount(cursor.isNull(offset + 13) ? null : cursor.getInt(offset + 13));
-        entity.setOrderShippingCount(cursor.isNull(offset + 14) ? null : cursor.getInt(offset + 14));
-        entity.setAudienceCount(cursor.isNull(offset + 15) ? null : cursor.getInt(offset + 15));
-        entity.setType(cursor.isNull(offset + 16) ? null : cursor.getInt(offset + 16));
+        entity.setType(cursor.isNull(offset + 3) ? null : cursor.getInt(offset + 3));
+        entity.setStatus(cursor.isNull(offset + 4) ? null : cursor.getInt(offset + 4));
+        entity.setTimeRangeStart(cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5));
+        entity.setTimeRangeEnd(cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6));
+        entity.setPublishTime(cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7));
+        entity.setTimeStamp(cursor.isNull(offset + 8) ? null : cursor.getLong(offset + 8));
+        entity.setRuleDescription(cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9));
+        entity.setWinningLimit(cursor.isNull(offset + 10) ? null : cursor.getInt(offset + 10));
+        entity.setApplyCount(cursor.isNull(offset + 11) ? null : cursor.getInt(offset + 11));
+        entity.setAwardCount(cursor.isNull(offset + 12) ? null : cursor.getInt(offset + 12));
+        entity.setAwardShippingCount(cursor.isNull(offset + 13) ? null : cursor.getInt(offset + 13));
+        entity.setOrderCount(cursor.isNull(offset + 14) ? null : cursor.getInt(offset + 14));
+        entity.setOrderShippingCount(cursor.isNull(offset + 15) ? null : cursor.getInt(offset + 15));
+        entity.setAudienceCount(cursor.isNull(offset + 16) ? null : cursor.getInt(offset + 16));
+        entity.setPraiseCount(cursor.isNull(offset + 17) ? null : cursor.getInt(offset + 17));
+        entity.setHasPPT(cursor.isNull(offset + 18) ? null : cursor.getShort(offset + 18) != 0);
+        entity.setPptDefaultId(cursor.isNull(offset + 19) ? null : cursor.getInt(offset + 19));
      }
     
     /** @inheritdoc */
@@ -257,8 +257,6 @@ public class EventDao extends AbstractDao<Event, Long> {
         return true;
     }
     
-    private String selectDeep;
-
     protected String getSelectDeep() {
         if (selectDeep == null) {
             StringBuilder builder = new StringBuilder("SELECT ");
@@ -272,7 +270,7 @@ public class EventDao extends AbstractDao<Event, Long> {
         }
         return selectDeep;
     }
-    
+
     protected Event loadCurrentDeep(Cursor cursor, boolean lock) {
         Event entity = loadCurrent(cursor, 0, lock);
         int offset = getAllColumns().length;
@@ -280,7 +278,7 @@ public class EventDao extends AbstractDao<Event, Long> {
         Org org = loadCurrentOther(daoSession.getOrgDao(), cursor, offset);
         entity.setOrg(org);
 
-        return entity;    
+        return entity;
     }
 
     public Event loadDeep(Long key) {
@@ -293,10 +291,10 @@ public class EventDao extends AbstractDao<Event, Long> {
         builder.append("WHERE ");
         SqlUtils.appendColumnsEqValue(builder, "T", getPkColumns());
         String sql = builder.toString();
-        
+
         String[] keyArray = new String[] { key.toString() };
         Cursor cursor = db.rawQuery(sql, keyArray);
-        
+
         try {
             boolean available = cursor.moveToFirst();
             if (!available) {
@@ -309,12 +307,12 @@ public class EventDao extends AbstractDao<Event, Long> {
             cursor.close();
         }
     }
-    
+
     /** Reads all available rows from the given cursor and returns a list of new ImageTO objects. */
     public List<Event> loadAllDeepFromCursor(Cursor cursor) {
         int count = cursor.getCount();
         List<Event> list = new ArrayList<Event>(count);
-        
+
         if (cursor.moveToFirst()) {
             if (identityScope != null) {
                 identityScope.lock();
@@ -341,11 +339,37 @@ public class EventDao extends AbstractDao<Event, Long> {
         }
     }
     
-
     /** A raw-style query where you can pass any WHERE clause and arguments. */
     public List<Event> queryDeep(String where, String... selectionArg) {
         Cursor cursor = db.rawQuery(getSelectDeep() + where, selectionArg);
         return loadDeepAllAndCloseCursor(cursor);
+    }
+
+    /**
+     * Properties of entity Event.<br/>
+     * Can be used for QueryBuilder and for referencing column names.
+     */
+    public static class Properties {
+        public final static Property Id = new Property(0, long.class, "id", true, "ID");
+        public final static Property OrgId = new Property(1, Long.class, "orgId", false, "ORG_ID");
+        public final static Property Name = new Property(2, String.class, "name", false, "NAME");
+        public final static Property Type = new Property(3, Integer.class, "type", false, "TYPE");
+        public final static Property Status = new Property(4, Integer.class, "status", false, "STATUS");
+        public final static Property TimeRangeStart = new Property(5, String.class, "timeRangeStart", false, "TIME_RANGE_START");
+        public final static Property TimeRangeEnd = new Property(6, String.class, "timeRangeEnd", false, "TIME_RANGE_END");
+        public final static Property PublishTime = new Property(7, String.class, "publishTime", false, "PUBLISH_TIME");
+        public final static Property TimeStamp = new Property(8, Long.class, "timeStamp", false, "TIME_STAMP");
+        public final static Property RuleDescription = new Property(9, String.class, "ruleDescription", false, "RULE_DESCRIPTION");
+        public final static Property WinningLimit = new Property(10, Integer.class, "winningLimit", false, "WINNING_LIMIT");
+        public final static Property ApplyCount = new Property(11, Integer.class, "applyCount", false, "APPLY_COUNT");
+        public final static Property AwardCount = new Property(12, Integer.class, "awardCount", false, "AWARD_COUNT");
+        public final static Property AwardShippingCount = new Property(13, Integer.class, "awardShippingCount", false, "AWARD_SHIPPING_COUNT");
+        public final static Property OrderCount = new Property(14, Integer.class, "orderCount", false, "ORDER_COUNT");
+        public final static Property OrderShippingCount = new Property(15, Integer.class, "orderShippingCount", false, "ORDER_SHIPPING_COUNT");
+        public final static Property AudienceCount = new Property(16, Integer.class, "audienceCount", false, "AUDIENCE_COUNT");
+        public final static Property PraiseCount = new Property(17, Integer.class, "praiseCount", false, "PRAISE_COUNT");
+        public final static Property HasPPT = new Property(18, Boolean.class, "hasPPT", false, "HAS_PPT");
+        public final static Property PptDefaultId = new Property(19, Integer.class, "pptDefaultId", false, "PPT_DEFAULT_ID");
     }
  
 }

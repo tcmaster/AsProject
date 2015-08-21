@@ -13,7 +13,6 @@ import com.android.tonight8.dao.GoodsSpecificationDao;
 public class GoodsSpecification {
 
     private long id;
-    private Long pid;
     private Long goodsCategoryId;
     private String name;
 
@@ -22,9 +21,6 @@ public class GoodsSpecification {
 
     /** Used for active entity operations. */
     private transient GoodsSpecificationDao myDao;
-
-    private GoodsSpecification goodsSpecification;
-    private Long goodsSpecification__resolvedKey;
 
     private GoodsCategory goodsCategory;
     private Long goodsCategory__resolvedKey;
@@ -37,9 +33,8 @@ public class GoodsSpecification {
         this.id = id;
     }
 
-    public GoodsSpecification(long id, Long pid, Long goodsCategoryId, String name) {
+    public GoodsSpecification(long id, Long goodsCategoryId, String name) {
         this.id = id;
-        this.pid = pid;
         this.goodsCategoryId = goodsCategoryId;
         this.name = name;
     }
@@ -58,14 +53,6 @@ public class GoodsSpecification {
         this.id = id;
     }
 
-    public Long getPid() {
-        return pid;
-    }
-
-    public void setPid(Long pid) {
-        this.pid = pid;
-    }
-
     public Long getGoodsCategoryId() {
         return goodsCategoryId;
     }
@@ -80,31 +67,6 @@ public class GoodsSpecification {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    /** To-one relationship, resolved on first access. */
-    public GoodsSpecification getGoodsSpecification() {
-        Long __key = this.pid;
-        if (goodsSpecification__resolvedKey == null || !goodsSpecification__resolvedKey.equals(__key)) {
-            if (daoSession == null) {
-                throw new DaoException("Entity is detached from DAO context");
-            }
-            GoodsSpecificationDao targetDao = daoSession.getGoodsSpecificationDao();
-            GoodsSpecification goodsSpecificationNew = targetDao.load(__key);
-            synchronized (this) {
-                goodsSpecification = goodsSpecificationNew;
-            	goodsSpecification__resolvedKey = __key;
-            }
-        }
-        return goodsSpecification;
-    }
-
-    public void setGoodsSpecification(GoodsSpecification goodsSpecification) {
-        synchronized (this) {
-            this.goodsSpecification = goodsSpecification;
-            pid = goodsSpecification == null ? null : goodsSpecification.getId();
-            goodsSpecification__resolvedKey = pid;
-        }
     }
 
     /** To-one relationship, resolved on first access. */

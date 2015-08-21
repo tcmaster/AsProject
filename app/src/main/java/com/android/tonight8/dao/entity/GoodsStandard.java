@@ -14,6 +14,7 @@ public class GoodsStandard {
 
     private long id;
     private Long goodsId;
+    private Short name;
     private String content;
 
     /** Used to resolve relations */
@@ -33,9 +34,10 @@ public class GoodsStandard {
         this.id = id;
     }
 
-    public GoodsStandard(long id, Long goodsId, String content) {
+    public GoodsStandard(long id, Long goodsId, Short name, String content) {
         this.id = id;
         this.goodsId = goodsId;
+        this.name = name;
         this.content = content;
     }
 
@@ -59,6 +61,14 @@ public class GoodsStandard {
 
     public void setGoodsId(Long goodsId) {
         this.goodsId = goodsId;
+    }
+
+    public Short getName() {
+        return name;
+    }
+
+    public void setName(Short name) {
+        this.name = name;
     }
 
     public String getContent() {

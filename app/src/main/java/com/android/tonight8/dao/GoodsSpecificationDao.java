@@ -12,7 +12,6 @@ import de.greenrobot.dao.internal.SqlUtils;
 import de.greenrobot.dao.internal.DaoConfig;
 
 import com.android.tonight8.dao.entity.GoodsCategory;
-import com.android.tonight8.dao.entity.GoodsSpecification;
 
 import com.android.tonight8.dao.entity.GoodsSpecification;
 
@@ -23,19 +22,8 @@ import com.android.tonight8.dao.entity.GoodsSpecification;
 public class GoodsSpecificationDao extends AbstractDao<GoodsSpecification, Long> {
 
     public static final String TABLENAME = "GOODS_SPECIFICATION";
-
-    /**
-     * Properties of entity GoodsSpecification.<br/>
-     * Can be used for QueryBuilder and for referencing column names.
-    */
-    public static class Properties {
-        public final static Property Id = new Property(0, long.class, "id", true, "ID");
-        public final static Property Pid = new Property(1, Long.class, "pid", false, "PID");
-        public final static Property GoodsCategoryId = new Property(2, Long.class, "goodsCategoryId", false, "GOODS_CATEGORY_ID");
-        public final static Property Name = new Property(3, String.class, "name", false, "NAME");
-    };
-
     private DaoSession daoSession;
+    private String selectDeep;
 
 
     public GoodsSpecificationDao(DaoConfig config) {
@@ -52,9 +40,8 @@ public class GoodsSpecificationDao extends AbstractDao<GoodsSpecification, Long>
         String constraint = ifNotExists? "IF NOT EXISTS ": "";
         db.execSQL("CREATE TABLE " + constraint + "'GOODS_SPECIFICATION' (" + //
                 "'ID' INTEGER PRIMARY KEY NOT NULL ," + // 0: id
-                "'PID' INTEGER," + // 1: pid
-                "'GOODS_CATEGORY_ID' INTEGER," + // 2: goodsCategoryId
-                "'NAME' TEXT);"); // 3: name
+                "'GOODS_CATEGORY_ID' INTEGER," + // 1: goodsCategoryId
+                "'NAME' TEXT);"); // 2: name
     }
 
     /** Drops the underlying database table. */
@@ -69,19 +56,14 @@ public class GoodsSpecificationDao extends AbstractDao<GoodsSpecification, Long>
         stmt.clearBindings();
         stmt.bindLong(1, entity.getId());
  
-        Long pid = entity.getPid();
-        if (pid != null) {
-            stmt.bindLong(2, pid);
-        }
- 
         Long goodsCategoryId = entity.getGoodsCategoryId();
         if (goodsCategoryId != null) {
-            stmt.bindLong(3, goodsCategoryId);
+            stmt.bindLong(2, goodsCategoryId);
         }
  
         String name = entity.getName();
         if (name != null) {
-            stmt.bindString(4, name);
+            stmt.bindString(3, name);
         }
     }
 
@@ -102,9 +84,8 @@ public class GoodsSpecificationDao extends AbstractDao<GoodsSpecification, Long>
     public GoodsSpecification readEntity(Cursor cursor, int offset) {
         GoodsSpecification entity = new GoodsSpecification( //
             cursor.getLong(offset + 0), // id
-            cursor.isNull(offset + 1) ? null : cursor.getLong(offset + 1), // pid
-            cursor.isNull(offset + 2) ? null : cursor.getLong(offset + 2), // goodsCategoryId
-            cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3) // name
+                cursor.isNull(offset + 1) ? null : cursor.getLong(offset + 1), // goodsCategoryId
+                cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2) // name
         );
         return entity;
     }
@@ -113,9 +94,8 @@ public class GoodsSpecificationDao extends AbstractDao<GoodsSpecification, Long>
     @Override
     public void readEntity(Cursor cursor, GoodsSpecification entity, int offset) {
         entity.setId(cursor.getLong(offset + 0));
-        entity.setPid(cursor.isNull(offset + 1) ? null : cursor.getLong(offset + 1));
-        entity.setGoodsCategoryId(cursor.isNull(offset + 2) ? null : cursor.getLong(offset + 2));
-        entity.setName(cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3));
+        entity.setGoodsCategoryId(cursor.isNull(offset + 1) ? null : cursor.getLong(offset + 1));
+        entity.setName(cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2));
      }
     
     /** @inheritdoc */
@@ -141,37 +121,28 @@ public class GoodsSpecificationDao extends AbstractDao<GoodsSpecification, Long>
         return true;
     }
     
-    private String selectDeep;
-
     protected String getSelectDeep() {
         if (selectDeep == null) {
             StringBuilder builder = new StringBuilder("SELECT ");
             SqlUtils.appendColumns(builder, "T", getAllColumns());
             builder.append(',');
-            SqlUtils.appendColumns(builder, "T0", daoSession.getGoodsSpecificationDao().getAllColumns());
-            builder.append(',');
-            SqlUtils.appendColumns(builder, "T1", daoSession.getGoodsCategoryDao().getAllColumns());
+            SqlUtils.appendColumns(builder, "T0", daoSession.getGoodsCategoryDao().getAllColumns());
             builder.append(" FROM GOODS_SPECIFICATION T");
-            builder.append(" LEFT JOIN GOODS_SPECIFICATION T0 ON T.'PID'=T0.'ID'");
-            builder.append(" LEFT JOIN GOODS_CATEGORY T1 ON T.'GOODS_CATEGORY_ID'=T1.'ID'");
+            builder.append(" LEFT JOIN GOODS_CATEGORY T0 ON T.'GOODS_CATEGORY_ID'=T0.'ID'");
             builder.append(' ');
             selectDeep = builder.toString();
         }
         return selectDeep;
     }
-    
+
     protected GoodsSpecification loadCurrentDeep(Cursor cursor, boolean lock) {
         GoodsSpecification entity = loadCurrent(cursor, 0, lock);
         int offset = getAllColumns().length;
 
-        GoodsSpecification goodsSpecification = loadCurrentOther(daoSession.getGoodsSpecificationDao(), cursor, offset);
-        entity.setGoodsSpecification(goodsSpecification);
-        offset += daoSession.getGoodsSpecificationDao().getAllColumns().length;
-
         GoodsCategory goodsCategory = loadCurrentOther(daoSession.getGoodsCategoryDao(), cursor, offset);
         entity.setGoodsCategory(goodsCategory);
 
-        return entity;    
+        return entity;
     }
 
     public GoodsSpecification loadDeep(Long key) {
@@ -184,10 +155,10 @@ public class GoodsSpecificationDao extends AbstractDao<GoodsSpecification, Long>
         builder.append("WHERE ");
         SqlUtils.appendColumnsEqValue(builder, "T", getPkColumns());
         String sql = builder.toString();
-        
+
         String[] keyArray = new String[] { key.toString() };
         Cursor cursor = db.rawQuery(sql, keyArray);
-        
+
         try {
             boolean available = cursor.moveToFirst();
             if (!available) {
@@ -200,12 +171,12 @@ public class GoodsSpecificationDao extends AbstractDao<GoodsSpecification, Long>
             cursor.close();
         }
     }
-    
+
     /** Reads all available rows from the given cursor and returns a list of new ImageTO objects. */
     public List<GoodsSpecification> loadAllDeepFromCursor(Cursor cursor) {
         int count = cursor.getCount();
         List<GoodsSpecification> list = new ArrayList<GoodsSpecification>(count);
-        
+
         if (cursor.moveToFirst()) {
             if (identityScope != null) {
                 identityScope.lock();
@@ -232,11 +203,20 @@ public class GoodsSpecificationDao extends AbstractDao<GoodsSpecification, Long>
         }
     }
     
-
     /** A raw-style query where you can pass any WHERE clause and arguments. */
     public List<GoodsSpecification> queryDeep(String where, String... selectionArg) {
         Cursor cursor = db.rawQuery(getSelectDeep() + where, selectionArg);
         return loadDeepAllAndCloseCursor(cursor);
+    }
+
+    /**
+     * Properties of entity GoodsSpecification.<br/>
+     * Can be used for QueryBuilder and for referencing column names.
+     */
+    public static class Properties {
+        public final static Property Id = new Property(0, long.class, "id", true, "ID");
+        public final static Property GoodsCategoryId = new Property(1, Long.class, "goodsCategoryId", false, "GOODS_CATEGORY_ID");
+        public final static Property Name = new Property(2, String.class, "name", false, "NAME");
     }
  
 }
