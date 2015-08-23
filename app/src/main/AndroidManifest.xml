@@ -354,6 +354,10 @@
         <activity
             android:name=".ui.activity.other.SelectCitiyActivity"
             android:screenOrientation="portrait"></activity>
+        <!-- 直播管理插播 -->
+        <activity
+            android:name=".ui.activity.live.LiveManageActivity"
+            android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>
