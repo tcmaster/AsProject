@@ -2,10 +2,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/match">
 
-    <ScrollView
+    <com.android.tonight8.ui.view.ForLiveScrollView
         android:id="@+id/sv_lv_main"
         style="@style/match"
         android:layout_gravity="center"
+        android:layout_marginTop="-30dp"
         android:scrollbars="none">
 
         <LinearLayout
@@ -13,6 +14,18 @@
             android:orientation="vertical"
             tools:context=".EventLivePlayActivity">
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tv_header"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="@string/app_name" />
+            </LinearLayout>
             <com.android.tonight8.ui.view.BarrageView
                 android:id="@+id/bv_live"
                 android:layout_width="match_parent"
@@ -190,30 +203,22 @@
 
             <View style="@style/line_full" />
 
-            <TextView
-                android:id="@+id/tv_goods_info"
-                style="@style/match_width"
-                android:ellipsize="marquee"
-                android:gravity="center"
-                android:paddingBottom="@dimen/topOrbottomPadding"
-                android:paddingTop="@dimen/topOrbottomPadding"
-                android:text="@string/app_name"
-                android:textColor="@color/black"
-                android:textSize="@dimen/middleTextSize" />
             <!-- 有一个界面用到了item_event_award(用于用户中奖名单界面） -->
 
             <LinearLayout
                 android:id="@+id/ll_lv_container"
-                style="@style/match_width"
-                android:orientation="vertical" />
+                style="@style/match"
+                android:orientation="vertical"
+                android:paddingBottom="@dimen/topOrbottomPadding" />
         </LinearLayout>
-    </ScrollView>
+    </com.android.tonight8.ui.view.ForLiveScrollView>
 
     <LinearLayout
         style="@style/match_width"
         android:layout_gravity="bottom"
         android:background="@color/white"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:visibility="gone">
 
         <TextView
             android:id="@+id/tv_process"
@@ -229,7 +234,8 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/talk_width"
             android:gravity="center_vertical"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:visibility="gone">
 
             <ImageView
                 android:id="@+id/iv_attachment"

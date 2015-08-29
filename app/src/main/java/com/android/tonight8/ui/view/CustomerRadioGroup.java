@@ -252,17 +252,36 @@ public class CustomerRadioGroup extends LinearLayout {
 
 	/**
 	 * <p>
+	 * Interface definition for a callback to be invoked when the checked radio
+	 * button changed in this group.
+	 * </p>
+	 */
+	public interface OnCheckedChangeListener {
+		/**
+		 * <p>
+		 * Called when the checked radio button has changed. When the selection
+		 * is cleared, checkedId is -1.
+		 * </p>
+		 *
+		 * @param group     the group in which the checked radio button has changed
+		 * @param checkedId the unique identifier of the newly checked radio button
+		 */
+		void onCheckedChanged(CustomerRadioGroup group, int checkedId);
+	}
+
+	/**
+	 * <p>
 	 * This set of layout parameters defaults the width and the height of the
 	 * children to {@link #WRAP_CONTENT} when they are not specified in the XML
 	 * file. Otherwise, this class ussed the value read from the XML file.
 	 * </p>
-	 * 
+	 *
 	 * <p>
 	 * See {@link android.widget.LinearLayout.LayoutParams
 	 * Attributes} for a list of all child view attributes that this class
 	 * supports.
 	 * </p>
-	 * 
+	 *
 	 */
 	public static class LayoutParams extends LinearLayout.LayoutParams {
 		/**
@@ -308,7 +327,7 @@ public class CustomerRadioGroup extends LinearLayout {
 		 * {@link ViewGroup.LayoutParams#WRAP_CONTENT} when not
 		 * specified in the XML file.
 		 * </p>
-		 * 
+		 *
 		 * @param a
 		 *            the styled attributes set
 		 * @param widthAttr
@@ -332,27 +351,6 @@ public class CustomerRadioGroup extends LinearLayout {
 				height = WRAP_CONTENT;
 			}
 		}
-	}
-
-	/**
-	 * <p>
-	 * Interface definition for a callback to be invoked when the checked radio
-	 * button changed in this group.
-	 * </p>
-	 */
-	public interface OnCheckedChangeListener {
-		/**
-		 * <p>
-		 * Called when the checked radio button has changed. When the selection
-		 * is cleared, checkedId is -1.
-		 * </p>
-		 * 
-		 * @param group
-		 *            the group in which the checked radio button has changed
-		 * @param checkedId
-		 *            the unique identifier of the newly checked radio button
-		 */
-		public void onCheckedChanged(CustomerRadioGroup group, int checkedId);
 	}
 
 	private class CheckedStateTracker implements
@@ -428,7 +426,7 @@ public class CustomerRadioGroup extends LinearLayout {
 				((RadioButton) child).setOnCheckedChangeListener(null);
 			} else if (parent == CustomerRadioGroup.this
 					&& child instanceof ViewGroup) {
-				List<RadioButton> rbs = findRadioButtons((RadioGroup) child);
+				List<RadioButton> rbs = findRadioButtons((ViewGroup) child);
 				for (RadioButton btn : rbs) {
 					btn.setOnCheckedChangeListener(null);
 				}

@@ -4,19 +4,18 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Message;
 import android.os.SystemClock;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
-import android.text.TextUtils;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
-import android.widget.GridView;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.RadioGroup;
 import android.widget.RadioGroup.OnCheckedChangeListener;
-import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.android.tonight8.R;
@@ -24,11 +23,19 @@ import com.android.tonight8.base.BaseActivity;
 import com.android.tonight8.base.BaseFragment;
 import com.android.tonight8.dao.model.live.EventLive;
 import com.android.tonight8.io.HandlerConstants;
+import com.android.tonight8.io.event.entity.EventListNetEntity;
+import com.android.tonight8.io.live.paramentity.TestParamEntity;
+import com.android.tonight8.io.net.NetEntityBase;
+import com.android.tonight8.io.net.NetRequest;
 import com.android.tonight8.ui.fragment.livemanage.LiveCommitListFragment;
 import com.android.tonight8.ui.fragment.livemanage.ProgramListFragment;
 import com.android.tonight8.ui.fragment.livemanage.VoteFragment;
 import com.android.tonight8.ui.fragment.livemanage.WinnerListFragment;
 import com.android.tonight8.ui.view.BarrageView;
+import com.android.tonight8.ui.view.ForLiveScrollView;
+import com.android.tonight8.utils.Utils;
+import com.lidroid.xutils.exception.HttpException;
+import com.lidroid.xutils.util.LogUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
 
 import java.lang.ref.WeakReference;
@@ -45,7 +52,7 @@ public class EventLivePlayActivity extends BaseActivity {
      * 滑动布局
      */
     @ViewInject(R.id.sv_lv_main)
-    private ScrollView sv_lv_main;
+    private ForLiveScrollView sv_lv_main;
     /**
      * 直播界面的ViewPager
      */
@@ -97,6 +104,7 @@ public class EventLivePlayActivity extends BaseActivity {
      * 字幕播放开关
      */
     private boolean isNotDestory = true;
+    private boolean isInit = true;//初始化
     private int[] types = {BarrageView.BarrageModel.NORMAL, BarrageView.BarrageModel.IMPORTANT};
     private String[] texts = {"没错，是短字符", "又有谁能猜出来，我是一个中字符", "长长的字符，大大的爱情，死亡之势不断透明的心情，会有一个的"};
 
@@ -119,6 +127,77 @@ public class EventLivePlayActivity extends BaseActivity {
         initInterface();
         initFragments();
         barrageTest();
+        //新版接口使用示例
+        TestParamEntity entity = new TestParamEntity();
+        entity.getPage().setOffset(0);
+        entity.getPage().setRow(20);
+        entity.getRegional().setCode("1100");
+        entity.setIsToday(true);
+        NetRequest.doPostRequestByJson("http://180.150.179.226/activitys/Event/list/show", entity, new NetRequest.RequestResult<EventListNetEntity>(EventListNetEntity.class, new Handler()) {
+            @Override
+            public void onFailure(HttpException e, String s) {
+                LogUtils.v("数据返回不成功" + s);
+            }
+
+            @Override
+            public void getData(NetEntityBase netEntityBase, EventListNetEntity eventListNetEntity, Handler handler) {
+                LogUtils.v("数据成功返回");
+            }
+        });
+        sv_lv_main.setOnScrollListener(new ForLiveScrollView.ForLiveScrollListener() {
+            @Override
+            public void onDropDown(float nowScrollY) {
+                ////////测试下拉的代码begin////////////////////////////////////
+                LogUtils.v("已经下拉");
+                final Handler handler = new Handler() {
+                    @Override
+                    public void handleMessage(Message msg) {
+                        LogUtils.v("下拉完成");
+                        sv_lv_main.onFinishDropDown();
+                    }
+                };
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        //模拟下拉
+                        try {
+                            Thread.sleep(2000);
+                            handler.sendMessage(handler.obtainMessage(0));
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }).start();
+                ////////测试下拉的代码end////////////////////////////////////
+            }
+
+            @Override
+            public void onPullUp(float nowScrollY) {
+                ////////测试上拉的代码begin////////////////////////////////////
+                LogUtils.v("已经上拉");
+                final Handler handler = new Handler() {
+                    @Override
+                    public void handleMessage(Message msg) {
+                        LogUtils.v("上拉完成");
+                        sv_lv_main.onFinishPullUp();
+                    }
+                };
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        //模拟上拉数据
+                        try {
+                            Thread.sleep(2000);
+                            handler.sendMessage(handler.obtainMessage(0));
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }).start();
+                ////////测试上拉的代码end////////////////////////////////////
+            }
+        });
+
     }
 
     private void initInterface() {

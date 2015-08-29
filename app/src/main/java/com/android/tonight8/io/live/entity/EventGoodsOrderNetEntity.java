@@ -1,8 +1,9 @@
 package com.android.tonight8.io.live.entity;
 
 import com.android.tonight8.dao.model.live.EventGoodsOrder;
+import com.android.tonight8.io.net.NetEntityBase;
 
-public class EventGoodsOrderNetEntity {
+public class EventGoodsOrderNetEntity extends NetEntityBase {
 	/** 商品订单详情 */
 	private EventGoodsOrder eventGoodsOrder;
 

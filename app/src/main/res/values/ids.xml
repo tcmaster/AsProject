@@ -36,4 +36,15 @@
     <item name="split" type="id">false</item>
     <item name="animation" type="id" />
     <item name="model" type="id" />
+
+    /**为RadioButton设置的自定义id*/
+    <item name="rb_one" type="id" />
+    <item name="rb_two" type="id" />
+    <item name="rb_three" type="id" />
+    <item name="rb_four" type="id" />
+    <item name="rb_five" type="id" />
+    <item name="rb_six" type="id" />
+    <item name="rb_seven" type="id" />
+
+
 </resources>
