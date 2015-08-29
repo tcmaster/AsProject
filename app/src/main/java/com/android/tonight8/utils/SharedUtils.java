@@ -1,8 +1,5 @@
 package com.android.tonight8.utils;
 
-import java.net.URL;
-import java.util.ArrayList;
-
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -11,6 +8,7 @@ import android.os.Bundle;
 
 import com.android.tonight8.base.AppConstants;
 import com.android.tonight8.base.Tonight8App;
+import com.android.tonight8.ui.activity.pay.weixin.WXUtils;
 import com.sina.weibo.sdk.api.VideoObject;
 import com.sina.weibo.sdk.api.WebpageObject;
 import com.sina.weibo.sdk.api.WeiboMessage;
@@ -25,6 +23,9 @@ import com.tencent.mm.sdk.modelmsg.WXMediaMessage;
 import com.tencent.mm.sdk.modelmsg.WXTextObject;
 import com.tencent.mm.sdk.modelmsg.WXWebpageObject;
 import com.tencent.tauth.IUiListener;
+
+import java.net.URL;
+import java.util.ArrayList;
 
 public class SharedUtils {
 	// 分享图片的大小
@@ -246,17 +247,6 @@ public class SharedUtils {
 	/**
 	 * 第三方应用发送请求消息到微博，唤起微博分享界面。 当{@link IWeiboShareAPI#getWeiboAppSupportAPI()}
 	 * < 10351 时，只支持分享单条消息，即 文本、图片、网页、音乐、视频中的一种，不支持Voice消息。
-	 * 
-	 * @param hasText
-	 *            分享的内容是否有文本
-	 * @param hasImage
-	 *            分享的内容是否有图片
-	 * @param hasWebpage
-	 *            分享的内容是否有网页
-	 * @param hasMusic
-	 *            分享的内容是否有音乐
-	 * @param hasVideo
-	 *            分享的内容是否有视频
 	 */
 	public static void sendSingleMessage(Activity mActivity, ShareThirdEntity shareThirdEntity) {
 
