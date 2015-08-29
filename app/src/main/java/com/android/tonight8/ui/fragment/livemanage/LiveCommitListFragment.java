@@ -1,5 +1,6 @@
 package com.android.tonight8.ui.fragment.livemanage;
 
+import java.lang.ref.WeakReference;
 import java.util.List;
 
 import android.annotation.SuppressLint;
@@ -41,40 +42,15 @@ public class LiveCommitListFragment extends BaseFragment {
 	/** 父View */
 	private View view;
 	private EventLiveCommitAdapter adapter;
-	@SuppressLint("HandlerLeak")
-	private Handler handler = new Handler() {
-		@SuppressWarnings("unchecked")
-		@Override
-		public void handleMessage(android.os.Message msg) {
-			switch (msg.what) {
-			case HandlerConstants.Live.LIVE_COMMIT:
-				switch (msg.arg1) {
-				case HandlerConstants.RESULT_OK:
-					if (adapter == null) {
-						adapter = new EventLiveCommitAdapter(getActivity(),
-								(List<SubjectList>) msg.obj);
-						lv_only_list.setAdapter(adapter);
-					} else
-						adapter.notifyDataSetChanged();
-					lv_only_list.post(new Runnable() {
+	private MyHandler handler;
 
-						@Override
-						public void run() {
-							((EventLivePlayActivity) getActivity()).scrollTop();
-						}
-					});
-					break;
+	public LiveCommitListFragment() {
+		handler = new MyHandler(this);
+	}
 
-				default:
-					break;
-				}
-				break;
-
-			default:
-				break;
-			}
-		};
-	};
+	public static LiveCommitListFragment newInstance() {
+		return new LiveCommitListFragment();
+	}
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -92,10 +68,6 @@ public class LiveCommitListFragment extends BaseFragment {
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
 		initData();
-	}
-
-	public static LiveCommitListFragment newInstance() {
-		return new LiveCommitListFragment();
 	}
 
 	private void initData() {
@@ -116,6 +88,46 @@ public class LiveCommitListFragment extends BaseFragment {
 				}
 			});
 			lv_only_list.addFooterView(footView);
+		}
+	}
+
+	private static class MyHandler extends Handler {
+		private WeakReference<LiveCommitListFragment> ref;
+
+		public MyHandler(LiveCommitListFragment lclf) {
+			ref = new WeakReference<LiveCommitListFragment>(lclf);
+		}
+
+		@SuppressWarnings("unchecked")
+		@Override
+		public void handleMessage(android.os.Message msg) {
+			switch (msg.what) {
+				case HandlerConstants.Live.LIVE_COMMIT:
+					switch (msg.arg1) {
+						case HandlerConstants.RESULT_OK:
+							if (ref.get().adapter == null) {
+								ref.get().adapter = new EventLiveCommitAdapter(ref.get().getActivity(),
+										(List<SubjectList>) msg.obj);
+								ref.get().lv_only_list.setAdapter(ref.get().adapter);
+							} else
+								ref.get().adapter.notifyDataSetChanged();
+							ref.get().lv_only_list.post(new Runnable() {
+
+								@Override
+								public void run() {
+									((EventLivePlayActivity) ref.get().getActivity()).scrollTop();
+								}
+							});
+							break;
+
+						default:
+							break;
+					}
+					break;
+
+				default:
+					break;
+			}
 		}
 	}
 }

@@ -35,37 +35,49 @@ import com.tencent.tauth.Tencent;
  */
 public class Tonight8App extends Application {
 
-	/** 保存当前Application实例，用于方便调用当前应用的全局变量 */
-	private static Tonight8App mApp;
-	/** BitmapUtils管理配置类 */
-	public BitmapDisplayConfig config;
 	/** 应用名称 */
-	public static final String PACKAGE_NAME = "com.android.com.android.tonight8";
-	// --------------------------新浪微博授权时所需要的参数--------------------
+	public static final String PACKAGE_NAME = "com.android.tonight8";
 	/** 新浪微博的 APP_KEY */
 	public static final String SINA_APP_KEY = "3956016765";
 	/** 新浪微博默认回调页：https://api.weibo.com/oauth2/default.html */
 	public static final String SINA_REDIRECT_URL = "https://api.weibo.com/oauth2/default.html";
+	// --------------------------新浪微博授权时所需要的参数--------------------
 	/** Scope 新是 OAuth2.0 授权机制中 authorize 接口的一个参数。通过 Scope，平台将开放更多的微博信息 */
 	public static final String SINA_SCOPE = "email,direct_messages_read";
 	/** 新浪微博的 APP_SECRET */
 	public static final String SINA_APP_SECRET = "2ea023b56f329f5bf5426416ddc3ddd7";
+	/**
+	 * 微信的注册id
+	 */
+	public static final String WX_APP_ID = "wxb5731b78779c42cf";
+	/**
+	 * 微信的SECRET id
+	 */
+	public static final String WX_APP_SECRET = "a3657f1d3e772ed6d576ccc455c6e082";
+	/**
+	 * QQ的注册id
+	 */
+	public static final String QQ_APP_ID = "1101316332";
+	/**
+	 * 保存当前Application实例，用于方便调用当前应用的全局变量
+	 */
+	private static Tonight8App mApp;
+	// --------------------------微信授权时所需要的参数--------------------
+	/**
+	 * BitmapUtils管理配置类
+	 */
+	public BitmapDisplayConfig config;
 	/** 新浪微博与第三方APP通信的接口 */
 	public AuthInfo mSinaAuth;
-	/** 微博分享的接口实例 */
+	/**
+	 * 微博分享的接口实例
+	 */
 	public IWeiboShareAPI mWeiboShareAPI;
-	// --------------------------微信授权时所需要的参数--------------------
+	// --------------------------QQ授权时所需要的参数--------------------
 	/** 微信与第三方APP通信的接口 */
 	public IWXAPI wxApi;
-	/** 微信的注册id */
-	public static final String WX_APP_ID = "wxb5731b78779c42cf";
-	/** 微信的SECRET id */
-	public static final String WX_APP_SECRET = "a3657f1d3e772ed6d576ccc455c6e082";
-	// --------------------------QQ授权时所需要的参数--------------------
 	/** QQ与第三方APP通信的接口 */
 	public Tencent mTencent;
-	/** QQ的注册id */
-	public static final String QQ_APP_ID = "1101316332";
 
 	public Tonight8App() {
 		/* 当前应用对像初始化 */

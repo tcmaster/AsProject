@@ -1,0 +1,6 @@
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="oval">
+    <corners android:radius="5dp" />
+    <solid android:color="@color/vote_title1" />
+    <stroke android:color="@color/vote_title1" />
+</shape>

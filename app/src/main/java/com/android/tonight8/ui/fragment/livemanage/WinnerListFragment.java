@@ -3,7 +3,6 @@ package com.android.tonight8.ui.fragment.livemanage;
 import java.lang.ref.WeakReference;
 import java.util.List;
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
@@ -42,7 +41,7 @@ public class WinnerListFragment extends BaseFragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		if (view == null) {
-			view = inflater.inflate(R.layout.fg_winner_list, null);
+			view = inflater.inflate(R.layout.fragment_live_winner_list, null);
 			ViewUtils.inject(this, view);
 		}
 		return view;

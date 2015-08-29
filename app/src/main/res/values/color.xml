@@ -38,4 +38,9 @@
     <!-- （标题）灰色 -->
     <color name="title_gray">#9b9b9b</color>
 
+    <!-- 投票界面的3个颜色-->
+    <color name="vote_title1">#FF3366</color>
+    <color name="vote_title2">#4FD2C2</color>
+    <color name="vote_title3">#FEC400</color>
+
 </resources>

@@ -11,7 +11,6 @@ import java.util.Set;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.lidroid.xutils.util.LogUtils;
 
 /**
  * 解析JSON的实体类
@@ -36,12 +35,10 @@ public class JsonUtils {
 
 	public static <T> T parseJsonStr(String jsonStr, Class<T> clazz) {
 		T t = JSON.parseObject(jsonStr, clazz);
-		LogUtils.v(t.toString());
 		return t;
 	}
 	public static <T> List<T> parseJsonList(String jsonStr, Class<T> clazz) {
 		List<T> t = JSON.parseArray(jsonStr, clazz);
-		LogUtils.v(t.toString());
 		return t;
 	}
 	public static String getObjectToString(JSONObject jsonObject) {
@@ -145,10 +142,8 @@ public class JsonUtils {
 					}
 				} else {
 					String name = type.toString();
-					System.out.println("base is" + name);
 					if (name.equals("int")
 							|| name.equals(Integer.class.toString())) {
-						// æ¨¡æ‹Ÿä¸€æ?¡intæ•°æ?®
 						field.set(result, 919);
 					} else if (name.equals("float")
 							|| name.equals(Float.class.toString())) {
