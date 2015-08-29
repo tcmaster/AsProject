@@ -1,7 +1,7 @@
 package com.android.tonight8.Audio;
 
 
-import io.vov.vitamio.MediaPlayer;
+import android.media.MediaPlayer;
 
 /**
  * Created by Administrator on 2015/7/9 0009.
@@ -15,7 +15,7 @@ public class AudioErrorListener  implements MediaPlayer.OnErrorListener{
     public boolean onError(MediaPlayer mp, int what, int extra) {
         switch (extra){
             case MediaPlayer.MEDIA_ERROR_IO://网络等原因，音频出现问题
-                long pos = mp.getCurrentPosition();//记录当前播放的时间点
+                int pos = mp.getCurrentPosition();//记录当前播放的时间点
                 System.out.println("MyMediaPlayer source or new error");
                 if(callback != null) callback.onNetError(pos);
                 break;
@@ -27,6 +27,6 @@ public class AudioErrorListener  implements MediaPlayer.OnErrorListener{
         return true;
     }
     public interface AudioErrorInterface{
-        void onNetError(long currentPos);
+        void onNetError(int currentPos);
     }
 }

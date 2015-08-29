@@ -1,6 +1,7 @@
 package com.android.tonight8.io.live.entity;
 
 import com.android.tonight8.dao.model.live.EventLive;
+import com.android.tonight8.io.net.NetEntityBase;
 
 /**
  * @Descripton 活动现场详情
@@ -8,7 +9,7 @@ import com.android.tonight8.dao.model.live.EventLive;
  * @2015-6-11
  * @Tonight8
  */
-public class EventLiveNetEntity {
+public class EventLiveNetEntity extends NetEntityBase {
 	private EventLive eventLive;
 
 	public EventLive getEventLive() {
