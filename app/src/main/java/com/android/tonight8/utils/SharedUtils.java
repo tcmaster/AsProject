@@ -1,5 +1,8 @@
 package com.android.tonight8.utils;
 
+import java.net.URL;
+import java.util.ArrayList;
+
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -24,33 +27,11 @@ import com.tencent.mm.sdk.modelmsg.WXTextObject;
 import com.tencent.mm.sdk.modelmsg.WXWebpageObject;
 import com.tencent.tauth.IUiListener;
 
-import java.net.URL;
-import java.util.ArrayList;
-
 public class SharedUtils {
 	// 分享图片的大小
 	private static final int THUMB_SIZE = 150;
-
-	public static class ShareThirdEntity {
-
-		/** 分享的标题,最长30个字符 */
-		public String title;
-		/** 分享图片的URL，音乐只支持网络链接,分享类型是纯图片时需要分享的本地图片路径 */
-		public String imageUrl;
-		/** 手Q客户端顶部，替换“返回”按钮文字，如果为空，用返回代替 */
-		public String appName;
-		/** 分享后好友点击的url地址 */
-		public String targetUrl;
-		/**
-		 * 分享类型（ 图文1、网页2、纯图片3 、分享音乐4、应用分享5 、视频6。类型是图文时：targetUrl和title不能为空
-		 */
-		public int shareType;
-		/** 分享的消息摘要,最长40个字 */
-		public String summary;
-		/** 分享的音乐时必填的链接 */
-		public String audioUrl;
-
-	}
+	public boolean isInstalledWeibo = Tonight8App.getSelf().mWeiboShareAPI.isWeiboAppInstalled();
+	public int supportApiLevel = Tonight8App.getSelf().mWeiboShareAPI.getWeiboAppSupportAPI();
 
 	/**
 	 * @Description:分享到朋友圈和微信
@@ -226,14 +207,8 @@ public class SharedUtils {
 	 */
 	private static boolean isSupportFriendsShare() {
 		int wxSdkVersion = Tonight8App.getSelf().wxApi.getWXAppSupportAPI();
-		if (wxSdkVersion >= AppConstants.TIMELINE_SUPPORTED_VERSION) {
-			return true;
-		}
-		return false;
+		return wxSdkVersion >= AppConstants.TIMELINE_SUPPORTED_VERSION;
 	}
-
-	public boolean isInstalledWeibo = Tonight8App.getSelf().mWeiboShareAPI.isWeiboAppInstalled();
-	public int supportApiLevel = Tonight8App.getSelf().mWeiboShareAPI.getWeiboAppSupportAPI();
 
 	public static void shareToSinaWeiBo(Activity mActivity, ShareThirdEntity shareThirdEntity) {
 		// 获取微博客户端相关信息，如是否安装、支持 SDK 的版本
@@ -244,10 +219,6 @@ public class SharedUtils {
 		}
 	}
 
-	/**
-	 * 第三方应用发送请求消息到微博，唤起微博分享界面。 当{@link IWeiboShareAPI#getWeiboAppSupportAPI()}
-	 * < 10351 时，只支持分享单条消息，即 文本、图片、网页、音乐、视频中的一种，不支持Voice消息。
-	 */
 	public static void sendSingleMessage(Activity mActivity, ShareThirdEntity shareThirdEntity) {
 
 		// 1. 初始化微博的分享消息
@@ -296,6 +267,35 @@ public class SharedUtils {
 
 		// 3. 发送请求消息到微博，唤起微博分享界面
 		Tonight8App.getSelf().mWeiboShareAPI.sendRequest(mActivity, request);
+	}
+
+	public static class ShareThirdEntity {
+
+		/**
+		 * 分享的标题,最长30个字符
+		 */
+		public String title;
+		/**
+		 * 分享图片的URL，音乐只支持网络链接,分享类型是纯图片时需要分享的本地图片路径
+		 */
+		public String imageUrl;
+		/**
+		 * 手Q客户端顶部，替换“返回”按钮文字，如果为空，用返回代替
+		 */
+		public String appName;
+		/**
+		 * 分享后好友点击的url地址
+		 */
+		public String targetUrl;
+		/**
+		 * 分享类型（ 图文1、网页2、纯图片3 、分享音乐4、应用分享5 、视频6。类型是图文时：targetUrl和title不能为空
+		 */
+		public int shareType;
+		/** 分享的消息摘要,最长40个字 */
+		public String summary;
+		/** 分享的音乐时必填的链接 */
+		public String audioUrl;
+
 	}
 
 }
