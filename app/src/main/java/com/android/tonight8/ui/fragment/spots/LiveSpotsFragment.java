@@ -3,6 +3,7 @@ package com.android.tonight8.ui.fragment.spots;
 
 import android.app.AlertDialog;
 import android.app.Fragment;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -12,17 +13,24 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.android.tonight8.R;
 import com.android.tonight8.base.BaseFragment;
-import com.android.tonight8.ui.adapter.event.ShareAdapter;
+import com.android.tonight8.ui.adapter.spots.SpotAdapter;
 import com.android.tonight8.ui.view.CustomerDialog;
 import com.android.tonight8.ui.view.StationaryGridview;
 import com.android.tonight8.ui.view.Wheel.NumericWheelAdapter;
 import com.android.tonight8.ui.view.Wheel.OnWheelChangedListener;
 import com.android.tonight8.ui.view.Wheel.WheelView;
+import com.android.tonight8.utils.DialogUtils;
+import com.lecloud.common.base.util.Logger;
+import com.lecloud.download.control.DownloadCenter;
+import com.lecloud.skin.PlayerStateCallback;
+import com.lecloud.skin.vod.VODPlayCenter;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
 
@@ -33,11 +41,11 @@ import com.lidroid.xutils.view.annotation.ViewInject;
 public class LiveSpotsFragment extends BaseFragment implements View.OnClickListener {
     @ViewInject(R.id.linear1)
     private LinearLayout ll_linea1;
-    @ViewInject(R.id.tv_hour)
+    @ViewInject(R.id.tv_time1)
     private TextView tv_hour;
-    @ViewInject(R.id.tv_minute)
+    @ViewInject(R.id.tv_time2)
     private TextView tv_minute;
-    @ViewInject(R.id.tv_second)
+    @ViewInject(R.id.tv_time3)
     private TextView tv_second;
     @ViewInject(R.id.btn_preview)
     private Button btn_preview;
@@ -46,6 +54,15 @@ public class LiveSpotsFragment extends BaseFragment implements View.OnClickListe
     private String strHour, strMinute, strSecond;
     @ViewInject(R.id.gv_insertitem)
     private StationaryGridview stationaryGridview;
+
+    @ViewInject(R.id.rl_leshi_player)
+    private RelativeLayout mPlayerLayoutView;
+    private VODPlayCenter mPlayerView;
+    private boolean isBackgroud = false;
+    private String uu = "487c884e76";
+    private String vu = "e5a4fb751e";
+    @ViewInject(R.id.et_subtitle)
+    private EditText et_subtitle;
 
     public LiveSpotsFragment() {
         // Required empty public constructor
@@ -63,17 +80,99 @@ public class LiveSpotsFragment extends BaseFragment implements View.OnClickListe
 
         rootView = inflater.inflate(R.layout.fragment_live_spots, container, false);
         ViewUtils.inject(this, rootView);
-        ShareAdapter shareAdapter = new ShareAdapter(activity);
-        stationaryGridview.setAdapter(shareAdapter);
+        SpotAdapter adapter = new SpotAdapter(activity);
+        stationaryGridview.setAdapter(adapter);
         stationaryGridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                switch (i) {
+                    case 0:
+                        DialogUtils.showSelectPicDialog(activity, 0, 0);
+                        break;
+                    case 1:
+                        DialogUtils.showCommitZiMuDialog(activity, "请输入字幕",et_subtitle);
+                        break;
+                    case 2:
+                        break;
+                    case 3:
+                        break;
+                    case 4:
+                        break;
 
+                }
             }
         });
+
+        // this.mPlayerView = VODPlayCenter.getInstance(this, true);
+        mPlayerView = new VODPlayCenter(activity, true);
+        mPlayerLayoutView.addView(mPlayerView.getPlayerView());
+
+//		mPlayerView.changeOrientation(Configuration.ORIENTATION_LANDSCAPE);
         return rootView;
     }
 
+//    // 监听接口
+//    public interface OnZiMuItemClickListener {
+//
+//        void OnItemClick(EditText et_subtitle,AlertDialog dlg);
+//    }
+    private View.OnClickListener onClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+
+        }
+    };
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (this.mPlayerView != null) {
+            if (isBackgroud) {
+                if (mPlayerView.getCurrentPlayState() == PlayerStateCallback.PLAYER_VIDEO_PAUSE) {
+                    this.mPlayerView.resumeVideo();
+                } else {
+                    Logger.e("VODActivity", "已回收，重新请求播放");
+                    mPlayerView.playVideo(uu, vu, "", "", "测试节目");
+                }
+            }
+        }
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        if (mPlayerView != null) {
+            mPlayerView.pauseVideo();
+            isBackgroud = true;
+        }
+    }
+
+    @Override
+    public void onStop() {
+        // TODO Auto-generated method stub
+        super.onStop();
+    }
+
+    @Override
+    public void onDestroy() {
+        this.mPlayerView.destroyVideo();
+        this.mPlayerLayoutView.removeAllViews();
+        this.mPlayerView = null;
+        Logger.e("VODActivity", "onDestroy");
+        super.onDestroy();
+        isBackgroud = false;
+
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT) {
+            //Log.i("VODActivity", "半屏");
+        } else if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            //Log.i("VODActivity", "全屏");
+        }
+    }
 
     @Override
     public void onClick(View view) {
@@ -82,7 +181,9 @@ public class LiveSpotsFragment extends BaseFragment implements View.OnClickListe
                 selectTimeDialog();
                 break;
             case R.id.btn_preview:
-
+                mPlayerView.bindDownload(DownloadCenter.getInstances(activity));
+                DownloadCenter.getInstances(activity).allowShowMsg(false);
+                this.mPlayerView.playVideo(uu, vu, "151398", "", "测试节目", true);// c34f821becb64978216a8765ccfff24e
                 break;
             case R.id.btn_insert:
 
@@ -121,6 +222,9 @@ public class LiveSpotsFragment extends BaseFragment implements View.OnClickListe
                 NumericWheelAdapter adapter3 = new NumericWheelAdapter(0, 60);
                 wv_second.setAdapter(adapter3);
 
+                wv_hour.setCurrentItem(Integer.valueOf(tv_hour.getText().toString()));
+                wv_minute.setCurrentItem(Integer.valueOf(tv_minute.getText().toString()));
+                wv_second.setCurrentItem(Integer.valueOf(tv_second.getText().toString()));
                 wv_hour.setCyclic(true);
                 wv_minute.setCyclic(true);
                 wv_second.setCyclic(true);
@@ -166,4 +270,5 @@ public class LiveSpotsFragment extends BaseFragment implements View.OnClickListe
         cdlg.setLayoutGravity(Gravity.BOTTOM);
         cdlg.showDlg();
     }
+
 }

@@ -3,9 +3,6 @@
  */
 package com.android.tonight8.ui.activity.event;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
@@ -26,21 +23,24 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 
 import com.android.tonight8.R;
-import com.android.tonight8.dao.entity.Subject;
-import com.android.tonight8.ui.adapter.event.GoodLeftAdapter;
-import com.android.tonight8.ui.adapter.event.GoodRightAdapter;
 import com.android.tonight8.base.BaseActivity;
+import com.android.tonight8.dao.entity.Subject;
 import com.android.tonight8.dao.model.event.EventDetail;
 import com.android.tonight8.function.CountDownFunction;
 import com.android.tonight8.io.HandlerConstants;
 import com.android.tonight8.io.event.EventIOController;
-import com.android.tonight8.utils.DialogUtils;
-import com.android.tonight8.utils.Utils;
+import com.android.tonight8.ui.adapter.event.GoodLeftAdapter;
+import com.android.tonight8.ui.adapter.event.GoodRightAdapter;
 import com.android.tonight8.ui.view.xlistview.XListView;
 import com.android.tonight8.ui.view.xlistview.XListView.IXListViewListener;
+import com.android.tonight8.utils.DialogUtils;
+import com.android.tonight8.utils.Utils;
 import com.lidroid.xutils.BitmapUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @Description:活动详情界面

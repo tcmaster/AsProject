@@ -369,6 +369,10 @@
             </intent-filter>
 
         </activity>
+
+        <service
+            android:name="com.letv.pp.service.CdeService"
+            android:process=":cde" />
     </application>
 
 </manifest>

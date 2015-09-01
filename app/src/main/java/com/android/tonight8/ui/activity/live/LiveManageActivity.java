@@ -10,6 +10,7 @@ import com.android.tonight8.base.BaseActivity;
 import com.android.tonight8.base.BaseFragment;
 import com.android.tonight8.ui.fragment.spots.LiveSpotsFragment;
 import com.android.tonight8.ui.fragment.spots.VideoSpotsFragment;
+import com.lecloud.common.cde.LeCloud;
 import com.lidroid.xutils.view.annotation.ViewInject;
 
 
@@ -20,9 +21,11 @@ public class LiveManageActivity extends BaseActivity {
     private FragmentTransaction ft;
     private BaseFragment[] baseFragments;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        LeCloud.init(getApplicationContext());
         initCreateNomal(savedInstanceState, R.layout.activity_live_manage);
         initData();
         initListener();
@@ -55,6 +58,7 @@ public class LiveManageActivity extends BaseActivity {
             }
         });
     }
+
 
     /**
      * @param which 第几个对象
