@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android" >
+    <stroke
+        android:width="2dp"
+        android:color="@color/action_mult_live_shape" />
+</shape><!-- From: file:/D:/as_workspace/AsProject/leCloudSDK_Release/src/main/res/drawable/action_list_onclick_style.xml --><!-- From: file:/D:/as_workspace/AsProject/leCloudSDK_Release/build/intermediates/bundles/debug/res/drawable/action_list_onclick_style.xml -->
