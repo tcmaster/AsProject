@@ -10,8 +10,8 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.android.tonight8.R;
+import com.android.tonight8.base.AppConstants;
 import com.android.tonight8.base.BaseActivity;
-import com.android.tonight8.base.Tonight8App;
 import com.tencent.mm.sdk.modelpay.PayReq;
 import com.tencent.mm.sdk.openapi.IWXAPI;
 import com.tencent.mm.sdk.openapi.WXAPIFactory;
@@ -39,7 +39,7 @@ public class WeiXinPayActivity extends BaseActivity {
     private TextView show;
     private Map<String, String> resultunifiedorder;
     private StringBuffer sb;
-    private String PAY_APP_ID = Tonight8App.getSelf().WX_APP_ID;
+    private String PAY_APP_ID = AppConstants.WX_APP_ID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

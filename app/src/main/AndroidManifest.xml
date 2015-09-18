@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest package="com.android.tonight8"
-          xmlns:android="http://schemas.android.com/apk/res/android"
-          android:versionCode="1"
-          android:versionName="1.0">
+<manifest
+    package="com.android.tonight8"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:versionCode="1"
+    android:versionName="1.0">
 
     <uses-sdk
         android:minSdkVersion="14"
@@ -58,7 +59,6 @@
             android:name=".ui.activity.MainActivity"
             android:label="@string/app_name"
             android:theme="@android:style/Theme.Black.NoTitleBar">
-
         </activity>
         <!-- 忘记商家密码 -->
         <activity
@@ -102,37 +102,37 @@
             android:name=".ui.activity.event.CreateEventThirdActivity"
             android:alwaysRetainTaskState="true"
             android:configChanges="keyboardHidden|orientation"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait"/>
         <!-- 促销券使用 -->
         <activity
             android:name=".ui.activity.event.CouponToUseActivity"
             android:alwaysRetainTaskState="true"
             android:configChanges="keyboardHidden|orientation"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait"/>
         <!-- 绑定经销商 -->
         <activity
             android:name=".ui.activity.org.BindAgencyActivity"
             android:alwaysRetainTaskState="true"
             android:configChanges="keyboardHidden|orientation"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait"/>
         <!-- 已用券核销 -->
         <activity
             android:name=".ui.activity.event.CouponHaveUsedActivity"
             android:alwaysRetainTaskState="true"
             android:configChanges="keyboardHidden|orientation"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait"/>
         <!-- 用户反馈 -->
         <activity
             android:name=".ui.activity.org.UserFeedbackActivity"
             android:alwaysRetainTaskState="true"
             android:configChanges="keyboardHidden|orientation"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait"/>
         <!-- 商家资料 -->
         <activity
             android:name=".ui.activity.org.OrgDetailActivity"
             android:alwaysRetainTaskState="true"
             android:configChanges="keyboardHidden|orientation"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait"/>
 
         <!-- 商品详情 -->
         <activity
@@ -150,7 +150,7 @@
         <service
             android:name="com.baidu.location.f"
             android:enabled="true"
-            android:process=":remote"></service>
+            android:process=":remote"/>
         <service
             android:name=".Audio.AudioPlayService"
             android:enabled="true"
@@ -162,7 +162,7 @@
 
         <activity
             android:name=".ui.activity.event.EventExchangeActivity"
-            android:label="@string/title_activity_event_exchange"></activity>
+            android:label="@string/title_activity_event_exchange"/>
         <!-- 用户中奖码列表 -->
         <activity
             android:name=".ui.activity.user.UserAwardListActivity"
@@ -217,7 +217,7 @@
         <activity
             android:name=".ui.activity.org.AuthPicActivity"
             android:launchMode="singleTop"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait"/>
         <!-- 兑奖地址位置显示页面 -->
         <activity
             android:name=".ui.activity.event.ExchangeLocationActivity"
@@ -227,18 +227,19 @@
         <activity
             android:name=".ui.activity.user.MessageListActivity"
             android:label="@string/title_activity_message_list"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait"/>
         <!-- 消息详情界面 -->
         <activity
             android:name=".ui.activity.user.MessageDetailActivity"
             android:label="@string/title_activity_message_detail"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait"/>
         <!-- 活动现场直播界面 -->
         <activity
             android:name=".ui.activity.live.EventLivePlayActivity"
             android:hardwareAccelerated="true"
             android:label="@string/title_activity_event_live_play"
             android:screenOrientation="portrait">
+
             <!--
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -247,28 +248,10 @@
             </intent-filter>
             -->
         </activity>
-        <!-- QQ分享需要注册的 -->
-        <activity
-            android:name="com.tencent.connect.common.AssistActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
-        <!-- QQ分享需要注册的QQ认证页 -->
-        <activity
-            android:name="com.tencent.tauth.AuthActivity"
-            android:launchMode="singleTask"
-            android:noHistory="true">
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW"/>
 
-                <category android:name="android.intent.category.DEFAULT"/>
-                <category android:name="android.intent.category.BROWSABLE"/>
-                <!-- 100424468，如果你使用的公用账号，则不需要修改；否则修改成你在QQ开放平台申请的 APP ID -->
-                <data android:scheme="100424468"/>
-            </intent-filter>
-        </activity>
         <activity
             android:name=".ui.activity.user.UserForgetPasswordActivity"
-            android:label="@string/title_activity_user_forget_password"></activity>
+            android:label="@string/title_activity_user_forget_password"/>
         <!-- 文本编辑页面 -->
         <activity
             android:name=".ui.activity.event.TextEditActivity"
@@ -287,13 +270,13 @@
             android:configChanges="orientation|keyboardHidden"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateAlwaysHidden"></activity>
+            android:windowSoftInputMode="stateAlwaysHidden"/>
         <!-- 必须注册在新浪微博授权，分享微博时候用到 -->
         <activity
             android:name="com.sina.weibo.sdk.component.WeiboSdkBrowser"
             android:configChanges="keyboardHidden|orientation"
             android:exported="false"
-            android:windowSoftInputMode="adjustResize"></activity>
+            android:windowSoftInputMode="adjustResize"/>
         <!-- 我的心愿 -->
         <activity
             android:name=".ui.activity.wish.MyWishActivity"
@@ -320,21 +303,21 @@
             android:name=".ui.activity.user.UserInfoActivity"
             android:label="@string/title_activity_user_info"
             android:launchMode="singleTop"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".ui.activity.user.ShowImgActivity"
             android:launchMode="singleTop"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait"/>
         <!-- 心愿历程发布界面 -->
         <activity
             android:name=".ui.activity.wish.WishProcessPostActivity"
             android:launchMode="singleTop"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait"/>
         <!-- 我的心愿赞助界面 -->
         <activity
             android:name=".ui.activity.wish.MyWishSponsorActivity"
             android:launchMode="singleTop"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait"/>
         <!-- 商品详情 -->
         <activity
             android:name=".ui.activity.live.GoodsInfoActivity"
@@ -345,34 +328,77 @@
         <activity
             android:name=".ui.activity.event.EventManageActivity"
             android:launchMode="singleTop"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait"/>
 
         <service
             android:name="com.sina.weibo.sdk.net.DownloadService"
-            android:exported="false"></service>
+            android:exported="false"/>
         <!-- 声明sdk所需的service SDK核心功能 -->
         <service android:name="com.easemob.chat.EMChatService"/>
         <!-- 选择城市 -->
         <activity
             android:name=".ui.activity.other.SelectCitiyActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait"/>
         <!-- 直播管理插播 -->
         <activity
             android:name=".ui.activity.live.LiveManageActivity"
+            android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Light.NoTitleBar"
-            android:screenOrientation="portrait">
-
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
+            android:windowSoftInputMode="stateVisible|adjustResize">
 
         </activity>
 
         <service
             android:name="com.letv.pp.service.CdeService"
-            android:process=":cde" />
+            android:process=":cde"/>
+
+        <activity
+            android:name=".ui.activity.live.SpotRecordActivity"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name=".ui.activity.pay.alipay.AliPayActivity"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name=".ui.activity.other.ShareTestActivity"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+
+        <!-- 腾讯SSO授权的Activity注册 -->
+        <!-- QQ分享需要注册的 -->
+        <activity
+            android:name="com.tencent.connect.common.AssistActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
+        <!-- QQ分享需要注册的QQ认证页 -->
+        <activity
+            android:name="com.tencent.tauth.AuthActivity"
+            android:launchMode="singleTask"
+            android:noHistory="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <!-- 100424468，如果你使用的公用账号，则不需要修改；否则修改成你在QQ开放平台申请的 APP ID -->
+                <data android:scheme="100424468"/>
+            </intent-filter>
+        </activity>
+        <!-- 微信回调activity -->
+        <activity
+            android:name=".wxapi.WXEntryActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
+
     </application>
+
 
 </manifest>

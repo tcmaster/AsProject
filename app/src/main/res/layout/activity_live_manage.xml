@@ -5,17 +5,24 @@
               android:orientation="vertical"
               tools:context="com.android.tonight8.ui.activity.live.LiveManageActivity">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="@color/purple"
-        android:gravity="center"
-        android:orientation="horizontal">
+        android:background="@color/purple">
+
+        <ImageView
+            android:id="@+id/iv_arrow"
+            style="@style/wrap"
+            android:layout_centerVertical="true"
+            android:layout_margin="@dimen/common_margin_left"
+            android:contentDescription="@string/app_name"
+            android:src="@mipmap/back_arrow"/>
 
         <RadioGroup
             android:id="@+id/rg_zhibochabo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
             android:orientation="horizontal">
 
             <RadioButton
@@ -39,11 +46,11 @@
                 android:text="视频直播"
                 android:textColor="@drawable/text_white_to_purple"/>
         </RadioGroup>
-    </LinearLayout>
+    </RelativeLayout>
 
     <FrameLayout
         android:id="@+id/fl_chabo"
-        android:background="@color/white"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"></FrameLayout>
+        android:layout_height="match_parent"
+        android:background="@color/white"></FrameLayout>
 </LinearLayout>

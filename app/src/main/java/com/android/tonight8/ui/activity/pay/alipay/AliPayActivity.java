@@ -21,13 +21,27 @@ import java.util.Random;
 public class AliPayActivity extends BaseActivity {
 
     //商户PID
-    public static final String PARTNER = "";
+    public static final String PARTNER = "2088701356970794";
     //商户收款账号
-    public static final String SELLER = "";
+    public static final String SELLER = "309858125@qq.com";
     //商户私钥，pkcs8格式
-    public static final String RSA_PRIVATE = "";
+    public static final String RSA_PRIVATE =
+            "MIICdwIBADANBgkqhkiG9w0BAQEFAASCAmEwggJdAgEAAoGBAMZWJOyELkOoe4t0" +
+                    "LY8eo2iElx0zxgZBwYgPLj51EoEu7sEFOlIlM0lGjIFpUHx+DGsKGGrb0D9O7ta9" +
+                    "VTz2yzxFMJpb0+zJxOkosMbR9Zinf/f/BWMT3yi9PK9NQTcEB+2cAskebQTA9sp/" +
+                    "wGwqqaBL6BTbPbrtOEixnxGndriZAgMBAAECgYBoyWCOuTM8Ocq0HfhoEhbhhJPW" +
+                    "MOFhsuIOAX88LlxNdj9cKWfruI3FHAnl4X9Nlsb20omeA26d1BUpzTQ4lmc/DEAV" +
+                    "J/BkE+DKQyXIqJjZKw9UdWZ0lIri/jqkZAfN+bsFpz7AsVsMRnKoXx1Js3CL+MwR" +
+                    "iPJ97suRAyQeExzEgQJBAPkJnBmKefDGK7uVAwQy8S65p/VcReqyM/Dg4tBdFPZM" +
+                    "93kiHXeKJYHRdwKnjhjAGaA5zqk3j+CR8ow29zhSu5ECQQDL4alMz6uNxkoeG8nZ" +
+                    "TEGiZXnjD0y1XiQpAl6qzagfmbXGGdhM6qcaqMx4YA2vppby1eS91cOH5zN8z8nD" +
+                    "DtiJAkBWeMO/Cpo0xFrDE4asmpOsScLMK3ILgD0Q0sVu3CM/MpJreTEKJOnJHdZZ" +
+                    "EZ0BcxJy1B+yGhzXOVYi4aMN54xBAkEArZpNCnaaYXJCkjifO0RPbvRxQQI6EwVC" +
+                    "TRkTeuT7D01XFoPTRktYVr78vFMt1C9JwSSYTXzDrekUUmasKkdt4QJBAMHzEjOC" +
+                    "vVmtg0aD+miSIwwUoXurVt0z1mMUnswM3Hnvt/pwD/8qx6H28kpNEEDsEJyW14Bg" +
+                    "PW+W/ol4uAoq5oY=";
     //支付宝公钥
-    public static final String RSA_PUBLIC = "";
+    public static final String RSA_PUBLIC = "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDDI6d306Q8fIfCOaTXyiUeJHkrIvYISRcc73s3vF1ZT7XN8RNPwJxo8pWaJMmvyTn9N4HQ632qJBVHf8sxHi/fEsraprwCtzvzQETrNRwVxLO5jVmRGi60j8Ue1efIlzPXV9je9mkjzOmdssymZkh2QhUrCmZYI/FCEa3/cNMW0QIDAQAB";
 
 
     private static final int SDK_PAY_FLAG = 1;

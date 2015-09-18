@@ -20,11 +20,7 @@ import com.android.tonight8.storage.GreenDaoUtils;
 import com.android.tonight8.utils.MD5Utils;
 import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
-import com.lidroid.xutils.BitmapUtils;
 import com.lidroid.xutils.bitmap.BitmapDisplayConfig;
-import com.sina.weibo.sdk.api.share.IWeiboShareAPI;
-import com.sina.weibo.sdk.api.share.WeiboShareSDK;
-import com.sina.weibo.sdk.auth.AuthInfo;
 import com.tencent.mm.sdk.modelpay.PayReq;
 import com.tencent.mm.sdk.openapi.IWXAPI;
 import com.tencent.mm.sdk.openapi.WXAPIFactory;
@@ -37,27 +33,7 @@ public class Tonight8App extends Application {
 
 	/** 应用名称 */
 	public static final String PACKAGE_NAME = "com.android.tonight8";
-	/** 新浪微博的 APP_KEY */
-	public static final String SINA_APP_KEY = "3956016765";
-	/** 新浪微博默认回调页：https://api.weibo.com/oauth2/default.html */
-	public static final String SINA_REDIRECT_URL = "https://api.weibo.com/oauth2/default.html";
-	// --------------------------新浪微博授权时所需要的参数--------------------
-	/** Scope 新是 OAuth2.0 授权机制中 authorize 接口的一个参数。通过 Scope，平台将开放更多的微博信息 */
-	public static final String SINA_SCOPE = "email,direct_messages_read";
-	/** 新浪微博的 APP_SECRET */
-	public static final String SINA_APP_SECRET = "2ea023b56f329f5bf5426416ddc3ddd7";
-	/**
-	 * 微信的注册id
-	 */
-	public static final String WX_APP_ID = "wxb5731b78779c42cf";
-	/**
-	 * 微信的SECRET id
-	 */
-	public static final String WX_APP_SECRET = "a3657f1d3e772ed6d576ccc455c6e082";
-	/**
-	 * QQ的注册id
-	 */
-	public static final String QQ_APP_ID = "1101316332";
+
 	/**
 	 * 保存当前Application实例，用于方便调用当前应用的全局变量
 	 */
@@ -67,12 +43,7 @@ public class Tonight8App extends Application {
 	 * BitmapUtils管理配置类
 	 */
 	public BitmapDisplayConfig config;
-	/** 新浪微博与第三方APP通信的接口 */
-	public AuthInfo mSinaAuth;
-	/**
-	 * 微博分享的接口实例
-	 */
-	public IWeiboShareAPI mWeiboShareAPI;
+
 	// --------------------------QQ授权时所需要的参数--------------------
 	/** 微信与第三方APP通信的接口 */
 	public IWXAPI wxApi;
@@ -104,17 +75,11 @@ public class Tonight8App extends Application {
 		config = new BitmapDisplayConfig();
 		// 注册到微信
 		wxApi = WXAPIFactory.createWXAPI(this.getApplicationContext(),
-				WX_APP_ID, true);
-		wxApi.registerApp(WX_APP_ID);
+				AppConstants.WX_APP_ID, true);
+		wxApi.registerApp(AppConstants.WX_APP_ID);
 		// 注册到QQ
-		mTencent = Tencent.createInstance(QQ_APP_ID,
+		mTencent = Tencent.createInstance(AppConstants.QQ_APP_ID,
 				this.getApplicationContext());
-		// 注册到微博
-		mSinaAuth = new AuthInfo(this, SINA_APP_KEY, SINA_REDIRECT_URL,
-				SINA_SCOPE);
-		// 创建微博 SDK 接口实例
-		mWeiboShareAPI = WeiboShareSDK.createWeiboAPI(this, SINA_APP_KEY);
-		mWeiboShareAPI.registerApp();
 		// 初始化聊天账号信息
 		EaseMobManager.initEaseMob(this);
 	}

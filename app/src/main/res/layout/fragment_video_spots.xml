@@ -1,7 +1,46 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
              xmlns:tools="http://schemas.android.com/tools"
              android:layout_width="match_parent"
+              android:background="@color/white"
              android:layout_height="match_parent"
+              android:orientation="vertical"
              tools:context="com.android.tonight8.ui.fragment.spots.VideoSpotsFragment">
 
-</FrameLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/purple"
+        android:padding="@dimen/common_margin_left_long"
+        android:orientation="vertical">
+
+        <CheckBox
+            android:id="@+id/cb_play"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/common_margin_small"
+            android:background="@drawable/insert_play_selector"
+            android:button="@null"/>
+
+        <TextView
+            android:id="@+id/tv_startplay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="开始播放"
+            android:textColor="@color/white"
+            android:textSize="@dimen/middleTextSize"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/rl_liveplayer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        </RelativeLayout>
+    </LinearLayout>
+</LinearLayout>

@@ -3,34 +3,29 @@
  */
 package com.android.tonight8.utils;
 
-import java.util.Date;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
-import android.view.WindowManager;
 import android.view.WindowManager.LayoutParams;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.GridView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.android.tonight8.R;
-import com.android.tonight8.ui.adapter.event.ShareAdapter;
 import com.android.tonight8.base.BaseActivity;
-import com.android.tonight8.utils.SharedUtils.ShareThirdEntity;
+import com.android.tonight8.dao.model.other.ShareThirdEntity;
 import com.android.tonight8.ui.view.CustomerDialog;
 import com.android.tonight8.ui.view.CustomerDialog.CustomerViewInterface;
 import com.android.tonight8.ui.view.MyCalendarView;
 import com.android.tonight8.ui.view.MyCalendarView.OnMyItemClickListener;
 import com.lidroid.xutils.util.LogUtils;
+
+import java.util.Date;
 
 /**
  * @Description:对话框工厂类
@@ -173,7 +168,6 @@ public class DialogUtils {
 
     /**
      * @param activity
-     * @param inputDate
      * @Description:分享的对话框
      * @author: LiuZhao
      * @date:2015年1月29日
@@ -181,70 +175,70 @@ public class DialogUtils {
 
     public static void showSelectShareDialog(final Activity activity,
                                              final ShareThirdEntity shareThirdEntity) {
-        final CustomerDialog cdlg = new CustomerDialog(activity,
-                R.layout.dialog_share_grid);
-        cdlg.setOnCustomerViewCreated(new CustomerViewInterface() {
-
-            @Override
-            public void getCustomerView(Window window, AlertDialog dlg) {
-                window = dlg.getWindow();
-                LayoutParams lp = window.getAttributes();
-                lp.gravity = Gravity.BOTTOM;
-                lp.width = LayoutParams.MATCH_PARENT;
-                window.setAttributes(lp);
-                final GridView gv_share = (GridView) window
-                        .findViewById(R.id.gv_share);
-                final Button cancleButton = (Button) window
-                        .findViewById(R.id.btn_share_dialog_cancel);
-                cancleButton.setOnClickListener(new OnClickListener() {
-
-                    @Override
-                    public void onClick(View arg0) {
-                        cdlg.dismissDlg();
-                    }
-                });
-                ShareAdapter shareAdapter = new ShareAdapter(activity);
-                gv_share.setAdapter(shareAdapter);
-
-                gv_share.setOnItemClickListener(new OnItemClickListener() {
-
-                    @Override
-                    public void onItemClick(AdapterView<?> arg0, View arg1,
-                                            int position, long arg3) {
-                        switch (position) {
-                            case 0:// QQ空间
-                                SharedUtils.shareToQzone(activity,
-                                        shareThirdEntity, null);
-                                break;
-                            case 1:// QQ好友
-                                SharedUtils.shareToQQ(activity, shareThirdEntity,
-                                        null);
-                                break;
-                            case 2:// 微信好友
-                                SharedUtils.shareToWXOrFriends(activity,
-                                        shareThirdEntity, false);
-                                break;
-                            case 3:// 朋友圈
-                                SharedUtils.shareToWXOrFriends(activity,
-                                        shareThirdEntity, true);
-                                break;
-                            case 4:// 新浪微博
-                                SharedUtils.shareToSinaWeiBo(activity,
-                                        shareThirdEntity);
-                                break;
-
-                            default:
-                                break;
-
-                        }
-                        cdlg.dismissDlg();
-                    }
-                });
-            }
-        });
-        Utils.hideSoftKeyBoard(activity);
-        // cdlg.gravity = Gravity.BOTTOM;
-        cdlg.showDlg();
+//        final CustomerDialog cdlg = new CustomerDialog(activity,
+//                R.layout.dialog_share_grid);
+//        cdlg.setOnCustomerViewCreated(new CustomerViewInterface() {
+//
+//            @Override
+//            public void getCustomerView(Window window, AlertDialog dlg) {
+//                window = dlg.getWindow();
+//                LayoutParams lp = window.getAttributes();
+//                lp.gravity = Gravity.BOTTOM;
+//                lp.width = LayoutParams.MATCH_PARENT;
+//                window.setAttributes(lp);
+//                final GridView gv_share = (GridView) window
+//                        .findViewById(R.id.gv_share);
+//                final Button cancleButton = (Button) window
+//                        .findViewById(R.id.btn_share_dialog_cancel);
+//                cancleButton.setOnClickListener(new OnClickListener() {
+//
+//                    @Override
+//                    public void onClick(View arg0) {
+//                        cdlg.dismissDlg();
+//                    }
+//                });
+//                ShareAdapter shareAdapter = new ShareAdapter(activity);
+//                gv_share.setAdapter(shareAdapter);
+//
+//                gv_share.setOnItemClickListener(new OnItemClickListener() {
+//
+//                    @Override
+//                    public void onItemClick(AdapterView<?> arg0, View arg1,
+//                                            int position, long arg3) {
+//                        switch (position) {
+//                            case 0:// QQ空间
+//                                SharedUtils.shareToQzone(activity,
+//                                        shareThirdEntity, null);
+//                                break;
+//                            case 1:// QQ好友
+//                                SharedUtils.shareToQQ(activity, shareThirdEntity,
+//                                        null);
+//                                break;
+//                            case 2:// 微信好友
+//                                SharedUtils.shareToWXOrFriends(activity,
+//                                        shareThirdEntity, false);
+//                                break;
+//                            case 3:// 朋友圈
+//                                SharedUtils.shareToWXOrFriends(activity,
+//                                        shareThirdEntity, true);
+//                                break;
+//                            case 4:// 新浪微博
+//                                SharedUtils.shareToSinaWeiBo(activity,
+//                                        shareThirdEntity);
+//                                break;
+//
+//                            default:
+//                                break;
+//
+//                        }
+//                        cdlg.dismissDlg();
+//                    }
+//                });
+//            }
+//        });
+//        Utils.hideSoftKeyBoard(activity);
+//        // cdlg.gravity = Gravity.BOTTOM;
+//        cdlg.showDlg();
     }
 
     /**
@@ -290,7 +284,7 @@ public class DialogUtils {
     /**
      * 提交字幕
      */
-    public static void showCommitZiMuDialog(Activity activity, final String init, final EditText et_zimu) {
+    public static void showCommitZiMuDialog(Activity activity, final String init, final TextView tv_zimu) {
         final CustomerDialog cdlg = new CustomerDialog(activity,
                 R.layout.dlg_commit);
         cdlg.setOnCustomerViewCreated(new CustomerViewInterface() {
@@ -307,10 +301,11 @@ public class DialogUtils {
                 Button btn_commit_ok = (Button) window
                         .findViewById(R.id.btn_commit_ok);
                 et_commit.setHint(init);
+                et_commit.setText(tv_zimu.getText().toString());
                 btn_commit_ok.setOnClickListener(new OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        et_zimu.setText(et_commit.getText().toString());
+                        tv_zimu.setText(et_commit.getText().toString());
                         dlg.dismiss();
                     }
                 });
@@ -326,7 +321,6 @@ public class DialogUtils {
 
     /**
      * @param activity
-     * @param inputDate
      * @Description:支付的对话框：支付宝和微信支付
      * @author: LiuZhao
      * @date:2015年1月29日
@@ -369,7 +363,6 @@ public class DialogUtils {
 
     /**
      * @param activity
-     * @param isAccepted
      * @Description:心愿赞助回复对话框
      */
 
