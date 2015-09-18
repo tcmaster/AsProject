@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest package="com.android.tonight8"
-          xmlns:android="http://schemas.android.com/apk/res/android"
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.android.tonight8"
           android:versionCode="1"
           android:versionName="1.0">
 
@@ -239,13 +239,13 @@
             android:hardwareAccelerated="true"
             android:label="@string/title_activity_event_live_play"
             android:screenOrientation="portrait">
-            <!--
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-            -->
+
         </activity>
         <!-- QQ分享需要注册的 -->
         <activity
@@ -359,14 +359,14 @@
         <!-- 直播管理插播 -->
         <activity
             android:name=".ui.activity.live.LiveManageActivity"
-            android:theme="@android:style/Theme.Light.NoTitleBar"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Light.NoTitleBar">
 
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+            <!--<intent-filter>-->
+            <!--<action android:name="android.intent.action.MAIN"/>-->
 
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
+            <!--<category android:name="android.intent.category.LAUNCHER"/>-->
+            <!--</intent-filter>-->
 
         </activity>
 
