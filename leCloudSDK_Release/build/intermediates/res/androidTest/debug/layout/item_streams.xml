@@ -9,4 +9,4 @@
         android:layout_height="@dimen/streams_item_height"
         android:gravity="center"/>
 
-</LinearLayout><!-- From: file:/D:/as_workspace/AsProject/leCloudSDK_Release/src/main/res/layout/item_streams.xml --><!-- From: file:/D:/as_workspace/AsProject/leCloudSDK_Release/build/intermediates/bundles/debug/res/layout/item_streams.xml -->
+</LinearLayout><!-- From: file:/D:/asworkspace/MyApplication/leCloudSDK_Release/src/main/res/layout/item_streams.xml --><!-- From: file:/D:/asworkspace/MyApplication/leCloudSDK_Release/build/intermediates/bundles/debug/res/layout/item_streams.xml -->

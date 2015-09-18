@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- From: file:/D:/as_workspace/AsProject/leCloudSDK_Release/build/intermediates/bundles/debug/res/values/values.xml -->
+    <!-- From: file:/D:/asworkspace/MyApplication/leCloudSDK_Release/build/intermediates/bundles/debug/res/values/values.xml -->
     <eat-comment/>
     <color name="action_mult_live_shape">#ff1073BF</color>
     <color name="black">#ffffffff</color>

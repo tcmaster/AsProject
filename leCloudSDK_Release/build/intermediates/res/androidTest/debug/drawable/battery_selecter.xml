@@ -19,4 +19,4 @@
     <item
         android:drawable="@drawable/letv_pl_battery_charge"
         android:maxLevel="120"/>
-</level-list><!-- From: file:/D:/as_workspace/AsProject/leCloudSDK_Release/src/main/res/drawable/battery_selecter.xml --><!-- From: file:/D:/as_workspace/AsProject/leCloudSDK_Release/build/intermediates/bundles/debug/res/drawable/battery_selecter.xml -->
+</level-list><!-- From: file:/D:/asworkspace/MyApplication/leCloudSDK_Release/src/main/res/drawable/battery_selecter.xml --><!-- From: file:/D:/asworkspace/MyApplication/leCloudSDK_Release/build/intermediates/bundles/debug/res/drawable/battery_selecter.xml -->

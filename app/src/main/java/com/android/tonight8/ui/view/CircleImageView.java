@@ -25,12 +25,14 @@ import org.apache.http.conn.routing.RouteInfo;
  */
 public class CircleImageView extends ImageView {
 	private static final Xfermode MASK_XFERMODE;
-	private Bitmap mask;
-	private Paint paint;
+
 	static {
 		PorterDuff.Mode localMode = PorterDuff.Mode.DST_IN;
 		MASK_XFERMODE = new PorterDuffXfermode(localMode);
 	}
+
+	private Bitmap mask;
+	private Paint paint;
 
 	public CircleImageView(Context context) {
 		super(context);
@@ -39,6 +41,15 @@ public class CircleImageView extends ImageView {
 	public CircleImageView(Context context, AttributeSet attrs) {
 		super(context, attrs);
 	}
+
+	public CircleImageView(Context context, AttributeSet attrs, int defStyleAttr) {
+		super(context, attrs, defStyleAttr);
+	}
+
+	public CircleImageView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+		super(context, attrs, defStyleAttr, defStyleRes);
+	}
+
 
 	public Bitmap createMask() {
 		int i = getWidth();

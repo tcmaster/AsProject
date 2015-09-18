@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     style="@style/match_width" >
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -17,26 +16,25 @@
             <RadioButton
                 android:id="@+id/rb_company"
                 style="@style/match_width"
-                android:padding="@dimen/common_margin_left"
                 android:layout_marginLeft="@dimen/common_margin_left"
                 android:layout_weight="1"
                 android:background="@drawable/auth_rg_left_selector"
                 android:button="@null"
                 android:checked="true"
                 android:gravity="center"
+                android:padding="@dimen/common_margin_left"
                 android:text="我是企业"
                 android:textColor="@drawable/seletor_blacktowhite" />
-
             <RadioButton
                 android:id="@+id/rb_person"
                 style="@style/match_width"
-                android:padding="@dimen/common_margin_left"
                 android:layout_gravity="center"
                 android:layout_marginRight="@dimen/common_margin_left"
                 android:layout_weight="1"
                 android:background="@drawable/auth_rg_right_selector"
                 android:button="@null"
                 android:gravity="center"
+                android:padding="@dimen/common_margin_left"
                 android:text="我是个人"
                 android:textColor="@drawable/seletor_blacktowhite" />
         </RadioGroup>

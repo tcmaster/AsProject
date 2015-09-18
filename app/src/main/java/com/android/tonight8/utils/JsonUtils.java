@@ -252,6 +252,8 @@ public class JsonUtils {
 		names.add("Wish");
 		names.add("WishItem");
 		names.add("WishSponsor");
+		names.add("Page");
+		names.add("");
 		return names;
 	}
 }

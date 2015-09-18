@@ -1,218 +1,219 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    style="@style/match">
-
-    <com.android.tonight8.ui.view.ForLiveScrollView
-        android:id="@+id/sv_lv_main"
+    style="@style/match"
+    tools:context=".EventLivePlayActivity">
+    <!--fragment界面-->
+    <LinearLayout
+        android:id="@+id/ll_lv_container"
         style="@style/match"
-        android:layout_gravity="center"
-        android:layout_marginTop="-30dp"
-        android:scrollbars="none">
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/topOrbottomPadding" />
+    <!--虚拟头部界面-->
+    <LinearLayout
+        android:id="@+id/ll_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="visible">
+
+        <com.android.tonight8.ui.view.BarrageView
+            android:id="@+id/bv_live"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="@color/white_gray" />
 
         <LinearLayout
-            style="@style/match_width"
-            android:orientation="vertical"
-            tools:context=".EventLivePlayActivity">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:id="@+id/tv_header"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:layout_gravity="center"
-                    android:gravity="center"
-                    android:text="@string/app_name" />
-            </LinearLayout>
-            <com.android.tonight8.ui.view.BarrageView
-                android:id="@+id/bv_live"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:background="@color/white_gray" />
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/black"
+            android:orientation="vertical">
 
             <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/popgoodsImgHeight">
+                android:layout_height="wrap_content">
 
                 <android.support.v4.view.ViewPager
                     android:id="@+id/vp_play_screen"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/popgoodsImgHeight"
+                    android:layout_height="160dp"
                     android:layout_gravity="center" />
-
-                <RelativeLayout
-                    style="@style/match_width"
-                    android:layout_gravity="bottom"
-                    android:background="@color/gray_half_transparent">
-
-                    <ImageView
-                        android:id="@+id/iv_extra"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentLeft="true"
-                        android:layout_margin="@dimen/common_margin_left"
-                        android:contentDescription="@string/app_name"
-                        android:src="@mipmap/vemail" />
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
-                        android:contentDescription="@string/app_name"
-                        android:src="@mipmap/vpause" />
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:layout_margin="@dimen/common_margin_left"
-                        android:src="@mipmap/vsetting" />
-                </RelativeLayout>
 
                 <LinearLayout
                     android:id="@+id/ll_left"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="left|center_vertical"
-                    android:layout_marginLeft="@dimen/common_margin_left"
+                    android:layout_gravity="left|bottom"
+                    android:layout_marginBottom="@dimen/topOrbottomPaddingLong"
+                    android:layout_marginLeft="15dp"
                     android:orientation="vertical">
 
-                    <ImageView
-                        android:id="@+id/iv_share"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:contentDescription="@string/app_name"
-                        android:src="@mipmap/vphone" />
+                    <CheckBox
+                        android:id="@+id/cb_share"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="center"
+                        android:button="@drawable/btn_share"
+                        android:contentDescription="@string/app_name" />
 
-                    <ImageView
-                        android:id="@+id/iv_save"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                    <CheckBox
+                        android:id="@+id/cb_save"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="center"
                         android:layout_marginTop="@dimen/common_margin_left"
-                        android:contentDescription="@string/app_name"
-                        android:src="@mipmap/vphone" />
+                        android:button="@drawable/btn_save"
+                        android:contentDescription="@string/app_name" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/ll_right"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="right|center_vertical"
-                    android:layout_marginRight="@dimen/common_margin_left"
+                    android:layout_gravity="right|bottom"
+                    android:layout_marginBottom="@dimen/topOrbottomPaddingLong"
+                    android:layout_marginRight="5dp"
                     android:orientation="vertical">
 
-                    <ImageView
-                        android:id="@+id/iv_voice"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:contentDescription="@string/app_name"
-                        android:src="@mipmap/vphone" />
+                    <CheckBox
+                        android:id="@+id/cb_voice"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="center"
+                        android:button="@drawable/btn_voice"
+                        android:contentDescription="@string/app_name" />
 
-                    <ImageView
-                        android:id="@+id/iv_barrage_on_off"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                    <CheckBox
+                        android:id="@+id/cb_barrage_on_off"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="center"
                         android:layout_marginTop="@dimen/common_margin_left"
-                        android:contentDescription="@string/app_name"
-                        android:src="@mipmap/vphone" />
+                        android:button="@drawable/btn_barrage"
+                        android:contentDescription="@string/app_name" />
                 </LinearLayout>
             </FrameLayout>
 
-            <View style="@style/line_full" />
-
-            <TextView
-                android:id="@+id/tv_ppt_discribe"
+            <RelativeLayout
+                android:id="@+id/rl_controller"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
+                android:background="#77ffffff">
+
+                <CheckBox
+                    android:id="@+id/cb_extra_left"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/common_margin_left"
+                    android:button="@drawable/cb_live_left" />
+
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:contentDescription="@string/app_name"
+                    android:src="@mipmap/vpause" />
+
+                <CheckBox
+                    android:id="@+id/cb_extra_right"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/common_margin_left"
+                    android:button="@drawable/cb_live_right" />
+            </RelativeLayout>
+        </LinearLayout>
+
+        <View style="@style/line_full" />
+
+        <TextView
+            android:id="@+id/tv_ppt_discribe"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@color/white"
+            android:gravity="center"
+            android:paddingBottom="@dimen/topOrbottomPadding"
+            android:paddingTop="@dimen/topOrbottomPadding"
+            android:text="@string/app_name"
+            android:textSize="@dimen/middleTextSize" />
+
+        <View style="@style/line_full" />
+
+        <RadioGroup
+            android:id="@+id/rg_tab"
+            style="@style/match_width"
+            android:background="@color/white"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/rb_live"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:background="@drawable/tab_selector"
+                android:button="@null"
                 android:gravity="center"
-                android:paddingBottom="@dimen/topOrbottomPadding"
-                android:paddingTop="@dimen/topOrbottomPadding"
-                android:text="@string/app_name"
+                android:text="@string/live"
+                android:textColor="@drawable/selector_tab_text_color"
                 android:textSize="@dimen/middleTextSize" />
 
-            <RadioGroup
-                android:id="@+id/rg_tab"
-                style="@style/match_width"
-                android:orientation="horizontal">
+            <View
+                style="@style/line_full_vertical"
+                android:layout_marginBottom="@dimen/topOrbottomPadding"
+                android:layout_marginTop="@dimen/topOrbottomPadding" />
 
-                <RadioButton
-                    android:id="@+id/rb_live"
-                    android:layout_width="0dp"
-                    android:layout_height="80dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/tab_selector"
-                    android:button="@null"
-                    android:gravity="center"
-                    android:text="@string/live"
-                    android:textColor="@drawable/selector_tab_text_color"
-                    android:textSize="@dimen/middleTextSize" />
+            <RadioButton
+                android:id="@+id/rb_winner_list"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:background="@drawable/tab_selector"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/winnerlist"
+                android:textColor="@drawable/selector_tab_text_color"
+                android:textSize="@dimen/middleTextSize" />
 
-                <View
-                    style="@style/line_full_vertical"
-                    android:layout_marginBottom="@dimen/topOrbottomPadding"
-                    android:layout_marginTop="@dimen/topOrbottomPadding" />
+            <View
+                style="@style/line_full_vertical"
+                android:layout_marginBottom="@dimen/topOrbottomPadding"
+                android:layout_marginTop="@dimen/topOrbottomPadding" />
 
-                <RadioButton
-                    android:id="@+id/rb_winner_list"
-                    android:layout_width="0dp"
-                    android:layout_height="80dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/tab_selector"
-                    android:button="@null"
-                    android:gravity="center"
-                    android:text="@string/winnerlist"
-                    android:textColor="@drawable/selector_tab_text_color"
-                    android:textSize="@dimen/middleTextSize" />
+            <RadioButton
+                android:id="@+id/rb_vote"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:background="@drawable/tab_selector"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/vote"
+                android:textColor="@drawable/selector_tab_text_color"
+                android:textSize="@dimen/middleTextSize" />
 
-                <View
-                    style="@style/line_full_vertical"
-                    android:layout_marginBottom="@dimen/topOrbottomPadding"
-                    android:layout_marginTop="@dimen/topOrbottomPadding" />
+            <View
+                style="@style/line_full_vertical"
+                android:layout_marginBottom="@dimen/topOrbottomPadding"
+                android:layout_marginTop="@dimen/topOrbottomPadding" />
 
-                <RadioButton
-                    android:id="@+id/rb_vote"
-                    android:layout_width="0dp"
-                    android:layout_height="80dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/tab_selector"
-                    android:button="@null"
-                    android:gravity="center"
-                    android:text="@string/vote"
-                    android:textColor="@drawable/selector_tab_text_color"
-                    android:textSize="@dimen/middleTextSize" />
+            <RadioButton
+                android:id="@+id/rb_program_list"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:background="@drawable/tab_selector"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/programlist"
+                android:textColor="@drawable/selector_tab_text_color"
+                android:textSize="@dimen/middleTextSize" />
+        </RadioGroup>
 
-                <View
-                    style="@style/line_full_vertical"
-                    android:layout_marginBottom="@dimen/topOrbottomPadding"
-                    android:layout_marginTop="@dimen/topOrbottomPadding" />
-
-                <RadioButton
-                    android:id="@+id/rb_program_list"
-                    android:layout_width="0dp"
-                    android:layout_height="80dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/tab_selector"
-                    android:button="@null"
-                    android:gravity="center"
-                    android:text="@string/programlist"
-                    android:textColor="@drawable/selector_tab_text_color"
-                    android:textSize="@dimen/middleTextSize" />
-            </RadioGroup>
-
-            <View style="@style/line_full" />
-
-            <!-- 有一个界面用到了item_event_award(用于用户中奖名单界面） -->
-
-            <LinearLayout
-                android:id="@+id/ll_lv_container"
-                style="@style/match"
-                android:orientation="vertical"
-                android:paddingBottom="@dimen/topOrbottomPadding" />
-        </LinearLayout>
-    </com.android.tonight8.ui.view.ForLiveScrollView>
-
+        <View style="@style/line_full" />
+    </LinearLayout>
+    <!--聊天/附加窗口界面-->
     <LinearLayout
         style="@style/match_width"
         android:layout_gravity="bottom"
@@ -314,5 +315,68 @@
             </FrameLayout>
         </LinearLayout>
     </LinearLayout>
+    <!-- -->
+    <RelativeLayout
+        android:id="@+id/rl_function_container"
+        android:layout_width="240dp"
+        android:layout_height="240dp"
+        android:layout_gravity="center"
+        android:background="@drawable/shape_live_circle"
+        android:visibility="invisible">
 
+        <TextView
+            android:id="@+id/tv_talk"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/topOrbottomPadding"
+            android:background="@drawable/shape_circle_white"
+            android:gravity="center"
+            android:text="@string/talk"
+            android:textColor="@color/purple"
+            android:textSize="@dimen/superHugeTextSize" />
+
+        <ImageButton
+            android:id="@+id/ib_good"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/common_margin_left"
+            android:background="@drawable/shape_circle_white"
+            android:src="@mipmap/c5s2p5e001" />
+
+        <ImageButton
+            android:id="@+id/ib_top"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/common_margin_left"
+            android:background="@drawable/shape_circle_white"
+            android:src="@mipmap/c5s2p5e003" />
+
+        <TextView
+            android:id="@+id/tv_buy"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="@dimen/topOrbottomPadding"
+            android:background="@drawable/shape_circle_white"
+            android:gravity="center"
+            android:text="@string/buy"
+            android:textColor="@color/purple"
+            android:textSize="@dimen/superHugeTextSize" />
+    </RelativeLayout>
+
+    <View
+        android:id="@+id/v_function_button"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_gravity="right|bottom"
+        android:layout_marginBottom="@dimen/topOrbottomPaddingLong"
+        android:layout_marginRight="@dimen/topOrbottomPaddingLong"
+        android:background="@drawable/shape_circle_gray" />
 </FrameLayout>

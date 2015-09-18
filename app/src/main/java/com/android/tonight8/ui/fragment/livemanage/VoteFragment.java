@@ -6,6 +6,7 @@ import android.os.Message;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -15,10 +16,13 @@ import com.android.tonight8.dao.entity.Vote;
 import com.android.tonight8.dao.entity.VoteItem;
 import com.android.tonight8.dao.entity.VoteItemOption;
 import com.android.tonight8.dao.model.live.VoteShow;
+import com.android.tonight8.function.ScrollTopOrBottomListener;
 import com.android.tonight8.io.HandlerConstants;
 import com.android.tonight8.io.live.LiveIOController;
+import com.android.tonight8.ui.activity.live.EventLivePlayActivity;
 import com.android.tonight8.ui.adapter.live.EventLiveVoteAdapter;
 import com.android.tonight8.ui.view.ListViewForScrollView;
+import com.android.tonight8.ui.view.xlistview.XListView;
 import com.android.tonight8.utils.Utils;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
@@ -36,6 +40,10 @@ import java.util.List;
 public class VoteFragment extends BaseFragment {
 
     /**
+     * 附加的头部
+     */
+    View myHeader;
+    /**
      * 父View
      */
     private View view;
@@ -44,22 +52,19 @@ public class VoteFragment extends BaseFragment {
     /**
      * 投票标题
      */
-    @ViewInject(R.id.tv_vote_title)
     private TextView tv_vote_title;
     /**
      * 投票描述
      */
-    @ViewInject(R.id.tv_vote_describe)
     private TextView tv_vote_describe;
     /**
      * 投票列表
      */
-    @ViewInject(R.id.lv_vote)
-    private ListViewForScrollView lv_vote;
+    @ViewInject(R.id.lv_only_list)
+    private XListView lv_vote;
     /**
      * 投票提交
      */
-    @ViewInject(R.id.btn_submit)
     private Button btn_submit;
 
     public VoteFragment() {
@@ -74,14 +79,25 @@ public class VoteFragment extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         if (view == null) {
-            view = inflater.inflate(R.layout.fragment_live_vote, null);
+            view = inflater.inflate(R.layout.activity_only_list, null);
             ViewUtils.inject(this, view);
         }
-        initDatas();
+        lv_vote.setPullLoadEnable(false);
+        lv_vote.setPullRefreshEnable(false);
         return view;
     }
 
     private void initDatas() {
+        LayoutInflater inflater = LayoutInflater.from(getActivity());
+        View header = inflater.inflate(R.layout.header_vote, null);
+        View footer = inflater.inflate(R.layout.footer_vote, null);
+        tv_vote_title = (TextView) header.findViewById(R.id.tv_vote_title);
+        tv_vote_describe = (TextView) header.findViewById(R.id.tv_vote_describe);
+        btn_submit = (Button) footer.findViewById(R.id.btn_submit);
+        View v = LayoutInflater.from(getActivity()).inflate(R.layout.header_main_live, null);
+        v.setLayoutParams(new AbsListView.LayoutParams(AbsListView.LayoutParams.MATCH_PARENT, Utils.dip2px(getActivity(), 350)));
+        lv_vote.addExtraHeaderView(v, header);
+        lv_vote.addExtraFooterView(footer);
         btn_submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -93,6 +109,15 @@ public class VoteFragment extends BaseFragment {
             }
         });
         LiveIOController.readVoteShow(handler);
+        myHeader = ((EventLivePlayActivity) getActivity()).getHeader();
+        //滑动的处理
+        lv_vote.setOnScrollListener(new ScrollTopOrBottomListener(lv_vote, myHeader));
+    }
+
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        initDatas();
     }
 
     private static class MyHandler extends Handler {

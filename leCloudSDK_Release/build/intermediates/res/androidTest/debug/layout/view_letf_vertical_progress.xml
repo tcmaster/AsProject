@@ -42,4 +42,4 @@
         android:background="@drawable/letv_pl_gesture_seek_bg"
         android:progressDrawable="@drawable/progress_vertical_style" /> -->
 
-</LinearLayout><!-- From: file:/D:/as_workspace/AsProject/leCloudSDK_Release/src/main/res/layout/view_letf_vertical_progress.xml --><!-- From: file:/D:/as_workspace/AsProject/leCloudSDK_Release/build/intermediates/bundles/debug/res/layout/view_letf_vertical_progress.xml -->
+</LinearLayout><!-- From: file:/D:/asworkspace/MyApplication/leCloudSDK_Release/src/main/res/layout/view_letf_vertical_progress.xml --><!-- From: file:/D:/asworkspace/MyApplication/leCloudSDK_Release/build/intermediates/bundles/debug/res/layout/view_letf_vertical_progress.xml -->

@@ -22,4 +22,4 @@
         android:thumb="@drawable/letv_pl_play_controller_volume_thumb"
         android:thumbOffset="0dip" />
 
-</LinearLayout><!-- From: file:/D:/as_workspace/AsProject/leCloudSDK_Release/src/main/res/layout/letv_pl_play_full_sound.xml -->
+</LinearLayout><!-- From: file:/D:/asworkspace/MyApplication/leCloudSDK_Release/src/main/res/layout/letv_pl_play_full_sound.xml -->

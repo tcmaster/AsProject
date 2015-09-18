@@ -3,4 +3,4 @@
   <item android:maxLevel="70" android:drawable="@drawable/letv_pl_net_wifi" />  
   <item android:maxLevel="100" android:drawable="@drawable/letv_pl_net_no" />  
 </level-list> 
-<!-- From: file:/D:/as_workspace/AsProject/leCloudSDK_Release/src/main/res/drawable/wifi_selecter.xml --><!-- From: file:/D:/as_workspace/AsProject/leCloudSDK_Release/build/intermediates/bundles/debug/res/drawable/wifi_selecter.xml -->
+<!-- From: file:/D:/asworkspace/MyApplication/leCloudSDK_Release/src/main/res/drawable/wifi_selecter.xml --><!-- From: file:/D:/asworkspace/MyApplication/leCloudSDK_Release/build/intermediates/bundles/debug/res/drawable/wifi_selecter.xml -->
