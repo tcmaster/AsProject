@@ -1,1 +1,2 @@
-include ':WeiboSdk', ':app', 'leCloudSDK_Release'
+include  ':app', 'leCloudSDK_Release'
+

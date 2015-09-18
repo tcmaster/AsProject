@@ -1,8 +1,5 @@
 package com.android.tonight8.easemob;
 
-import java.io.File;
-import java.io.IOException;
-
 import android.app.Activity;
 import android.content.Context;
 import android.media.AudioManager;
@@ -12,6 +9,9 @@ import android.media.MediaPlayer.OnCompletionListener;
 import com.easemob.chat.EMMessage;
 import com.easemob.chat.VoiceMessageBody;
 import com.lidroid.xutils.util.LogUtils;
+
+import java.io.File;
+import java.io.IOException;
 
 /**
  * @Descripton 关于声音文件播放的工具类
@@ -48,7 +48,7 @@ public class EaseMobVoiceHelper {
 		}
 	}
 
-	private static void doPlay(String path, Activity activity) {
+	public static void doPlay(String path, Activity activity) {
 		File file = new File(path);
 		if (!file.exists()) {
 			LogUtils.v("音频文件未找到");

@@ -1,13 +1,10 @@
 package com.android.tonight8.wxapi;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.android.tonight8.base.AppConstants;
 import com.android.tonight8.base.BaseActivity;
-import com.android.tonight8.base.Tonight8App;
 import com.android.tonight8.io.other.WXIoController;
 import com.android.tonight8.utils.Utils;
 import com.lidroid.xutils.util.LogUtils;
@@ -15,6 +12,9 @@ import com.tencent.mm.sdk.modelbase.BaseReq;
 import com.tencent.mm.sdk.modelbase.BaseResp;
 import com.tencent.mm.sdk.modelmsg.SendAuth;
 import com.tencent.mm.sdk.openapi.IWXAPIEventHandler;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @Description：微信分享发出的请求将回调到onReq方法，发送到微信请求的响应结果将回调到onResp方法
@@ -89,8 +89,8 @@ public class WXEntryActivity extends BaseActivity implements IWXAPIEventHandler 
 			// 第三方程序发送时用来标识其请求的唯一性的标志，由第三方程序调用sendReq时传入，由微信终端回传，state字符串长度不能超过1K
 			String state = resp.state;
 			Map<String, String> params = new HashMap<String, String>();
-			params.put("appid", Tonight8App.WX_APP_ID);
-			params.put("secret", Tonight8App.WX_APP_SECRET);
+			params.put("appid", AppConstants.WX_APP_ID);
+			params.put("secret", AppConstants.WX_APP_SECRET);
 			params.put("code", code);
 			params.put("grant_type", "authorization_code");
 			WXIoController.getWXAccessToken(null, params);

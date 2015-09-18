@@ -3,6 +3,7 @@ package com.android.tonight8.ui.fragment.spots;
 
 import android.app.AlertDialog;
 import android.app.Fragment;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -13,13 +14,15 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.android.tonight8.R;
+import com.android.tonight8.base.BaseActivity;
 import com.android.tonight8.base.BaseFragment;
+import com.android.tonight8.ui.activity.live.SpotRecordActivity;
 import com.android.tonight8.ui.adapter.spots.SpotAdapter;
 import com.android.tonight8.ui.view.CustomerDialog;
 import com.android.tonight8.ui.view.StationaryGridview;
@@ -32,15 +35,19 @@ import com.lecloud.download.control.DownloadCenter;
 import com.lecloud.skin.PlayerStateCallback;
 import com.lecloud.skin.vod.VODPlayCenter;
 import com.lidroid.xutils.ViewUtils;
+import com.lidroid.xutils.util.LogUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
+import com.lidroid.xutils.view.annotation.event.OnClick;
+
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
  * 现场插播类
  */
-public class LiveSpotsFragment extends BaseFragment implements View.OnClickListener {
+public class LiveSpotsFragment extends BaseFragment {
     @ViewInject(R.id.linear1)
-    private LinearLayout ll_linea1;
+    private LinearLayout linear1;
     @ViewInject(R.id.tv_time1)
     private TextView tv_hour;
     @ViewInject(R.id.tv_time2)
@@ -54,15 +61,17 @@ public class LiveSpotsFragment extends BaseFragment implements View.OnClickListe
     private String strHour, strMinute, strSecond;
     @ViewInject(R.id.gv_insertitem)
     private StationaryGridview stationaryGridview;
-
     @ViewInject(R.id.rl_leshi_player)
     private RelativeLayout mPlayerLayoutView;
     private VODPlayCenter mPlayerView;
     private boolean isBackgroud = false;
     private String uu = "487c884e76";
     private String vu = "e5a4fb751e";
-    @ViewInject(R.id.et_subtitle)
-    private EditText et_subtitle;
+    @ViewInject(R.id.tv_subtitle)
+    private TextView tv_subtitle;
+    @ViewInject(R.id.iv_insert)
+    private ImageView iv_insert;
+    private List<String> spotlist;
 
     public LiveSpotsFragment() {
         // Required empty public constructor
@@ -87,12 +96,14 @@ public class LiveSpotsFragment extends BaseFragment implements View.OnClickListe
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 switch (i) {
                     case 0:
-                        DialogUtils.showSelectPicDialog(activity, 0, 0);
+                        DialogUtils.showSelectPicDialog(activity, BaseActivity.PICKPICTURE, BaseActivity.TAKEPHOTO);
                         break;
                     case 1:
-                        DialogUtils.showCommitZiMuDialog(activity, "请输入字幕",et_subtitle);
+                        DialogUtils.showCommitZiMuDialog(activity, "请输入字幕(限40字)", tv_subtitle);
                         break;
                     case 2:
+                        Intent intent = new Intent(getActivity(), SpotRecordActivity.class);
+                        getActivity().startActivityForResult(intent, 21);
                         break;
                     case 3:
                         break;
@@ -103,25 +114,10 @@ public class LiveSpotsFragment extends BaseFragment implements View.OnClickListe
             }
         });
 
-        // this.mPlayerView = VODPlayCenter.getInstance(this, true);
         mPlayerView = new VODPlayCenter(activity, true);
         mPlayerLayoutView.addView(mPlayerView.getPlayerView());
-
-//		mPlayerView.changeOrientation(Configuration.ORIENTATION_LANDSCAPE);
         return rootView;
     }
-
-//    // 监听接口
-//    public interface OnZiMuItemClickListener {
-//
-//        void OnItemClick(EditText et_subtitle,AlertDialog dlg);
-//    }
-    private View.OnClickListener onClickListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-
-        }
-    };
 
     @Override
     public void onResume() {
@@ -148,12 +144,6 @@ public class LiveSpotsFragment extends BaseFragment implements View.OnClickListe
     }
 
     @Override
-    public void onStop() {
-        // TODO Auto-generated method stub
-        super.onStop();
-    }
-
-    @Override
     public void onDestroy() {
         this.mPlayerView.destroyVideo();
         this.mPlayerLayoutView.removeAllViews();
@@ -174,7 +164,7 @@ public class LiveSpotsFragment extends BaseFragment implements View.OnClickListe
         }
     }
 
-    @Override
+    @OnClick({R.id.linear1, R.id.btn_preview, R.id.btn_insert})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.linear1:
@@ -271,4 +261,11 @@ public class LiveSpotsFragment extends BaseFragment implements View.OnClickListe
         cdlg.showDlg();
     }
 
+    public void updateImageSource(String tempPicPath) {
+        bmUtils.display(iv_insert, tempPicPath);
+    }
+
+    public void updateRecordData(List<String> list) {
+        LogUtils.d("返回的数据" + list.get(0).toString());
+    }
 }

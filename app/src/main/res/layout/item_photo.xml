@@ -18,7 +18,7 @@
         android:progress="0"
         android:max="100"
         android:layout_gravity="center"
-        android:visibility="gone"
+        android:visibility="visible"
         />
     <TextView
         android:id="@+id/tv_pnum"

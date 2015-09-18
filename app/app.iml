@@ -26,7 +26,7 @@
       </configuration>
     </facet>
   </component>
-  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_7" inherit-compiler-output="false">
+  <component name="NewModuleRootManager" inherit-compiler-output="false">
     <output url="file://$MODULE_DIR$/build/intermediates/classes/debug" />
     <output-test url="file://$MODULE_DIR$/build/intermediates/classes/androidTest/debug" />
     <exclude-output />
@@ -91,6 +91,7 @@
     </content>
     <orderEntry type="jdk" jdkName="Android API 21 Platform" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
+<<<<<<< HEAD
     <orderEntry type="library" exported="" name="mta-sdk-1.6.2" level="project" />
     <orderEntry type="library" exported="" name="support-annotations-22.2.0" level="project" />
     <orderEntry type="library" exported="" name="fastjson-1.1.45.android" level="project" />
@@ -109,5 +110,32 @@
     <orderEntry type="library" exported="" name="appcompat-v7-22.2.0" level="project" />
     <orderEntry type="module" module-name="leCloudSDK_Release" exported="" />
     <orderEntry type="module" module-name="WeiboSdk" exported="" />
+=======
+    <orderEntry type="library" exported="" name="umeng_social_sdk" level="project" />
+    <orderEntry type="library" exported="" name="SocialSDK_QQZone_1" level="project" />
+    <orderEntry type="library" exported="" name="SocialSDK_QQZone_2" level="project" />
+    <orderEntry type="library" exported="" name="alipaySDK-20150610" level="project" />
+    <orderEntry type="library" exported="" name="fastjson-1.1.45.android" level="project" />
+    <orderEntry type="library" exported="" name="zxing_qrscancode" level="project" />
+    <orderEntry type="library" exported="" name="SocialSDK_QQZone_3" level="project" />
+    <orderEntry type="library" exported="" name="support-annotations-22.1.1" level="project" />
+    <orderEntry type="library" exported="" name="BaiduLBS_Android" level="project" />
+    <orderEntry type="library" exported="" name="SocialSDK_tencentWB_3" level="project" />
+    <orderEntry type="library" exported="" name="SocialSDK_tencentWB_2" level="project" />
+    <orderEntry type="library" exported="" name="easemobchat_2.1.7" level="project" />
+    <orderEntry type="library" exported="" name="SocialSDK_tencentWB_1" level="project" />
+    <orderEntry type="library" exported="" name="xutils-self" level="project" />
+    <orderEntry type="library" exported="" name="appcompat-v7-22.1.1" level="project" />
+    <orderEntry type="library" exported="" name="SocialSDK_WeiXin_2" level="project" />
+    <orderEntry type="library" exported="" name="SocialSDK_WeiXin_1" level="project" />
+    <orderEntry type="library" exported="" name="GreenDao" level="project" />
+    <orderEntry type="library" exported="" name="SocialSDK_Sina" level="project" />
+    <orderEntry type="library" exported="" name="SocialSDK_AtFriends" level="project" />
+    <orderEntry type="library" exported="" name="zxing" level="project" />
+    <orderEntry type="library" exported="" name="gson-2.1" level="project" />
+    <orderEntry type="library" exported="" name="bolts-android-1.1.4" level="project" />
+    <orderEntry type="library" exported="" name="support-v4-22.1.1" level="project" />
+    <orderEntry type="module" module-name="leCloudSDK_Release" exported="" />
+>>>>>>> 774fb3f4049e478d7fa9543812b54a4557157a89
   </component>
 </module>

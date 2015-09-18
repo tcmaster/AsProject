@@ -1,38 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@drawable/shape_radius_corners"
-    android:orientation="vertical" >
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:background="@drawable/shape_radius_corners"
+              android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/tv_dilog_selectpic_title"
-        style="@style/match_width"
-        android:padding="@dimen/common_margin_left"
-        android:text="选择照片"
+
+    <Button
+        android:id="@+id/btn_pic_left"
+        style="@style/ok_button_style"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_weight="1"
+        android:background="@drawable/seletor_white_to_gray"
         android:gravity="center"
-        android:textSize="@dimen/hugeTextSize" />
+        android:singleLine="true"
+        android:text="相册"
+        android:textColor="@color/blue"/>
 
-    <LinearLayout
-        style="@style/match_width"
-        android:layout_marginBottom="@dimen/common_margin_left"
-        android:orientation="horizontal" >
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/line_gray"/>
 
-        <Button
-            android:id="@+id/btn_pic_left"
-            style="@style/ok_button_style"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:singleLine="true"
-            android:text="相册" />
+    <Button
+        android:id="@+id/btn_pic_right"
+        style="@style/ok_button_style"
+        android:layout_margin="0dp"
+        android:layout_weight="1"
+        android:background="@drawable/seletor_white_to_gray"
+        android:gravity="center"
+        android:singleLine="true"
+        android:text="拍照"
+        android:textColor="@color/blue"/>
 
-        <Button
-            android:id="@+id/btn_pic_right"
-            style="@style/ok_button_style"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:singleLine="true"
-            android:text="拍照" />
-    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/line_gray"/>
+
+    <Button
+        android:id="@+id/btn_pic_cancle"
+        style="@style/ok_button_style"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_weight="1"
+        android:background="@drawable/seletor_white_to_gray"
+        android:gravity="center"
+        android:singleLine="true"
+        android:text="取消"
+        android:textColor="@color/blue"/>
 
 </LinearLayout>
