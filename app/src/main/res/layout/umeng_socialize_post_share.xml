@@ -3,7 +3,7 @@
     android:id="@+id/umeng_socialize_share_root"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="#D8DDE4" >
+    android:background="#D8DDE4">
 
     <include
         android:id="@+id/umeng_socialize_share_titlebar"
@@ -16,15 +16,14 @@
         android:layout_alignParentBottom="true"
         android:background="#EEEEEE"
         android:focusable="false"
-        android:gravity="center_vertical" >
+        android:gravity="center_vertical">
 
 
         <RelativeLayout
+            android:id="@+id/umeng_socialize_follow_layout"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
-            android:layout_centerVertical="true"
-            android:id="@+id/umeng_socialize_follow_layout"
-            >
+            android:layout_centerVertical="true">
 
             <CheckBox
                 android:id="@+id/umeng_socialize_follow_check"
@@ -33,11 +32,11 @@
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="20dp"
                 android:button="@drawable/umeng_socialize_follow_check"
+                android:checked="true"
                 android:paddingLeft="25dp"
                 android:text="关注官方微博"
                 android:textColor="@color/umeng_socialize_text_share_content"
-                android:textSize="13sp"
-                android:checked="true" />
+                android:textSize="13sp" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -47,7 +46,7 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="14dp"
             android:layout_toRightOf="@id/umeng_socialize_follow_layout"
-            android:gravity="center" >
+            android:gravity="center">
 
             <ImageButton
                 android:id="@+id/umeng_socialize_location_ic"
@@ -86,7 +85,7 @@
             android:layout_height="40dp"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:layout_marginRight="20dp" >
+            android:layout_marginRight="20dp">
 
             <ImageView
                 android:id="@+id/umeng_socialize_share_previewImg"

@@ -70,7 +70,66 @@ public class LoginActivity extends BaseActivity {
     @ViewInject(R.id.et_user_pwd)
     private EditText et_user_pwd;
     private TextView mUserInfo;
+    Handler mHandler = new Handler() {
 
+        @Override
+        public void handleMessage(Message msg) {
+            if (msg.what == 0) {
+                JSONObject response = (JSONObject) msg.obj;
+                if (response.has("nickname")) {
+                    try {
+                        mUserInfo.setVisibility(View.VISIBLE);
+                        mUserInfo.setText(response.getString("nickname"));
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+            } else if (msg.what == 1) {
+                // Bitmap bitmap = (Bitmap)msg.obj;
+                // mUserLogo.setImageBitmap(bitmap);
+                String imageurl = (String) msg.obj;
+                // Tonight8App.getSelf().bitmapUtils.display(mUserLogo,
+                // imageurl);
+            }
+        }
+
+    };
+    public IUiListener loginListener = new BaseUiListener() {
+        @Override
+        protected void doComplete(JSONObject values) {
+            Log.d("SDKQQAgentPref",
+                    "AuthorSwitch_SDK:" + SystemClock.elapsedRealtime());
+            initOpenidAndToken(values);
+            updateUserInfo();
+        }
+    };
+
+    public static void initOpenidAndToken(JSONObject jsonObject) {
+        try {
+            String token = jsonObject.getString(Constants.PARAM_ACCESS_TOKEN);
+            String expires = jsonObject.getString(Constants.PARAM_EXPIRES_IN);
+            String openId = jsonObject.getString(Constants.PARAM_OPEN_ID);
+            if (!TextUtils.isEmpty(token) && !TextUtils.isEmpty(expires)
+                    && !TextUtils.isEmpty(openId)) {
+                Tonight8App.getSelf().mTencent.setAccessToken(token, expires);
+                Tonight8App.getSelf().mTencent.setOpenId(openId);
+            }
+        } catch (Exception e) {
+        }
+    }
+
+    public static boolean ready(Context context) {
+        if (Tonight8App.getSelf().mTencent == null) {
+            return false;
+        }
+        boolean ready = Tonight8App.getSelf().mTencent.isSessionValid()
+                && Tonight8App.getSelf().mTencent.getQQToken().getOpenId() != null;
+        if (!ready) {
+            Toast.makeText(context, "login and get openId first, please!",
+                    Toast.LENGTH_SHORT).show();
+        }
+        return ready;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -105,7 +164,6 @@ public class LoginActivity extends BaseActivity {
                 break;
         }
     }
-
 
     /**
      * @return void 返回类型
@@ -179,31 +237,6 @@ public class LoginActivity extends BaseActivity {
         }
     }
 
-    Handler mHandler = new Handler() {
-
-        @Override
-        public void handleMessage(Message msg) {
-            if (msg.what == 0) {
-                JSONObject response = (JSONObject) msg.obj;
-                if (response.has("nickname")) {
-                    try {
-                        mUserInfo.setVisibility(View.VISIBLE);
-                        mUserInfo.setText(response.getString("nickname"));
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                }
-            } else if (msg.what == 1) {
-                // Bitmap bitmap = (Bitmap)msg.obj;
-                // mUserLogo.setImageBitmap(bitmap);
-                String imageurl = (String) msg.obj;
-                // Tonight8App.getSelf().bitmapUtils.display(mUserLogo,
-                // imageurl);
-            }
-        }
-
-    };
-
     /**
      * @return void 返回类型
      * @throws
@@ -219,30 +252,6 @@ public class LoginActivity extends BaseActivity {
             updateUserInfo();
         }
     }
-
-    public static void initOpenidAndToken(JSONObject jsonObject) {
-        try {
-            String token = jsonObject.getString(Constants.PARAM_ACCESS_TOKEN);
-            String expires = jsonObject.getString(Constants.PARAM_EXPIRES_IN);
-            String openId = jsonObject.getString(Constants.PARAM_OPEN_ID);
-            if (!TextUtils.isEmpty(token) && !TextUtils.isEmpty(expires)
-                    && !TextUtils.isEmpty(openId)) {
-                Tonight8App.getSelf().mTencent.setAccessToken(token, expires);
-                Tonight8App.getSelf().mTencent.setOpenId(openId);
-            }
-        } catch (Exception e) {
-        }
-    }
-
-    public IUiListener loginListener = new BaseUiListener() {
-        @Override
-        protected void doComplete(JSONObject values) {
-            Log.d("SDKQQAgentPref",
-                    "AuthorSwitch_SDK:" + SystemClock.elapsedRealtime());
-            initOpenidAndToken(values);
-            updateUserInfo();
-        }
-    };
 
     /**
      * @author asus QQ登录返回
@@ -280,19 +289,6 @@ public class LoginActivity extends BaseActivity {
             Utils.toast("登录取消： ");
             Utils.dismissDialog();
         }
-    }
-
-    public static boolean ready(Context context) {
-        if (Tonight8App.getSelf().mTencent == null) {
-            return false;
-        }
-        boolean ready = Tonight8App.getSelf().mTencent.isSessionValid()
-                && Tonight8App.getSelf().mTencent.getQQToken().getOpenId() != null;
-        if (!ready) {
-            Toast.makeText(context, "login and get openId first, please!",
-                    Toast.LENGTH_SHORT).show();
-        }
-        return ready;
     }
 
 }

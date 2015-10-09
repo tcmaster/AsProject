@@ -65,6 +65,14 @@ public class ProgramListFragment extends BaseFragment {
 		initDatas();
 	}
 
+	@Override
+	public void scrollToTop() {
+		if(lv_only_list != null) {
+			lv_only_list.setSelection(0);
+			if (myHeader != null) myHeader.setTranslationY(0);
+		}
+	}
+
 	private void initDatas() {
 		EventIOController.eventPlayBillRead(22l,
 				new RequestResult<PlayListNetEntity>(PlayListNetEntity.class,

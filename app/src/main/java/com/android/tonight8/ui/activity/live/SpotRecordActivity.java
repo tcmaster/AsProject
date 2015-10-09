@@ -32,6 +32,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SpotRecordActivity extends BaseActivity implements CompoundButton.OnCheckedChangeListener {
+    /**
+     * 录音缓存的目录名称
+     */
+    private static String RECODE = "RECORD";
     private CheckBox cb_playrecord;
     @ViewInject(R.id.tv_record_count)
     private TextView tv_record_count;
@@ -63,11 +67,6 @@ public class SpotRecordActivity extends BaseActivity implements CompoundButton.O
      * 麦克风图像
      */
     private ImageView iv_mic_image;
-    /**
-     * 录音缓存的目录名称
-     */
-    private static String RECODE = "RECORD";
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

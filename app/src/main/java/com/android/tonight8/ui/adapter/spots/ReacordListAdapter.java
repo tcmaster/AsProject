@@ -110,14 +110,6 @@ public class ReacordListAdapter extends BaseAdapter {
         return convertView;
     }
 
-    static class ViewHolder {
-        public TextView tv_chatContent;
-        public CheckBox cbSelectedRecord;
-        public LinearLayout ll_time;
-        public LinearLayout ll_click;
-
-    }
-
     private String getSecondToMinu(int second) {
         String min = null;
         if (second >= 60) {
@@ -126,6 +118,14 @@ public class ReacordListAdapter extends BaseAdapter {
         min = second + "\'";
 
         return min;
+    }
+
+    static class ViewHolder {
+        public TextView tv_chatContent;
+        public CheckBox cbSelectedRecord;
+        public LinearLayout ll_time;
+        public LinearLayout ll_click;
+
     }
 
 }

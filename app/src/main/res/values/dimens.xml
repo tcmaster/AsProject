@@ -55,7 +55,7 @@
     <dimen name="et_comm_height">40dp</dimen>
     <!-- 消息列表相关 -->
     <!-- 聊天框宽度 -->
-    <dimen name="talk_width">45dp</dimen>
+    <dimen name="talk_width">50dp</dimen>
     <!-- 聊天附加框宽度 -->
     <dimen name="talk_attachments_height">100dp</dimen>
     <!-- 聊天附加按钮宽度 -->

@@ -13,7 +13,7 @@ import java.io.IOException;
  * 修改备注：
  */
 
-public  class SoundMeter {
+public class SoundMeter {
     static final private double EMA_FILTER = 0.6;
 
     private MediaRecorder mRecorder = null;
@@ -29,7 +29,7 @@ public  class SoundMeter {
             mRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
             mRecorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
             mRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
-            mRecorder.setOutputFile(Environment.getExternalStorageDirectory()+"/tonight8/"+name);
+            mRecorder.setOutputFile(Environment.getExternalStorageDirectory() + "/tonight8/" + name);
             try {
                 mRecorder.prepare();
                 mRecorder.start();

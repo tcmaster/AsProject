@@ -4,21 +4,23 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.PersistableBundle;
 import android.os.SystemClock;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.Animation;
-import android.view.animation.AnimationSet;
-import android.view.animation.ScaleAnimation;
 import android.view.animation.Transformation;
-import android.view.animation.TranslateAnimation;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioGroup;
@@ -27,7 +29,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.android.tonight8.R;
-import com.android.tonight8.base.AppConstants;
 import com.android.tonight8.base.BaseActivity;
 import com.android.tonight8.base.BaseFragment;
 import com.android.tonight8.dao.model.live.EventLive;
@@ -41,11 +42,10 @@ import com.android.tonight8.ui.fragment.livemanage.ProgramListFragment;
 import com.android.tonight8.ui.fragment.livemanage.VoteFragment;
 import com.android.tonight8.ui.fragment.livemanage.WinnerListFragment;
 import com.android.tonight8.ui.view.BarrageView;
-import com.android.tonight8.utils.Utils;
+import com.android.tonight8.ui.view.LiveContainer;
 import com.lidroid.xutils.exception.HttpException;
 import com.lidroid.xutils.util.LogUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
-import com.tencent.open.utils.Util;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
@@ -119,20 +119,20 @@ public class EventLivePlayActivity extends BaseActivity {
     @ViewInject(R.id.tv_goods_info)
     private TextView tv_goods_info;
     /**
-     * 开关附件布局
+     * 聊天界面
      */
-    @ViewInject(R.id.iv_attachment)
-    private ImageView iv_attachment;
+    @ViewInject(R.id.ll_talk)
+    private LinearLayout ll_talk;
+    /**
+     * 附件界面
+     */
+    @ViewInject(R.id.ll_send_attachments)
+    private LinearLayout ll_send_attachments;
     /**
      * 输入文字
      */
     @ViewInject(R.id.et_content)
     private EditText et_content;
-    /**
-     * 发送消息
-     */
-    @ViewInject(R.id.tv_send_message)
-    private TextView tv_send_message;
     /**
      * 字幕视图
      */
@@ -153,11 +153,42 @@ public class EventLivePlayActivity extends BaseActivity {
      */
     @ViewInject(R.id.rl_function_container)
     private RelativeLayout rl_function_container;
+    //功能菜单的四个按钮
+    /**
+     * 发表话题
+     */
+    @ViewInject(R.id.tv_talk)
+    private TextView tv_talk;
+    /**
+     * 赞
+     */
+    @ViewInject(R.id.ib_good)
+    private ImageButton ib_good;
+    /**
+     * 置顶
+     */
+    @ViewInject(R.id.ib_top)
+    private ImageButton ib_top;
+    /**
+     * 进入购买页面
+     */
+    @ViewInject(R.id.tv_buy)
+    private TextView tv_buy;
     /**
      * 功能菜单开关
      */
     @ViewInject(R.id.v_function_button)
     private View v_function_button;
+    /**
+     * 存放四个fragment的布局
+     */
+    @ViewInject(R.id.ll_container)
+    private LiveContainer ll_container;
+    /**
+     * 话题发送消息按钮
+     */
+    @ViewInject(R.id.iv_send_message)
+    private ImageView iv_send_message;
     /**
      * 4个页面的fragment列表
      */
@@ -192,6 +223,7 @@ public class EventLivePlayActivity extends BaseActivity {
         isNotDestory = false;//停止发送字幕
         bv_live.stopBarrage();//停止字幕播放
     }
+
 
     private void initDatas() {
         handler = new MyHandler(this);//初始化handler
@@ -248,44 +280,55 @@ public class EventLivePlayActivity extends BaseActivity {
         cb_share.setOnCheckedChangeListener(listener);
         cb_voice.setOnCheckedChangeListener(listener);
         cb_barrage_on_off.setOnCheckedChangeListener(listener);
-        v_function_button.setOnClickListener(new OnClickListener() {
+        OnClickListener clickListener = new OnClickListener() {
+
             @Override
             public void onClick(View v) {
-                rl_function_container.clearAnimation();
-                MenuAnimation animation = new MenuAnimation();
-                animation.setAnimationListener(new Animation.AnimationListener() {
-                    @Override
-                    public void onAnimationStart(Animation animation) {
-                        rl_function_container.setVisibility(View.VISIBLE);
-                    }
+                switch (v.getId()) {
+                    case R.id.v_function_button:
+                        rl_function_container.clearAnimation();
+                        MenuAnimation animation = new MenuAnimation(true);
+                        rl_function_container.startAnimation(animation);
+                        v_function_button.setVisibility(View.INVISIBLE);
+                        break;
+                    case R.id.tv_talk:
+                        processTalk();
+                        break;
+                    case R.id.ib_good:
+                        processGood();
+                        break;
+                    case R.id.ib_top:
+                        processTop();
+                        break;
+                    case R.id.tv_buy:
+                        processBuy();
+                        break;
+                    case R.id.iv_send_message:
+                        processSendTalk();
+                        break;
+                }
 
-                    @Override
-                    public void onAnimationEnd(Animation animation) {
-
-                    }
-
-                    @Override
-                    public void onAnimationRepeat(Animation animation) {
-
-                    }
-                });
-                rl_function_container.startAnimation(animation);
             }
-        });
+        };
+        v_function_button.setOnClickListener(clickListener);
+        tv_talk.setOnClickListener(clickListener);
+        tv_buy.setOnClickListener(clickListener);
+        ib_good.setOnClickListener(clickListener);
+        ib_top.setOnClickListener(clickListener);
+        iv_send_message.setOnClickListener(clickListener);
+        ll_container.setInterruptInterface(new LiveContainer.InterruptTouch() {
+            @Override
+            public void onInterrupt() {
+                rl_function_container.clearAnimation();
+                rl_function_container.startAnimation(new MenuAnimation(false));
+            }
+        }, rl_function_container);
     }
 
     private void initInterface() {
         //LiveIOController.readLiveTitle(handler);//暂时注释，防止混乱
-        tv_send_message.setOnClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(EventLivePlayActivity.this,
-                        GoodsInfoActivity.class);
-                startActivity(intent);
-            }
-        });
     }
+
 
     private void initFragments() {
         getActionBarSpeical("某活动现场", R.mipmap.ic_launcher, true, false, null);
@@ -298,7 +341,7 @@ public class EventLivePlayActivity extends BaseActivity {
             fm = getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
         for (BaseFragment bf : bfs) {
-            ft.add(R.id.ll_lv_container, bf);
+            ft.add(R.id.ll_container, bf);
             ft.hide(bf);
         }
         ft.commit();
@@ -344,6 +387,56 @@ public class EventLivePlayActivity extends BaseActivity {
 
     }
 
+    /**
+     * 显示发话题栏
+     */
+    private void processTalk() {
+        if (ll_talk.getVisibility() == View.VISIBLE) ll_talk.setVisibility(View.INVISIBLE);
+        else ll_talk.setVisibility(View.VISIBLE);
+        rl_function_container.clearAnimation();
+        MenuAnimation animation = new MenuAnimation(false);
+        rl_function_container.startAnimation(animation);
+    }
+
+    /**
+     * 发送话题
+     */
+    private void processSendTalk() {
+        if (ll_send_attachments.getVisibility() == View.VISIBLE) {
+
+        }
+    }
+
+    /**
+     * 赞
+     */
+    private void processGood() {
+
+    }
+
+    /**
+     * 置顶
+     */
+    private void processTop() {
+        List<Fragment> bfs = fm.getFragments();
+        for (int i = 0; i < bfs.size(); i++) {
+            BaseFragment bf = (BaseFragment) bfs.get(i);
+            if (bf != null && bf.isVisible()) {
+                bf.scrollToTop();
+            }
+        }
+        rl_function_container.clearAnimation();
+        MenuAnimation animation = new MenuAnimation(false);
+        rl_function_container.startAnimation(animation);
+    }
+
+    /**
+     * 进入商品详情
+     */
+    private void processBuy() {
+
+    }
+
     private void showLeft(boolean isShow) {
         if (isShow) ll_left.setVisibility(View.VISIBLE);
         else ll_left.setVisibility(View.INVISIBLE);
@@ -383,62 +476,17 @@ public class EventLivePlayActivity extends BaseActivity {
      * @param pos
      */
     private void changeFragment(int pos) {
+        int showPos = 0;
         FragmentTransaction ft = fm.beginTransaction();
         for (int i = 0; i < 4; i++) {
-            if (i == pos)
+            if (i == pos) {
                 ft.show(bfs[i]);
-            else
+                showPos = i;
+            } else
                 ft.hide(bfs[i]);
         }
         ft.commit();
-    }
-
-    private AnimationSet createFunctionMenuAnimOpen() {
-        rl_function_container.setVisibility(View.VISIBLE);
-        float endX = v_function_button.getX();
-        float endY = v_function_button.getY();
-        float startX = rl_function_container.getX();
-        float startY = rl_function_container.getY();
-        AnimationSet animationSet = new AnimationSet(true);
-        animationSet.setInterpolator(new AccelerateDecelerateInterpolator());
-        animationSet.setDuration(1000);
-        animationSet.setFillAfter(false);
-        TranslateAnimation ta = new TranslateAnimation(endX - startX - rl_function_container.getMeasuredWidth() / 2, 0, endY - startY - rl_function_container.getMeasuredHeight() / 2, 0);
-        ScaleAnimation sa = new ScaleAnimation(0.16f, 1.0f, 0.16f, 1.0f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
-        animationSet.addAnimation(ta);
-        animationSet.addAnimation(sa);
-        animationSet.setAnimationListener(new Animation.AnimationListener() {
-            @Override
-            public void onAnimationStart(Animation animation) {
-                //rl_function_container.setVisibility(View.VISIBLE);
-            }
-
-            @Override
-            public void onAnimationEnd(Animation animation) {
-            }
-
-            @Override
-            public void onAnimationRepeat(Animation animation) {
-
-            }
-        });
-        return animationSet;
-    }
-
-    private AnimationSet createFunctionMenuAnimClose() {
-        float endX = v_function_button.getX();
-        float endY = v_function_button.getY();
-        float startX = rl_function_container.getX();
-        float startY = rl_function_container.getY();
-        AnimationSet animationSet = new AnimationSet(true);
-        animationSet.setInterpolator(new AccelerateDecelerateInterpolator());
-        animationSet.setDuration(500);
-        animationSet.setFillAfter(false);
-        TranslateAnimation ta = new TranslateAnimation(endX - startX, 0, endY - startY, 0);
-        ScaleAnimation sa = new ScaleAnimation(1.0f, 0.16f, 1.0f, 0.16f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
-        animationSet.addAnimation(ta);
-        animationSet.addAnimation(sa);
-        return animationSet;
+        bfs[showPos].scrollToTop();
     }
 
     private static class MyHandler extends Handler {
@@ -497,37 +545,121 @@ public class EventLivePlayActivity extends BaseActivity {
     /**
      * 针对菜单的动画
      */
-    private class MenuAnimation extends Animation {
-        private float startX, startY, endX, endY;
-        private float initVX, initVY;
-        private float menuX, menuY;
+    public class MenuAnimation extends Animation {
+        private float startX, startY;
+        private boolean isOpen;
 
-        public MenuAnimation() {
-            initVX = v_function_button.getMeasuredWidth();
-            initVY = v_function_button.getMeasuredHeight();
-            menuX = rl_function_container.getMeasuredWidth();
-            menuY = rl_function_container.getMeasuredHeight();
-            startX = (AppConstants.widthPx - menuX) / 2;
-            startY = (AppConstants.heightPx - menuY) / 2;
-            endX = AppConstants.widthPx - Utils.dip2px(EventLivePlayActivity.this, 20) - initVX;
-            endY = AppConstants.heightPx - Utils.dip2px(EventLivePlayActivity.this, 20) - initVY;
+        public MenuAnimation(final boolean isOpen) {
+            startX = v_function_button.getLeft() - rl_function_container.getLeft() - (rl_function_container.getMeasuredWidth() - v_function_button.getMeasuredWidth()) / 2;
+            startY = v_function_button.getTop() - rl_function_container.getTop() - (rl_function_container.getMeasuredWidth() - v_function_button.getMeasuredWidth()) / 2;
+            this.isOpen = isOpen;
             setInterpolator(new AccelerateDecelerateInterpolator());
-            setDuration(1000);
+            setDuration(500);
             setFillAfter(true);
+            setAnimationListener(new AnimationListener() {
+                @Override
+                public void onAnimationStart(Animation animation) {
+                    if (isOpen) rl_function_container.setVisibility(View.VISIBLE);
+                }
+
+                @Override
+                public void onAnimationEnd(Animation animation) {
+                    if (!isOpen) {
+                        rl_function_container.setVisibility(View.INVISIBLE);
+                        v_function_button.setVisibility(View.VISIBLE);
+                    }
+
+                }
+
+                @Override
+                public void onAnimationRepeat(Animation animation) {
+
+                }
+            });
         }
 
         @Override
         protected void applyTransformation(float interpolatedTime, Transformation t) {
-            float x = (endX + initVX) - (AppConstants.widthPx - menuX) / 2 * interpolatedTime - startX;
-            float y = (endY + initVY) - (AppConstants.heightPx - menuY) / 2 * interpolatedTime - startY;
-            LogUtils.v("the value is " + x + " the y value is " + y);
+            float x, y, scaleX, scaleY;
+            if (isOpen) {
+                x = startX - startX * interpolatedTime;
+                y = startY - startY * interpolatedTime;
+                scaleX = 0.16f + 0.84f * interpolatedTime;
+                scaleY = 0.16f + 0.84f * interpolatedTime;
+            } else {
+                x = 0 + startX * interpolatedTime;
+                y = 0 + startY * interpolatedTime;
+                scaleX = 1 - 0.84f * interpolatedTime;
+                scaleY = 1 - 0.84f * interpolatedTime;
+            }
             rl_function_container.setTranslationX(x);
             rl_function_container.setTranslationY(y);
-//            rl_function_container.setScaleX(0.16f + 0.84f * interpolatedTime);
-//            rl_function_container.setScaleY(0.16f + 0.84f * interpolatedTime);
+            rl_function_container.setScaleX(scaleX);
+            rl_function_container.setScaleY(scaleY);
 
         }
 
+    }
+
+    public void insertSort(int[] a) {
+        for (int i = 0; i < a.length; i++) {
+            for (int j = 0; j < i; j++) {
+                if (a[j] > a[i]) {
+                    int temp = a[j];
+                    a[j] = a[i];
+                    a[i] = temp;
+                }
+            }
+        }
+    }
+
+    public void bubbleSort(int[] a) {
+        for (int i = 0; i < a.length; i++) {
+            for (int j = a.length - 1; j > i; j--) {
+                if (a[j] < a[j - 1]) {
+                    int temp = a[j];
+                    a[j] = a[i];
+                    a[i] = temp;
+                }
+            }
+        }
+    }
+
+    public void selectSort(int[] a) {
+        for (int i = 0; i < a.length; i++) {
+            int key = a[i];
+            int num = i;
+            for (int j = i + 1; j < a.length; j++) {
+                if (a[j] > key) {
+                    num = j;
+                    key = a[j];
+                }
+            }
+            a[num] = a[i];
+            a[i] = key;
+        }
+    }
+
+    public void fastSort(int[] a, int head, int end) {
+        int low = head;
+        int high = end;
+        int key = a[low];
+        while (low < high) {
+            while (a[high] > key) high--;
+            if(low < high) {
+                int temp = a[high];
+                a[high] = a[low];
+                a[low] = temp;
+            }
+            while (a[low] < key) low++;
+            if(low < high) {
+                int temp2 = a[low];
+                a[low] = a[high];
+                a[high] = temp2;
+            }
+        }
+        if(low > head) fastSort(a,head,low-1);
+        if(high < end)fastSort(a,low+1,end);
     }
 
 

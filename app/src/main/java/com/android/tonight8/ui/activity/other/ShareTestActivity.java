@@ -26,9 +26,9 @@ import com.umeng.socialize.weixin.media.CircleShareContent;
 import com.umeng.socialize.weixin.media.WeiXinShareContent;
 
 public class ShareTestActivity extends Activity implements OnClickListener {
-    private Button open_share;
     private final UMSocialService mController = UMServiceFactory
             .getUMSocialService(AppConstants.DESCRIPTOR);
+    private Button open_share;
     private Activity mActivity;
 
     @Override

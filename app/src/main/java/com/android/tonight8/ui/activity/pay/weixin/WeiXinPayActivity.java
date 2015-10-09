@@ -33,9 +33,8 @@ import java.util.Random;
 public class WeiXinPayActivity extends BaseActivity {
 
     private static final String TAG = WeiXinPayActivity.class.getSimpleName();
-
-    private PayReq req;
     private final IWXAPI msgApi = WXAPIFactory.createWXAPI(this, null);
+    private PayReq req;
     private TextView show;
     private Map<String, String> resultunifiedorder;
     private StringBuffer sb;
@@ -136,51 +135,6 @@ public class WeiXinPayActivity extends BaseActivity {
 
         Log.e("orion", sb.toString());
         return sb.toString();
-    }
-
-    private class GetPrepayIdTask extends
-            AsyncTask<Void, Void, Map<String, String>> {
-
-        private ProgressDialog dialog;
-
-        @Override
-        protected void onPreExecute() {
-        }
-
-        @Override
-        protected void onPostExecute(Map<String, String> result) {
-            if (dialog != null) {
-                dialog.dismiss();
-            }
-            sb.append("prepay_id\n" + result.get("prepay_id") + "\n\n");
-            show.setText(sb.toString());
-
-            resultunifiedorder = result;
-
-        }
-
-        @Override
-        protected void onCancelled() {
-            super.onCancelled();
-        }
-
-        @Override
-        protected Map<String, String> doInBackground(Void... params) {
-
-            String url = String
-                    .format("https://api.mch.weixin.qq.com/pay/unifiedorder");
-            String entity = genProductArgs();
-
-            Log.e("orion", entity);
-
-            byte[] buf = WXUtils.httpPost(url, entity);
-
-            String content = new String(buf);
-            Log.e("orion", content);
-            Map<String, String> xml = decodeXml(content);
-
-            return xml;
-        }
     }
 
     public Map<String, String> decodeXml(String content) {
@@ -303,6 +257,51 @@ public class WeiXinPayActivity extends BaseActivity {
 
         msgApi.registerApp(PAY_APP_ID);
         msgApi.sendReq(req);
+    }
+
+    private class GetPrepayIdTask extends
+            AsyncTask<Void, Void, Map<String, String>> {
+
+        private ProgressDialog dialog;
+
+        @Override
+        protected void onPreExecute() {
+        }
+
+        @Override
+        protected void onPostExecute(Map<String, String> result) {
+            if (dialog != null) {
+                dialog.dismiss();
+            }
+            sb.append("prepay_id\n" + result.get("prepay_id") + "\n\n");
+            show.setText(sb.toString());
+
+            resultunifiedorder = result;
+
+        }
+
+        @Override
+        protected void onCancelled() {
+            super.onCancelled();
+        }
+
+        @Override
+        protected Map<String, String> doInBackground(Void... params) {
+
+            String url = String
+                    .format("https://api.mch.weixin.qq.com/pay/unifiedorder");
+            String entity = genProductArgs();
+
+            Log.e("orion", entity);
+
+            byte[] buf = WXUtils.httpPost(url, entity);
+
+            String content = new String(buf);
+            Log.e("orion", content);
+            Map<String, String> xml = decodeXml(content);
+
+            return xml;
+        }
     }
 
 }

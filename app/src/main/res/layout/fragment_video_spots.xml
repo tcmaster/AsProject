@@ -1,17 +1,17 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
              xmlns:tools="http://schemas.android.com/tools"
              android:layout_width="match_parent"
-              android:background="@color/white"
-             android:layout_height="match_parent"
-              android:orientation="vertical"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
              tools:context="com.android.tonight8.ui.fragment.spots.VideoSpotsFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/purple"
-        android:padding="@dimen/common_margin_left_long"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="@dimen/common_margin_left_long">
 
         <CheckBox
             android:id="@+id/cb_play"
@@ -20,7 +20,7 @@
             android:layout_gravity="center"
             android:layout_margin="@dimen/common_margin_small"
             android:background="@drawable/insert_play_selector"
-            android:button="@null"/>
+            android:button="@null" />
 
         <TextView
             android:id="@+id/tv_startplay"
@@ -29,7 +29,7 @@
             android:layout_gravity="center"
             android:text="开始播放"
             android:textColor="@color/white"
-            android:textSize="@dimen/middleTextSize"/>
+            android:textSize="@dimen/middleTextSize" />
     </LinearLayout>
 
     <LinearLayout
@@ -40,7 +40,6 @@
         <RelativeLayout
             android:id="@+id/rl_liveplayer"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-        </RelativeLayout>
+            android:layout_height="match_parent"></RelativeLayout>
     </LinearLayout>
 </LinearLayout>

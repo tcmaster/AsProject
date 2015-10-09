@@ -256,24 +256,6 @@ public class FileUtils {
         return dirSize;
     }
 
-    /**
-     * 获取目录文件个数
-     *
-     * @return
-     */
-    public long getFileList(File dir) {
-        long count = 0;
-        File[] files = dir.listFiles();
-        count = files.length;
-        for (File file : files) {
-            if (file.isDirectory()) {
-                count = count + getFileList(file);// 递归
-                count--;
-            }
-        }
-        return count;
-    }
-
     public static byte[] toBytes(InputStream in) throws IOException {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         int ch;
@@ -354,10 +336,7 @@ public class FileUtils {
     public static boolean checkSaveLocationExists() {
         String sDCardStatus = Environment.getExternalStorageState();
         boolean status;
-        if (sDCardStatus.equals(Environment.MEDIA_MOUNTED)) {
-            status = true;
-        } else
-            status = false;
+        status = sDCardStatus.equals(Environment.MEDIA_MOUNTED);
         return status;
     }
 
@@ -429,7 +408,6 @@ public class FileUtils {
         return status;
     }
 
-
     public static List<File> list(File dir, String ext) {
 
         listFile(dir, ext);
@@ -477,20 +455,6 @@ public class FileUtils {
         return bea;
     }
 
-    static class Fileter implements FilenameFilter {
-        private final String ext;
-
-        public Fileter(String ext) {
-            this.ext = ext;
-        }
-
-        @Override
-        public boolean accept(File dir, String name) {
-            return name.endsWith(ext);
-
-        }
-    }
-
     public static void copyFile(String oldPathFile, String newPathFile) {
         try {
             int bytesum = 0;
@@ -520,6 +484,38 @@ public class FileUtils {
     public static void moveFile(String oldPath, String newPath) {
         copyFile(oldPath, newPath);
         delFile(oldPath);
+    }
+
+    /**
+     * 获取目录文件个数
+     *
+     * @return
+     */
+    public long getFileList(File dir) {
+        long count = 0;
+        File[] files = dir.listFiles();
+        count = files.length;
+        for (File file : files) {
+            if (file.isDirectory()) {
+                count = count + getFileList(file);// 递归
+                count--;
+            }
+        }
+        return count;
+    }
+
+    static class Fileter implements FilenameFilter {
+        private final String ext;
+
+        public Fileter(String ext) {
+            this.ext = ext;
+        }
+
+        @Override
+        public boolean accept(File dir, String name) {
+            return name.endsWith(ext);
+
+        }
     }
 
 }

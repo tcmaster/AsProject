@@ -1,8 +1,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:tools="http://schemas.android.com/tools"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                tools:context="com.android.tonight8.ui.activity.live.SpotRecordActivity">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.android.tonight8.ui.activity.live.SpotRecordActivity">
 
     <LinearLayout
         android:id="@+id/ll_head"
@@ -19,7 +19,7 @@
             android:layout_gravity="center"
             android:layout_margin="@dimen/common_margin_small"
             android:background="@drawable/shape_circle"
-            android:button="@null"/>
+            android:button="@null" />
 
         <TextView
             android:id="@+id/tv_startrecord"
@@ -28,7 +28,7 @@
             android:layout_gravity="center"
             android:text="开始录音"
             android:textColor="@color/white"
-            android:textSize="@dimen/middleTextSize"/>
+            android:textSize="@dimen/middleTextSize" />
     </LinearLayout>
 
     <LinearLayout
@@ -44,7 +44,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@drawable/seletor_white_to_gray"
-            android:textSize="@dimen/bigTextSize"/>
+            android:textSize="@dimen/bigTextSize" />
 
         <TextView
             android:id="@+id/tv_total_count"
@@ -52,22 +52,22 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@drawable/seletor_white_to_gray"
-            android:textSize="@dimen/bigTextSize"/>
+            android:textSize="@dimen/bigTextSize" />
     </LinearLayout>
 
     <ListView
         android:id="@+id/lv_record"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="40dp"
         android:layout_below="@+id/ll_record_biaoqian"
-        android:scrollbars="none"/>
+        android:layout_marginBottom="40dp"
+        android:scrollbars="none" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:gravity="center_vertical"
         android:layout_alignParentBottom="true"
+        android:gravity="center_vertical"
         android:orientation="horizontal">
 
         <TextView
@@ -77,7 +77,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:text="删除"
-            android:textSize="@dimen/bigTextSize"/>
+            android:textSize="@dimen/bigTextSize" />
 
         <TextView
             android:id="@+id/tv_save"
@@ -86,7 +86,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:text="保存"
-            android:textSize="@dimen/bigTextSize"/>
+            android:textSize="@dimen/bigTextSize" />
     </LinearLayout>
     <!-- 录音显示UI层-->
     <LinearLayout
@@ -101,7 +101,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:src="@mipmap/record_animate_01"/>
+            android:src="@mipmap/record_animate_01" />
 
         <TextView
             android:id="@+id/tv_recording_hint"
@@ -111,6 +111,6 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="5dp"
             android:padding="2dp"
-            android:textSize="@dimen/middleTextSize"/>
+            android:textSize="@dimen/middleTextSize" />
     </LinearLayout>
 </RelativeLayout>

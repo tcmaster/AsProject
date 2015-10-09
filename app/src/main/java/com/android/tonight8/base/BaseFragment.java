@@ -54,7 +54,7 @@ public class BaseFragment extends Fragment {
         /** 当前fragment的view */
         if (rootView != null) {
             /*
-			 * 缓存的rootView需要判断是否已经被加过parent，
+             * 缓存的rootView需要判断是否已经被加过parent，
 			 * 如果有parent需要从parent删除，要不然会发生这个RootView已经有parent的错误。
 			 */
             ViewGroup parent = (ViewGroup) rootView.getParent();
@@ -97,6 +97,14 @@ public class BaseFragment extends Fragment {
     public void scrollToTop(ScrollView sv) {
 
     }
+
+    /**
+     * 置顶界面（用于现场直播界面）
+     */
+    public void scrollToTop(){
+
+    }
+
 
     public boolean onBackPress() {
         return true;

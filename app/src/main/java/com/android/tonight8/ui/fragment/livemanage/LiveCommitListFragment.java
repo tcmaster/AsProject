@@ -2,6 +2,7 @@ package com.android.tonight8.ui.fragment.livemanage;
 
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,6 +31,7 @@ import com.android.tonight8.ui.view.xlistview.XListView;
 import com.android.tonight8.utils.JsonUtils;
 import com.android.tonight8.utils.Utils;
 import com.lidroid.xutils.ViewUtils;
+import com.lidroid.xutils.util.LogUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
 
 import java.lang.ref.WeakReference;
@@ -97,6 +99,14 @@ public class LiveCommitListFragment extends BaseFragment {
         lv_only_list.addExtraHeaderView(v);
         //滑动的处理
         lv_only_list.setOnScrollListener(new ScrollTopOrBottomListener(lv_only_list, myHeader));
+    }
+
+    @Override
+    public void scrollToTop() {
+        if(lv_only_list != null) {
+            lv_only_list.setSelection(0);
+            if (myHeader != null) myHeader.setTranslationY(0);
+        }
     }
 
     private static class MyHandler extends Handler {

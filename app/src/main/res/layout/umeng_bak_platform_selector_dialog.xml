@@ -3,7 +3,7 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:background="#393D46"
-    android:orientation="vertical" >
+    android:orientation="vertical">
 
     <include
         android:id="@+id/umeng_socialize_title"
@@ -12,7 +12,7 @@
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:orientation="vertical" >
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/umeng_socialize_share_info"
@@ -39,8 +39,7 @@
             android:focusable="false"
             android:footerDividersEnabled="false"
             android:listSelector="@android:color/transparent"
-            android:scrollbars="none" >
-        </ListView>
+            android:scrollbars="none"></ListView>
 
         <ListView
             android:id="@+id/umeng_socialize_platforms_lv_second"
@@ -57,8 +56,7 @@
             android:focusable="false"
             android:footerDividersEnabled="false"
             android:listSelector="@android:color/transparent"
-            android:scrollbars="none" >
-        </ListView>
+            android:scrollbars="none"></ListView>
     </LinearLayout>
 
 </LinearLayout>

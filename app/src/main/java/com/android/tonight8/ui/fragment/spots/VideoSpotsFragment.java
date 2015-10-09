@@ -22,12 +22,12 @@ import com.lecloud.skin.live.LivePlayCenter;
  * A simple {@link Fragment} subclass.
  */
 public class VideoSpotsFragment extends BaseFragment {
+    private static String Defualt_LIVEID = "201501193000003";//"201412083000001";
     private RelativeLayout mPlayerLayoutView;
     private LivePlayCenter mPlayerView;
     private EditText testEditText;
     private CheckBox cb_play;
     private TextView tv_startplay;
-    private static String Defualt_LIVEID = "201501193000003";//"201412083000001";
     private boolean isHLS;
     private boolean isBackgroud = false;
 

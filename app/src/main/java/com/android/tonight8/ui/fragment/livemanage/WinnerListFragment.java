@@ -61,6 +61,13 @@ public class WinnerListFragment extends BaseFragment {
 		initDatas();
 	}
 
+	@Override
+	public void scrollToTop() {
+		if(lv_winner_list != null) {
+			lv_winner_list.setSelection(0);
+			if (myHeader != null) myHeader.setTranslationY(0);
+		}
+	}
 	private void initDatas() {
 		handler = new MyHandler(this);
 		LiveIOController.readLiveWinnerList(handler);

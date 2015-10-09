@@ -87,6 +87,20 @@ public class VoteFragment extends BaseFragment {
         return view;
     }
 
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        initDatas();
+    }
+
+    @Override
+    public void scrollToTop() {
+        if(lv_vote != null) {
+            lv_vote.setSelection(0);
+            if (myHeader != null) myHeader.setTranslationY(0);
+        }
+    }
+
     private void initDatas() {
         LayoutInflater inflater = LayoutInflater.from(getActivity());
         View header = inflater.inflate(R.layout.header_vote, null);
@@ -112,12 +126,6 @@ public class VoteFragment extends BaseFragment {
         myHeader = ((EventLivePlayActivity) getActivity()).getHeader();
         //滑动的处理
         lv_vote.setOnScrollListener(new ScrollTopOrBottomListener(lv_vote, myHeader));
-    }
-
-    @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        initDatas();
     }
 
     private static class MyHandler extends Handler {

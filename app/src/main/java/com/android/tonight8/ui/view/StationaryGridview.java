@@ -15,12 +15,24 @@ import android.widget.GridView;
  */
 
 public class StationaryGridview extends GridView {
+    OnTouchListener mGestureListener;
+    private boolean canScroll;
+    private GestureDetector mGestureDetector;
+
+
     public StationaryGridview(Context context) {
         super(context);
     }
 
     public StationaryGridview(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
+    }
+    public StationaryGridview(Context context, AttributeSet attrs) {
+
+        super(context, attrs);
+        mGestureDetector = new GestureDetector(new YScrollDetector());
+        canScroll = true;
+
     }
 
     //重写dispatchTouchEvent方法禁止GridView滑动
@@ -30,20 +42,6 @@ public class StationaryGridview extends GridView {
             return true;
         }
         return super.dispatchTouchEvent(ev);
-    }
-
-
-    private boolean canScroll;
-
-    private GestureDetector mGestureDetector;
-    OnTouchListener mGestureListener;
-
-    public StationaryGridview(Context context, AttributeSet attrs) {
-
-        super(context, attrs);
-        mGestureDetector = new GestureDetector(new YScrollDetector());
-        canScroll = true;
-
     }
 
     @Override
@@ -60,10 +58,7 @@ public class StationaryGridview extends GridView {
         @Override
         public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
             if (canScroll)
-                if (Math.abs(distanceY) >= Math.abs(distanceX))
-                    canScroll = true;
-                else
-                    canScroll = false;
+                canScroll = Math.abs(distanceY) >= Math.abs(distanceX);
             return canScroll;
         }
 
