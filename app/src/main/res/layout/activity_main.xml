@@ -4,5 +4,5 @@
     android:id="@+id/sv_main_page"
     style="@style/match"
     android:background="@color/black_half_transparent"
-    slide:sv_left="400dp"
-    slide:boundary="100dp"/>
+    slide:sv_left="300dp"
+    slide:boundary="80dp"/>

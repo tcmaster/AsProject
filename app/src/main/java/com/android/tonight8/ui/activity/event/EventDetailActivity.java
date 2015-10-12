@@ -376,4 +376,16 @@ public class EventDetailActivity extends BaseActivity {
 			lv_goods_detail.setSelectionFromTop(selectionPos, top);
 		}
 	}
+	public int binarySearch(int []a,int key){
+		int low = 0;
+		int high = a.length-1;
+		while((low <= a.length-1) && (high <= a.length-1) && low < high){
+			int middle = low + ((high - low) >>1);
+			if(key == a[middle])return middle;
+			if(key <= a[middle]){
+				high = middle -1;
+			}else low = middle + 1;
+		}
+		return -1;
+	}
 }
