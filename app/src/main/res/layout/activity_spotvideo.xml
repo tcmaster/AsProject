@@ -1,8 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
+              android:orientation="vertical"
               android:layout_height="match_parent">
+    <LinearLayout
+        android:id="@+id/ll_head"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/purple"
+        android:orientation="vertical"
+        android:padding="@dimen/common_margin_left">
 
+        <Button
+            android:id="@+id/btn_playvideo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/common_margin_small"
+            android:background="@drawable/shape_circle"
+            android:button="@null"/>
+
+        <TextView
+            android:id="@+id/tv_startrecord"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="开始录像"
+            android:textColor="@color/white"
+            android:textSize="@dimen/middleTextSize"/>
+    </LinearLayout>
     <ListView
         android:id="@+id/lv_video"
         android:layout_width="wrap_content"

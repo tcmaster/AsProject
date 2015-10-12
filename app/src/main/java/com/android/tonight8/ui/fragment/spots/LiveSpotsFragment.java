@@ -23,6 +23,7 @@ import com.android.tonight8.R;
 import com.android.tonight8.base.BaseActivity;
 import com.android.tonight8.base.BaseFragment;
 import com.android.tonight8.ui.activity.live.SpotRecordActivity;
+import com.android.tonight8.ui.activity.live.SpotVideoActivity;
 import com.android.tonight8.ui.adapter.spots.SpotAdapter;
 import com.android.tonight8.ui.view.CustomerDialog;
 import com.android.tonight8.ui.view.StationaryGridview;
@@ -102,10 +103,10 @@ public class LiveSpotsFragment extends BaseFragment {
                         DialogUtils.showCommitZiMuDialog(activity, "请输入字幕(限40字)", tv_subtitle);
                         break;
                     case 2:
-                        Intent intent = new Intent(getActivity(), SpotRecordActivity.class);
-                        getActivity().startActivityForResult(intent, 21);
+                        getActivity().startActivityForResult(new Intent(getActivity(), SpotRecordActivity.class), 21);
                         break;
                     case 3:
+                        getActivity().startActivityForResult(new Intent(getActivity(), SpotVideoActivity.class), 31);
                         break;
                     case 4:
                         break;

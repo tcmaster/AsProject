@@ -91,6 +91,7 @@ public class DialogUtils {
                         .findViewById(R.id.btn_pic_left);
                 Button btn_right = (Button) window
                         .findViewById(R.id.btn_pic_right);
+                Button btn_pic_cancle = (Button) window.findViewById(R.id.btn_pic_cancle);
                 btn_left.setOnClickListener(new OnClickListener() {
 
                     @Override
@@ -107,6 +108,12 @@ public class DialogUtils {
                     public void onClick(View arg0) {
                         ((BaseActivity) activity)
                                 .getPhotoByTakePicture(requestCodeTakePicture);
+                        dlg.dismiss();
+                    }
+                });
+                btn_pic_cancle.setOnClickListener(new OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
                         dlg.dismiss();
                     }
                 });

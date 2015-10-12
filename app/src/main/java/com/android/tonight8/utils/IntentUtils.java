@@ -78,10 +78,13 @@ public class IntentUtils {
     public static void startVideo(Context context, int requestCode) {
         String VIDEO_UNSPECIFIED = "video/*";
         //视频
-        Intent innerIntent = new Intent(Intent.ACTION_GET_CONTENT);
-        innerIntent.setType(VIDEO_UNSPECIFIED);
-        Intent wrapperIntent = Intent.createChooser(innerIntent, null);
-        ((Activity) context).startActivityForResult(wrapperIntent, requestCode);
+        Intent innerIntent = new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
+        innerIntent.putExtra(android.provider.MediaStore.EXTRA_SIZE_LIMIT,
+                768000);
+        //设置视频时间 毫秒单位
+        innerIntent.putExtra(
+                android.provider.MediaStore.EXTRA_DURATION_LIMIT, 45000);
+        ((Activity) context).startActivityForResult(innerIntent, requestCode);
     }
 
     /**

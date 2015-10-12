@@ -182,7 +182,7 @@ public class BaseActivity extends FragmentActivity {
 			mActionBar = getActionBar();
 			mActionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
 			mActionBar.setBackgroundDrawable(new ColorDrawable(getResources()
-					.getColor(R.color.black_half_transparent)));
+					.getColor(R.color.purple)));
 			mActionBar.setCustomView(R.layout.layout_actionbar);
 			View view = mActionBar.getCustomView();
 			tv_left = (TextView) view.findViewById(R.id.leftText);

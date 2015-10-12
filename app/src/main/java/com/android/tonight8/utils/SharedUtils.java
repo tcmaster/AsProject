@@ -1,299 +1,157 @@
-//package com.android.tonight8.utils;
-//
-//import java.net.URL;
-//import java.util.ArrayList;
-//
-//import android.app.Activity;
-//import android.content.Context;
-//import android.graphics.Bitmap;
-//import android.graphics.BitmapFactory;
-//import android.os.Bundle;
-//
-//import com.android.tonight8.base.AppConstants;
-//import com.android.tonight8.base.Tonight8App;
-//import com.android.tonight8.ui.activity.pay.weixin.WXUtils;
-//import com.sina.weibo.sdk.api.VideoObject;
-//import com.sina.weibo.sdk.api.WebpageObject;
-//import com.sina.weibo.sdk.api.WeiboMessage;
-//import com.sina.weibo.sdk.api.share.IWeiboShareAPI;
-//import com.sina.weibo.sdk.api.share.SendMessageToWeiboRequest;
-//import com.sina.weibo.sdk.utils.Utility;
-//import com.tencent.connect.share.QQShare;
-//import com.tencent.connect.share.QzoneShare;
-//import com.tencent.mm.sdk.modelmsg.SendMessageToWX;
-//import com.tencent.mm.sdk.modelmsg.WXImageObject;
-//import com.tencent.mm.sdk.modelmsg.WXMediaMessage;
-//import com.tencent.mm.sdk.modelmsg.WXTextObject;
-//import com.tencent.mm.sdk.modelmsg.WXWebpageObject;
-//import com.tencent.tauth.IUiListener;
-//
-//public class SharedUtils {
-//	// 分享图片的大小
-//	private static final int THUMB_SIZE = 150;
-//
-//	/**
-//	 * @Description:分享到朋友圈和微信
-//	 * @param context
-//	 * @param isFriends
-//	 *            true分享到朋友圈
-//	 * @author: LiuZhao
-//	 * @date:2015年2月9日
-//	 */
-//
-//	public static void shareToWXOrFriends(Context context, ShareThirdEntity shareThirdEntity, boolean isFriends) {
-//		if (shareThirdEntity == null) {
-//			shareThirdEntity = new ShareThirdEntity();
-//			return;
-//		}
-//		if (isFriends) {
-//			if (!isSupportFriendsShare()) {
-//				Utils.toast("当前微信版本不支持分享到朋友圈");
-//				return;
-//			}
-//		}
-//
-//		SendMessageToWX.Req req = new SendMessageToWX.Req();
-//		// 分享图文
-//		if (shareThirdEntity.shareType == 1) {
-//			// 初始化一个WXTextObject对象
-//			WXTextObject textObj = new WXTextObject();
-//			textObj.text = shareThirdEntity.title;
-//
-//			// 用WXTextObject对象初始化一个WXMediaMessage对象
-//			WXMediaMessage msg = new WXMediaMessage();
-//			msg.mediaObject = textObj;
-//			// 发送文本类型的消息时，title字段不起作用
-//			// msg.title = "Will be ignored";
-//			msg.description = shareThirdEntity.summary;
-//			// 构造一个Req
-//			req.transaction = buildTransaction("text"); // transaction字段用于唯一标识一个请求
-//			req.message = msg;
-//
-//			// 分享网页
-//		} else if (shareThirdEntity.shareType == 2) {
-//			try {
-//				WXWebpageObject webpage = new WXWebpageObject();
-//				webpage.webpageUrl = shareThirdEntity.targetUrl;
-//				WXMediaMessage msg = new WXMediaMessage(webpage);
-//				msg.title = shareThirdEntity.title;
-//				msg.description = shareThirdEntity.summary;
-//				Bitmap bmp = BitmapFactory.decodeStream(new URL(shareThirdEntity.imageUrl).openStream());
-//				Bitmap thumbBmp = Bitmap.createScaledBitmap(bmp, THUMB_SIZE, THUMB_SIZE, true);
-//				msg.thumbData = WXUtils.bmpToByteArray(thumbBmp, true);
-//				req.transaction = buildTransaction("webpage");
-//				req.message = msg;
-//
-//			} catch (Exception e) {
-//				e.printStackTrace();
-//			}
-//			// 分享到朋友圈还是微信
-//			req.scene = isFriends ? SendMessageToWX.Req.WXSceneTimeline : SendMessageToWX.Req.WXSceneSession;
-//			// 调用api接口发送数据到微信
-//			Tonight8App.getSelf().wxApi.sendReq(req);
-//
-//			// 分享纯图片
-//		} else if (shareThirdEntity.shareType == 3) {
-//
-//			try {
-//				WXImageObject imgObj = new WXImageObject();
-//				imgObj.imageUrl = shareThirdEntity.imageUrl;
-//
-//				WXMediaMessage msg = new WXMediaMessage();
-//				msg.mediaObject = imgObj;
-//
-//				Bitmap bmp = BitmapFactory.decodeStream(new URL(shareThirdEntity.imageUrl).openStream());
-//				Bitmap thumbBmp = Bitmap.createScaledBitmap(bmp, THUMB_SIZE, THUMB_SIZE, true);
-//				bmp.recycle();
-//				msg.thumbData = WXUtils.bmpToByteArray(thumbBmp, true);
-//
-//				req.transaction = buildTransaction("img");
-//				req.message = msg;
-//			} catch (Exception e) {
-//				e.printStackTrace();
-//			}
-//
-//		}
-//
-//	}
-//
-//	private static String buildTransaction(final String type) {
-//		return (type == null) ? String.valueOf(System.currentTimeMillis()) : type + System.currentTimeMillis();
-//	}
-//
-//	/**
-//	 * @Description:分享到QQ好友
-//	 * @param activity
-//	 * @param qqShareListener
-//	 * @author: LiuZhao
-//	 * @date:2015年2月9日
-//	 */
-//
-//	public static void shareToQQ(Activity activity, ShareThirdEntity shareThirdEntity, IUiListener qqShareListener) {
-//		int mExtarFlag = 0x00;
-//		if (shareThirdEntity == null) {
-//			shareThirdEntity = new ShareThirdEntity();
-//			return;
-//		}
-//
-//		Bundle params = new Bundle();
-//		// 分享图文
-//		if (shareThirdEntity.shareType == 1 || shareThirdEntity.shareType == 2) {
-//			params.putInt(QQShare.SHARE_TO_QQ_KEY_TYPE, QQShare.SHARE_TO_QQ_TYPE_DEFAULT);
-//			params.putString(QQShare.SHARE_TO_QQ_TITLE, shareThirdEntity.title);
-//			params.putString(QQShare.SHARE_TO_QQ_IMAGE_URL, shareThirdEntity.imageUrl);
-//			params.putString(QQShare.SHARE_TO_QQ_APP_NAME, shareThirdEntity.appName);
-//			params.putString(QQShare.SHARE_TO_QQ_TARGET_URL, shareThirdEntity.targetUrl);
-//			params.putString(QQShare.SHARE_TO_QQ_SUMMARY, shareThirdEntity.summary);
-//			params.putInt(QQShare.SHARE_TO_QQ_EXT_INT, mExtarFlag);
-//			// 分享纯图片
-//		} else if (shareThirdEntity.shareType == 3) {
-//			params.putString(QQShare.SHARE_TO_QQ_IMAGE_LOCAL_URL, shareThirdEntity.imageUrl);
-//			params.putString(QQShare.SHARE_TO_QQ_APP_NAME, shareThirdEntity.appName);
-//			params.putInt(QQShare.SHARE_TO_QQ_KEY_TYPE, QQShare.SHARE_TO_QQ_TYPE_IMAGE);
-//			params.putInt(QQShare.SHARE_TO_QQ_EXT_INT, QQShare.SHARE_TO_QQ_FLAG_QZONE_AUTO_OPEN);
-//			// 分享音乐
-//		} else if (shareThirdEntity.shareType == 4) {
-//			params.putInt(QQShare.SHARE_TO_QQ_KEY_TYPE, QQShare.SHARE_TO_QQ_TYPE_AUDIO);
-//			params.putString(QQShare.SHARE_TO_QQ_TITLE, shareThirdEntity.title);
-//			params.putString(QQShare.SHARE_TO_QQ_SUMMARY, shareThirdEntity.summary);
-//			params.putString(QQShare.SHARE_TO_QQ_TARGET_URL, shareThirdEntity.targetUrl);
-//			params.putString(QQShare.SHARE_TO_QQ_IMAGE_URL, shareThirdEntity.imageUrl);
-//			params.putString(QQShare.SHARE_TO_QQ_AUDIO_URL, shareThirdEntity.audioUrl);
-//			params.putString(QQShare.SHARE_TO_QQ_APP_NAME, shareThirdEntity.appName);
-//			params.putInt(QQShare.SHARE_TO_QQ_EXT_INT, QQShare.SHARE_TO_QQ_FLAG_QZONE_AUTO_OPEN);
-//			// 分享应用
-//		} else if (shareThirdEntity.shareType == 5) {
-//			params.putInt(QQShare.SHARE_TO_QQ_KEY_TYPE, QQShare.SHARE_TO_QQ_TYPE_APP);
-//			params.putString(QQShare.SHARE_TO_QQ_TITLE, shareThirdEntity.title);
-//			params.putString(QQShare.SHARE_TO_QQ_SUMMARY, shareThirdEntity.summary);
-//			params.putString(QQShare.SHARE_TO_QQ_IMAGE_URL, shareThirdEntity.imageUrl);
-//			params.putString(QQShare.SHARE_TO_QQ_APP_NAME, shareThirdEntity.appName);
-//		}
-//
-//		Tonight8App.getSelf().mTencent.shareToQQ(activity, params, qqShareListener);
-//
-//	}
-//
-//	/**
-//	 * @Description：分享到QQ空间，目前只支持图文分享
-//	 * @date 2015-3-20下午5:28:58
-//	 * @author liuzhao
-//	 */
-//	public static void shareToQzone(Activity activity, ShareThirdEntity shareThirdEntity, IUiListener qqShareListener) {
-//		if (shareThirdEntity == null) {
-//			shareThirdEntity = new ShareThirdEntity();
-//			return;
-//		}
-//		Bundle bundle = new Bundle();
-//		bundle.putInt(QzoneShare.SHARE_TO_QZONE_KEY_TYPE, QzoneShare.SHARE_TO_QZONE_TYPE_IMAGE_TEXT);
-//		bundle.putString(QzoneShare.SHARE_TO_QQ_TITLE, shareThirdEntity.title);
-//		bundle.putString(QzoneShare.SHARE_TO_QQ_SUMMARY, shareThirdEntity.summary);
-//		bundle.putString(QzoneShare.SHARE_TO_QQ_TARGET_URL, shareThirdEntity.targetUrl);
-//		// QZone接口暂不支持发送多张图片的能力，若传入多张图片，则会自动选入第一张图片作为预览图。多图的能力将会在以后支持
-//		ArrayList<String> imageUrl = new ArrayList<String>();
-//		imageUrl.add(shareThirdEntity.imageUrl);
-//		bundle.putStringArrayList(QzoneShare.SHARE_TO_QQ_IMAGE_URL, imageUrl);
-//
-//		Tonight8App.getSelf().mTencent.shareToQzone(activity, bundle, qqShareListener);
-//
-//	}
-//
-//	/**
-//	 * @Description：是否支持分享到朋友圈
-//	 * @date 2015-2-7下午4:15:15
-//	 * @author liuzhao
-//	 */
-//	private static boolean isSupportFriendsShare() {
-//		int wxSdkVersion = Tonight8App.getSelf().wxApi.getWXAppSupportAPI();
-//		return wxSdkVersion >= AppConstants.TIMELINE_SUPPORTED_VERSION;
-//	}
-//
-//	public static void shareToSinaWeiBo(Activity mActivity, ShareThirdEntity shareThirdEntity) {
-//		// 获取微博客户端相关信息，如是否安装、支持 SDK 的版本
-//		boolean isInstalledWeibo = Tonight8App.getSelf().mWeiboShareAPI.isWeiboAppInstalled();
-//		int supportApiLevel = Tonight8App.getSelf().mWeiboShareAPI.getWeiboAppSupportAPI();
-//		if (!isInstalledWeibo) {
-//			sendSingleMessage(mActivity, shareThirdEntity);
-//		}
-//	}
-//
-//	public static void sendSingleMessage(Activity mActivity, ShareThirdEntity shareThirdEntity) {
-//
-//		// 1. 初始化微博的分享消息
-//		// 用户可以分享文本、图片、网页、音乐、视频中的一种
-//		WeiboMessage weiboMessage = new WeiboMessage();
-//
-//		if (shareThirdEntity.shareType == 3) {
-//
-//			WebpageObject mediaObject = new WebpageObject();
-//			mediaObject.identify = Utility.generateGUID();
-//			mediaObject.title = shareThirdEntity.title;
-//			mediaObject.description = shareThirdEntity.summary;
-//
-//			// 设置 Bitmap 类型的图片到视频对象里
-//			// mediaObject.setThumbImage(shareThirdEntity.imageUrl;
-//			mediaObject.actionUrl = shareThirdEntity.imageUrl;
-//			mediaObject.defaultText = "Webpage 默认文案";
-//			weiboMessage.mediaObject = mediaObject;
-//		}
-//
-//		if (shareThirdEntity.shareType == 6) {
-//
-//			// 创建媒体消息
-//			VideoObject videoObject = new VideoObject();
-//			videoObject.identify = Utility.generateGUID();
-//			videoObject.title = shareThirdEntity.title;
-//			videoObject.description = shareThirdEntity.summary;
-//
-//			// 设置 Bitmap 类型的图片到视频对象里
-//			videoObject.actionUrl = shareThirdEntity.targetUrl;
-//			videoObject.dataUrl = "www.weibo.com";
-//			videoObject.dataHdUrl = "www.weibo.com";
-//			videoObject.duration = 10;
-//			videoObject.defaultText = "Vedio 默认文案";
-//			weiboMessage.mediaObject = videoObject;
-//		}
-//		/*
-//		 * if (hasVoice) { weiboMessage.mediaObject = getVoiceObj(); }
-//		 */
-//
-//		// 2. 初始化从第三方到微博的消息请求
-//		SendMessageToWeiboRequest request = new SendMessageToWeiboRequest();
-//		// 用transaction唯一标识一个请求
-//		request.transaction = String.valueOf(System.currentTimeMillis());
-//		request.message = weiboMessage;
-//
-//		// 3. 发送请求消息到微博，唤起微博分享界面
-//		Tonight8App.getSelf().mWeiboShareAPI.sendRequest(mActivity, request);
-//	}
-//
-////	public static class ShareThirdEntity {
-////
-////		/**
-////		 * 分享的标题,最长30个字符
-////		 */
-////		public String title;
-////		/**
-////		 * 分享图片的URL，音乐只支持网络链接,分享类型是纯图片时需要分享的本地图片路径
-////		 */
-////		public String imageUrl;
-////		/**
-////		 * 手Q客户端顶部，替换“返回”按钮文字，如果为空，用返回代替
-////		 */
-////		public String appName;
-////		/**
-////		 * 分享后好友点击的url地址
-////		 */
-////		public String targetUrl;
-////		/**
-////		 * 分享类型（ 图文1、网页2、纯图片3 、分享音乐4、应用分享5 、视频6。类型是图文时：targetUrl和title不能为空
-////		 */
-////		public int shareType;
-////		/** 分享的消息摘要,最长40个字 */
-////		public String summary;
-////		/** 分享的音乐时必填的链接 */
-////		public String audioUrl;
-////
-////	}
-//
-//}
+package com.android.tonight8.utils;
+
+import android.app.Activity;
+
+import com.android.tonight8.base.AppConstants;
+import com.umeng.socialize.controller.UMServiceFactory;
+import com.umeng.socialize.controller.UMSocialService;
+import com.umeng.socialize.media.QQShareContent;
+import com.umeng.socialize.media.QZoneShareContent;
+import com.umeng.socialize.media.TencentWbShareContent;
+import com.umeng.socialize.media.UMImage;
+import com.umeng.socialize.media.UMVideo;
+import com.umeng.socialize.media.UMusic;
+import com.umeng.socialize.sso.QZoneSsoHandler;
+import com.umeng.socialize.sso.SinaSsoHandler;
+import com.umeng.socialize.sso.TencentWBSsoHandler;
+import com.umeng.socialize.sso.UMQQSsoHandler;
+import com.umeng.socialize.weixin.controller.UMWXHandler;
+import com.umeng.socialize.weixin.media.CircleShareContent;
+import com.umeng.socialize.weixin.media.WeiXinShareContent;
+
+public class SharedUtils {
+    private UMSocialService mController;
+    private Activity mActivity;
+
+    public SharedUtils(Activity mActivity) {
+        mController = UMServiceFactory
+                .getUMSocialService(AppConstants.DESCRIPTOR);
+        this.mActivity = mActivity;
+    }
+
+    /**
+     * 配置分享平台参数</br>
+     */
+    private void configPlatforms() {
+        // 添加新浪SSO授权
+        mController.getConfig().setSsoHandler(new SinaSsoHandler());
+        // 添加腾讯微博SSO授权
+        mController.getConfig().setSsoHandler(new TencentWBSsoHandler());
+        // 添加QQ、QZone平台
+        addQQQZonePlatform();
+        // 添加微信、微信朋友圈平台
+        addWXPlatform();
+
+    }
+
+    /**
+     * @return
+     * @功能描述 : 添加QQ平台支持 QQ分享的内容， 包含四种类型， 即单纯的文字、图片、音乐、视频. 参数说明 : title, summary,
+     * image url中必须至少设置一个, targetUrl必须设置,网页地址必须以"http://"开头 . title :
+     * 要分享标题 summary : 要分享的文字概述 image url : 图片地址 [以上三个参数至少填写一个] targetUrl
+     * : 用户点击该分享时跳转到的目标地址 [必填] ( 若不填写则默认设置为友盟主页 )
+     */
+    private void addQQQZonePlatform() {
+        // 添加QQ支持, 并且设置QQ分享内容的target url
+        UMQQSsoHandler qqSsoHandler = new UMQQSsoHandler(mActivity, AppConstants.QQ_APP_ID, AppConstants.QQ_APP_KEY);
+        qqSsoHandler.setTargetUrl("http://www.umeng.com/social");
+        qqSsoHandler.addToSocialSDK();
+        // 添加QZone平台
+        QZoneSsoHandler qZoneSsoHandler = new QZoneSsoHandler(mActivity, AppConstants.QQ_APP_ID, AppConstants.QQ_APP_KEY);
+        qZoneSsoHandler.addToSocialSDK();
+    }
+
+    /**
+     * @return
+     * @功能描述 : 添加微信平台分享
+     */
+    private void addWXPlatform() {
+        // 注意：在微信授权的时候，必须传递appSecret
+        // wx967daebe835fbeac是你在微信开发平台注册应用的AppID, 这里需要替换成你注册的AppID
+        // 添加微信平台
+        UMWXHandler wxHandler = new UMWXHandler(mActivity, AppConstants.WX_APP_ID, AppConstants.WX_APP_SECRET);
+        wxHandler.addToSocialSDK();
+        // 支持微信朋友圈
+        UMWXHandler wxCircleHandler = new UMWXHandler(mActivity, AppConstants.WX_APP_ID, AppConstants.WX_APP_SECRET);
+        wxCircleHandler.setToCircle(true);
+        wxCircleHandler.addToSocialSDK();
+    }
+
+    /**
+     * 根据不同的平台设置不同的分享内容</br>
+     */
+    private void setShareContent() {
+
+        // 配置SSO
+        mController.getConfig().setSsoHandler(new SinaSsoHandler());
+        mController.getConfig().setSsoHandler(new TencentWBSsoHandler());
+        mController
+                .setShareContent("友盟社会化组件（SDK）让移动应用快速整合社交分享功能。http://www.umeng.com/social");
+        // 图片分享
+        // UMImage localImage = new UMImage(mActivity, R.drawable.device);
+        UMImage urlImage = new UMImage(mActivity,
+                "http://www.umeng.com/images/pic/social/integrated_3.png");
+        // 视频分享
+        UMVideo video = new UMVideo(
+                "http://v.youku.com/v_show/id_XNTc0ODM4OTM2.html");
+        // vedio.setThumb("http://www.umeng.com/images/pic/home/social/img-1.png");
+        video.setTitle("友盟社会化组件视频");
+        video.setThumb(urlImage);
+
+        // 音乐分享
+        UMusic uMusic = new UMusic(
+                "http://music.huoxing.com/upload/20130330/1364651263157_1085.mp3");
+        uMusic.setAuthor("umeng");
+        uMusic.setTitle("天籁之音");
+        // uMusic.setThumb(urlImage);
+        uMusic.setThumb("http://www.umeng.com/images/pic/social/chart_1.png");
+        // 微信分享
+        WeiXinShareContent weixinContent = new WeiXinShareContent();
+        weixinContent
+                .setShareContent("来自友盟社会化组件（SDK）让移动应用快速整合社交分享功能-微信。http://www.umeng.com/social");
+        weixinContent.setTitle("友盟社会化分享组件-微信");
+        weixinContent.setTargetUrl("http://www.umeng.com/social");
+        weixinContent.setShareMedia(urlImage);
+        mController.setShareMedia(weixinContent);
+
+        // 设置朋友圈分享的内容
+        CircleShareContent circleMedia = new CircleShareContent();
+        circleMedia
+                .setShareContent("来自友盟社会化组件（SDK）让移动应用快速整合社交分享功能-朋友圈。http://www.umeng.com/social");
+        circleMedia.setTitle("友盟社会化分享组件-朋友圈");
+        circleMedia.setShareMedia(urlImage);
+        // circleMedia.setShareMedia(uMusic);
+        // circleMedia.setShareMedia(video);
+        circleMedia.setTargetUrl("http://www.umeng.com/social");
+        mController.setShareMedia(circleMedia);
+
+        UMImage qzoneImage = new UMImage(mActivity,
+                "http://www.umeng.com/images/pic/social/integrated_3.png");
+        qzoneImage
+                .setTargetUrl("http://www.umeng.com/images/pic/social/integrated_3.png");
+
+        // 设置QQ空间分享内容
+        QZoneShareContent qzone = new QZoneShareContent();
+        qzone.setShareContent("share test");
+        qzone.setTargetUrl("http://www.umeng.com");
+        qzone.setTitle("QZone title");
+        qzone.setShareMedia(urlImage);
+        // qzone.setShareMedia(uMusic);
+        mController.setShareMedia(qzone);
+
+        // QQ
+        QQShareContent qqShareContent = new QQShareContent();
+        qqShareContent.setShareContent("来自友盟社会化组件（SDK）让移动应用快速整合社交分享功能 -- QQ");
+        qqShareContent.setTitle("hello, title");
+        qqShareContent.setShareMedia(urlImage);
+        qqShareContent.setTargetUrl("http://www.umeng.com/social");
+        mController.setShareMedia(qqShareContent);
+
+        // 腾讯微博
+        TencentWbShareContent tencent = new TencentWbShareContent();
+        tencent.setShareContent("来自友盟社会化组件（SDK）让移动应用快速整合社交分享功能-腾讯微博。http://www.umeng.com/social");
+        // 设置tencent分享内容
+        mController.setShareMedia(tencent);
+
+    }
+}

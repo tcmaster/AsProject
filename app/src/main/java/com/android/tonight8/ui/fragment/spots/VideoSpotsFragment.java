@@ -17,6 +17,9 @@ import com.android.tonight8.base.BaseFragment;
 import com.lecloud.common.base.util.Logger;
 import com.lecloud.skin.PlayerStateCallback;
 import com.lecloud.skin.live.LivePlayCenter;
+import com.lidroid.xutils.util.LogUtils;
+
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -110,4 +113,7 @@ public class VideoSpotsFragment extends BaseFragment {
         isBackgroud = false;
     }
 
+    public void updateVideoData(List<String> list) {
+        LogUtils.d("返回的视频数据" + list.get(0).toString());
+    }
 }

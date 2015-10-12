@@ -132,6 +132,11 @@ public class LiveManageActivity extends BaseActivity {
                 if (data != null)
                     ((LiveSpotsFragment) baseFragments[0]).updateRecordData(data.getStringArrayListExtra("RECORDFILESTRING"));
                 break;
+
+            case 31:
+                if (data != null)
+                    ((VideoSpotsFragment) baseFragments[0]).updateVideoData(data.getStringArrayListExtra("VIDEOFILESTRING"));
+                break;
             default:
                 break;
         }

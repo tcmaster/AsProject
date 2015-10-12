@@ -1,15 +1,15 @@
 package com.android.tonight8.ui.activity.live;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.android.tonight8.R;
 import com.android.tonight8.base.BaseActivity;
-import com.easemob.util.VoiceRecorder;
+import com.android.tonight8.utils.IntentUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
 
 /**
@@ -21,11 +21,13 @@ import com.lidroid.xutils.view.annotation.ViewInject;
  */
 
 public class SpotVideoActivity extends BaseActivity {
-    private CheckBox cb_playrecord;
+    @ViewInject(R.id.btn_playvideo)
+    private Button btn_playvideo;
     @ViewInject(R.id.tv_record_count)
     private TextView tv_record_count;
     @ViewInject(R.id.tv_total_count)
     private TextView tv_total_count;
+    @ViewInject(R.id.lv_video)
     private ListView lv_video;
 
     private View.OnClickListener onClickListener = new View.OnClickListener() {
@@ -34,32 +36,32 @@ public class SpotVideoActivity extends BaseActivity {
 
         }
     };
-    /**
-     * 本界面的录音器
-     */
-    private VoiceRecorder voiceRecorder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_spotvideo);
         getActionBarRight("视频插入", "保存", onClickListener);
+
         initView();
-
-
     }
 
 
     private void initView() {
-        lv_video = (ListView) findViewById(R.id.lv_video);
-        cb_playrecord = (CheckBox) findViewById(R.id.cb_playrecord);
-        cb_playrecord.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        btn_playvideo = (Button) findViewById(R.id.btn_playvideo);
+        btn_playvideo.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-
+            public void onClick(View view) {
+                IntentUtils.startVideo(mContext, 31);
             }
         });
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 31) {
 
+        }
+    }
 }
