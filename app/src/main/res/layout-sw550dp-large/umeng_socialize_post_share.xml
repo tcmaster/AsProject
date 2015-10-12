@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.umeng.socialize.view.wigets.KeyboardListenRelativeLayout android:id="@+id/umeng_socialize_share_root"
-                                                              xmlns:android="http://schemas.android.com/apk/res/android"
-                                                              android:layout_width="fill_parent"
-                                                              android:layout_height="fill_parent"
-                                                              android:background="@drawable/umeng_socialize_window_shadow_pad"
-                                                              android:padding="5dp">
+<com.umeng.socialize.view.wigets.KeyboardListenRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/umeng_socialize_share_root"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/umeng_socialize_window_shadow_pad"
+    android:padding="5dp">
 
     <include
         android:id="@+id/umeng_socialize_share_titlebar"
-        layout="@layout/umeng_socialize_titile_bar"/>
+        layout="@layout/umeng_socialize_titile_bar" />
 
     <RelativeLayout
         android:id="@+id/umeng_socialize_share_bottom_area"
@@ -29,7 +29,7 @@
             android:padding="8dp"
             android:scaleType="fitXY"
             android:src="@drawable/umeng_socialize_fetch_image"
-            android:visibility="gone"/>
+            android:visibility="gone" />
 
         <RelativeLayout
             android:id="@+id/umeng_socialize_follow_layout"
@@ -48,7 +48,7 @@
                 android:paddingLeft="25dp"
                 android:text="关注官方微博"
                 android:textColor="@color/umeng_socialize_text_share_content"
-                android:textSize="13sp"/>
+                android:textSize="13sp" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -71,13 +71,13 @@
                 android:paddingTop="10dp"
                 android:scaleType="fitXY"
                 android:src="@drawable/umeng_socialize_location_off"
-                android:visibility="visible"/>
+                android:visibility="visible" />
 
             <ProgressBar
                 android:id="@+id/umeng_socialize_location_progressbar"
                 android:layout_width="15dp"
                 android:layout_height="15dp"
-                android:visibility="gone"/>
+                android:visibility="gone" />
         </RelativeLayout>
 
         <ImageButton
@@ -90,7 +90,7 @@
             android:padding="8dp"
             android:scaleType="fitXY"
             android:src="@drawable/umeng_socialize_at_button"
-            android:visibility="visible"/>
+            android:visibility="visible" />
 
         <TextView
             android:id="@+id/umeng_socialize_share_word_num"
@@ -100,7 +100,7 @@
             android:layout_centerVertical="true"
             android:layout_marginRight="8dp"
             android:gravity="center"
-            android:textColor="#525659"/>
+            android:textColor="#525659" />
 
         <RelativeLayout
             android:layout_width="40dp"
@@ -117,7 +117,7 @@
                 android:layout_margin="5dp"
                 android:scaleType="fitXY"
                 android:src="@drawable/umeng_socialize_default_avatar"
-                android:visibility="gone"/>
+                android:visibility="gone" />
 
             <ImageView
                 android:id="@+id/umeng_socialize_share_previewImg_remove"
@@ -126,14 +126,14 @@
                 android:layout_alignParentRight="true"
                 android:scaleType="fitXY"
                 android:src="@drawable/umeng_socialize_x_button"
-                android:visibility="gone"/>
+                android:visibility="gone" />
 
             <ProgressBar
                 android:id="@+id/umeng_socialize_share_previewImg_progressbar"
                 android:layout_width="15dp"
                 android:layout_height="15dp"
                 android:layout_centerInParent="true"
-                android:visibility="gone"/>
+                android:visibility="gone" />
         </RelativeLayout>
     </RelativeLayout>
 
@@ -150,6 +150,6 @@
         android:bufferType="spannable"
         android:gravity="top"
         android:hint="说点什么吧。。。"
-        android:padding="2dp"/>
+        android:padding="2dp" />
 
 </com.umeng.socialize.view.wigets.KeyboardListenRelativeLayout>

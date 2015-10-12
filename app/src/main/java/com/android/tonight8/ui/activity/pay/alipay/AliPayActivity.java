@@ -89,7 +89,6 @@ public class AliPayActivity extends BaseActivity {
             }
         }
 
-        ;
     };
 
     @Override

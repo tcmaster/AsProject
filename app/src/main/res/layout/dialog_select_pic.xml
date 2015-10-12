@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:background="@drawable/shape_radius_corners"
-              android:orientation="vertical">
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/shape_radius_corners"
+    android:orientation="vertical">
 
 
     <Button
@@ -16,12 +16,12 @@
         android:gravity="center"
         android:singleLine="true"
         android:text="相册"
-        android:textColor="@color/blue"/>
+        android:textColor="@color/blue" />
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@color/line_gray"/>
+        android:background="@color/line_gray" />
 
     <Button
         android:id="@+id/btn_pic_right"
@@ -32,12 +32,12 @@
         android:gravity="center"
         android:singleLine="true"
         android:text="拍照"
-        android:textColor="@color/blue"/>
+        android:textColor="@color/blue" />
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@color/line_gray"/>
+        android:background="@color/line_gray" />
 
     <Button
         android:id="@+id/btn_pic_cancle"
@@ -49,6 +49,6 @@
         android:gravity="center"
         android:singleLine="true"
         android:text="取消"
-        android:textColor="@color/blue"/>
+        android:textColor="@color/blue" />
 
 </LinearLayout>

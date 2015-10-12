@@ -40,9 +40,9 @@ public class SlideView extends FrameLayout {
 		TypedArray array = context.obtainStyledAttributes(attrs,
 				R.styleable.SlideViewStyle);
 		width_left = array.getDimensionPixelSize(
-				R.styleable.SlideViewStyle_sv_left, 300);
+				R.styleable.SlideViewStyle_sv_left, 450);
 		boundary = array.getDimensionPixelSize(
-				R.styleable.SlideViewStyle_boundary, 80);
+				R.styleable.SlideViewStyle_boundary, 100);
 		array.recycle();
 	}
 

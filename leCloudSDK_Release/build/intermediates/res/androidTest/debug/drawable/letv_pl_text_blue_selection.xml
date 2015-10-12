@@ -6,4 +6,4 @@
     <item android:state_pressed="true" android:color="@color/letv_color_ff3995d2"/>
     <item android:color="@color/letv_color_ff969696"/>
 
-</selector><!-- From: file:/D:/as_workspace/AsProject/leCloudSDK_Release/src/main/res/drawable/letv_pl_text_blue_selection.xml --><!-- From: file:/D:/as_workspace/AsProject/leCloudSDK_Release/build/intermediates/bundles/debug/res/drawable/letv_pl_text_blue_selection.xml -->
+</selector><!-- From: file:/D:/asworkspace/MyApplication/leCloudSDK_Release/src/main/res/drawable/letv_pl_text_blue_selection.xml --><!-- From: file:/D:/asworkspace/MyApplication/leCloudSDK_Release/build/intermediates/bundles/debug/res/drawable/letv_pl_text_blue_selection.xml -->

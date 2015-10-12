@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.android.tonight8.ui.view.SlideView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:slide="http://schemas.android.com/apk/res-auto"
     android:id="@+id/sv_main_page"
     style="@style/match"
-    android:background="@color/black_half_transparent" />
+    android:background="@color/black_half_transparent"
+    slide:sv_left="300dp"
+    slide:boundary="80dp"/>

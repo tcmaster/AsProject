@@ -6,4 +6,4 @@
     <item android:drawable="@color/download_btn_enable" android:state_enabled="false"/>
     <item android:drawable="@color/download_btn_normal"/>
 
-</selector><!-- From: file:/D:/as_workspace/AsProject/leCloudSDK_Release/src/main/res/drawable/download_btn_bg.xml --><!-- From: file:/D:/as_workspace/AsProject/leCloudSDK_Release/build/intermediates/bundles/debug/res/drawable/download_btn_bg.xml -->
+</selector><!-- From: file:/D:/asworkspace/MyApplication/leCloudSDK_Release/src/main/res/drawable/download_btn_bg.xml --><!-- From: file:/D:/asworkspace/MyApplication/leCloudSDK_Release/build/intermediates/bundles/debug/res/drawable/download_btn_bg.xml -->

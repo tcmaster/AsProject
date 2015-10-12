@@ -37,7 +37,7 @@
                     android:gravity="center_horizontal"
                     android:text="时长："
                     android:textColor="@color/white"
-                    android:textSize="@dimen/bigTextSize"/>
+                    android:textSize="@dimen/bigTextSize" />
 
                 <LinearLayout
                     android:id="@+id/ll_time"
@@ -50,7 +50,7 @@
                         android:layout_height="wrap_content"
                         android:text="0"
                         android:textColor="@color/white"
-                        android:textSize="@dimen/bigTextSize"/>
+                        android:textSize="@dimen/bigTextSize" />
 
                     <TextView
 
@@ -58,7 +58,7 @@
                         android:layout_height="wrap_content"
                         android:text="时"
                         android:textColor="@color/white"
-                        android:textSize="@dimen/bigTextSize"/>
+                        android:textSize="@dimen/bigTextSize" />
 
                     <TextView
                         android:id="@+id/tv_time2"
@@ -66,7 +66,7 @@
                         android:layout_height="wrap_content"
                         android:text="0"
                         android:textColor="@color/white"
-                        android:textSize="@dimen/bigTextSize"/>
+                        android:textSize="@dimen/bigTextSize" />
 
                     <TextView
 
@@ -74,7 +74,7 @@
                         android:layout_height="wrap_content"
                         android:text="分"
                         android:textColor="@color/white"
-                        android:textSize="@dimen/bigTextSize"/>
+                        android:textSize="@dimen/bigTextSize" />
 
                     <TextView
                         android:id="@+id/tv_time3"
@@ -82,7 +82,7 @@
                         android:layout_height="wrap_content"
                         android:text="0"
                         android:textColor="@color/white"
-                        android:textSize="@dimen/bigTextSize"/>
+                        android:textSize="@dimen/bigTextSize" />
 
                     <TextView
 
@@ -90,7 +90,7 @@
                         android:layout_height="wrap_content"
                         android:text="秒"
                         android:textColor="@color/white"
-                        android:textSize="@dimen/bigTextSize"/>
+                        android:textSize="@dimen/bigTextSize" />
                 </LinearLayout>
 
 
@@ -106,13 +106,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/ic_launcher"
-                    android:scaleType="centerCrop"/>
+                    android:scaleType="centerCrop" />
 
                 <RelativeLayout
                     android:id="@+id/rl_leshi_player"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                </RelativeLayout>
+                    android:layout_height="wrap_content"></RelativeLayout>
             </RelativeLayout>
 
             <TextView
@@ -129,7 +128,7 @@
                 android:singleLine="true"
                 android:textColor="@color/purple"
                 android:textColorHint="@color/purple"
-                android:textSize="@dimen/bigTextSize"/>
+                android:textSize="@dimen/bigTextSize" />
 
             <com.android.tonight8.ui.view.StationaryGridview
                 android:id="@+id/gv_insertitem"
@@ -140,7 +139,7 @@
                 android:listSelector="@color/transparent"
                 android:numColumns="5"
                 android:scrollbars="none"
-                android:smoothScrollbar="false"/>
+                android:smoothScrollbar="false" />
         </LinearLayout>
 
 
@@ -162,7 +161,7 @@
             android:padding="@dimen/common_margin_left"
             android:text="预览"
             android:textColor="@color/white"
-            android:textSize="@dimen/bigTextSize"/>
+            android:textSize="@dimen/bigTextSize" />
 
         <Button
             android:id="@+id/btn_insert"
@@ -173,6 +172,6 @@
             android:padding="@dimen/common_margin_left"
             android:text="插播"
             android:textColor="@color/white"
-            android:textSize="@dimen/bigTextSize"/>
+            android:textSize="@dimen/bigTextSize" />
     </LinearLayout>
 </RelativeLayout>

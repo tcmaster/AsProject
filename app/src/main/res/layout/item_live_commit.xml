@@ -47,49 +47,56 @@
         style="@style/match_width"
         android:layout_alignLeft="@id/tv_live_talk_name"
         android:layout_below="@+id/tv_live_talk_time"
-        android:layout_marginTop="@dimen/topOrbottomPaddingLong">
+        android:layout_marginTop="@dimen/topOrbottomPadding">
         <!--仅文字的情况-->
         <TextView
             android:id="@+id/tv_live_talk_content"
             style="@style/match_width"
             android:text="@string/app_name"
-            android:textColor="@color/half_black"
-            android:visibility="visible" />
+            android:textColor="@color/black"
+            android:visibility="gone" />
         <!--仅图片的情况-->
         <ImageView
             android:id="@+id/iv_img_contant"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
             android:contentDescription="@string/app_name"
+            android:scaleType="fitXY"
             android:src="@mipmap/ic_launcher"
             android:visibility="gone" />
         <!--红包和开奖的情况-->
-        <LinearLayout
-            android:id="@+id/ll_more_info"
+        <RelativeLayout
+            android:id="@+id/rl_more_info"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="@dimen/common_margin_small"
             android:orientation="horizontal"
-            android:padding="@dimen/topOrbottomPadding"
-            android:visibility="gone">
+            android:visibility="visible">
 
             <ImageView
                 android:id="@+id/iv_red_more_info"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/common_margin_left"
+                android:layout_marginTop="@dimen/topOrbottomPadding"
                 android:contentDescription="@string/app_name"
+                android:scaleType="fitXY"
                 android:src="@mipmap/ic_launcher" />
 
             <TextView
                 android:id="@+id/tv_more_info"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="@dimen/common_margin_small"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/common_margin_left"
+                android:layout_marginRight="@dimen/common_margin_left"
+                android:layout_toRightOf="@id/iv_red_more_info"
                 android:text="@string/app_name"
                 android:textColor="@color/black"
                 android:textSize="@dimen/middleTextSize" />
-        </LinearLayout>
+        </RelativeLayout>
     </FrameLayout>
 
     <View

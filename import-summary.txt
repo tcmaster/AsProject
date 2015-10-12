@@ -7,56 +7,25 @@ The following files were *not* copied into the new Gradle project; you
 should evaluate whether these are still needed in your project and if
 so manually move them:
 
-* ic_launcher-web.png
-* proguard.pro
-
-Replaced Jars with Dependencies:
---------------------------------
-The importer recognized the following .jar files as third party
-libraries and replaced them with Gradle dependencies instead. This has
-the advantage that more explicit version information is known, and the
-libraries can be updated automatically. However, it is possible that
-the .jar file in your project was of an older version than the
-dependency we picked, which could render the project not compileable.
-You can disable the jar replacement in the import wizard and try again:
-
-gson-2.1.jar => com.google.code.gson:gson:2.1
-
-Potentially Missing Dependency:
--------------------------------
-When we replaced the following .jar files with a Gradle dependency, we
-inferred the dependency version number from the filename. This
-specific version may not actually be available from the repository.
-If you get a build error stating that the dependency is missing, edit
-the version number to for example "+" to pick up the latest version
-instead. (This may require you to update your code if the library APIs
-have changed.)
-
-gson-2.1.jar => version 2.1 in com.google.code.gson:gson:2.1
+* proguard-project.txt
 
 Moved Files:
 ------------
 Android Gradle projects use a different directory structure than ADT
 Eclipse projects. Here's how the projects were restructured:
 
-* AndroidManifest.xml => leCloudSDK_Release\src\main\AndroidManifest.xml
-* assets\ => leCloudSDK_Release\src\main\assets
-* libs\armeabi-v7a\libffmpeg.so => leCloudSDK_Release\src\main\jniLibs\armeabi-v7a\libffmpeg.so
-* libs\armeabi-v7a\libggmedia.so => leCloudSDK_Release\src\main\jniLibs\armeabi-v7a\libggmedia.so
-* libs\armeabi-v7a\libmvvtracker.so => leCloudSDK_Release\src\main\jniLibs\armeabi-v7a\libmvvtracker.so
-* libs\armeabi-v7a\libplayer.so => leCloudSDK_Release\src\main\jniLibs\armeabi-v7a\libplayer.so
-* libs\armeabi-v7a\libsdl.so => leCloudSDK_Release\src\main\jniLibs\armeabi-v7a\libsdl.so
-* libs\armeabi\libffmpeg.so => leCloudSDK_Release\src\main\jniLibs\armeabi\libffmpeg.so
-* libs\armeabi\libggmedia.so => leCloudSDK_Release\src\main\jniLibs\armeabi\libggmedia.so
-* libs\armeabi\libmvvtracker.so => leCloudSDK_Release\src\main\jniLibs\armeabi\libmvvtracker.so
-* libs\armeabi\libplayer.so => leCloudSDK_Release\src\main\jniLibs\armeabi\libplayer.so
-* libs\armeabi\libsdl.so => leCloudSDK_Release\src\main\jniLibs\armeabi\libsdl.so
-* libs\cde-sdk-0.9.82-02.jar => leCloudSDK_Release\libs\cde-sdk-0.9.82-02.jar
-* libs\iplayer.jar => leCloudSDK_Release\libs\iplayer.jar
-* libs\javabase64-1.3.1.jar => leCloudSDK_Release\libs\javabase64-1.3.1.jar
-* libs\LeCloudSDK_V3.1.jar => leCloudSDK_Release\libs\LeCloudSDK_V3.1.jar
-* res\ => leCloudSDK_Release\src\main\res\
-* src\ => leCloudSDK_Release\src\main\java
+* AndroidManifest.xml => weiboSDK\src\main\AndroidManifest.xml
+* libs\weibosdkcore.jar => weiboSDK\libs\weibosdkcore.jar
+* lint.xml => weiboSDK\lint.xml
+* res\ => weiboSDK\src\main\res\
+* src\ => weiboSDK\src\main\java\
+
+Old Build Tools:
+----------------
+The version of the build tools installed with your SDK is old. It
+should be at least version 19.0.1 to work well with the Gradle build
+system. To update it, open the Android SDK Manager, and install the
+highest available version of Tools > Android SDK Build-tools.
 
 Next Steps:
 -----------

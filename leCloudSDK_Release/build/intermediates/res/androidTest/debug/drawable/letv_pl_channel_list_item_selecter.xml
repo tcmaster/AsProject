@@ -4,4 +4,4 @@
    <item android:state_pressed="true"  android:drawable="@color/letv_color_8000a0e9" />     
    <item android:state_focused="true"  android:drawable="@color/letv_color_8000a0e9" />  
    <item android:drawable="@color/letv_color_00f0f0f0" />     
-</selector>   <!-- From: file:/D:/as_workspace/AsProject/leCloudSDK_Release/src/main/res/drawable/letv_pl_channel_list_item_selecter.xml --><!-- From: file:/D:/as_workspace/AsProject/leCloudSDK_Release/build/intermediates/bundles/debug/res/drawable/letv_pl_channel_list_item_selecter.xml -->
+</selector>   <!-- From: file:/D:/asworkspace/MyApplication/leCloudSDK_Release/src/main/res/drawable/letv_pl_channel_list_item_selecter.xml --><!-- From: file:/D:/asworkspace/MyApplication/leCloudSDK_Release/build/intermediates/bundles/debug/res/drawable/letv_pl_channel_list_item_selecter.xml -->

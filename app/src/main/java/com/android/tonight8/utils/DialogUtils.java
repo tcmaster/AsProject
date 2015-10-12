@@ -52,20 +52,6 @@ public class DialogUtils {
         cdlg.showDlg();
     }
 
-    public static abstract class ListDialogInterface implements
-            CustomerViewInterface {
-
-        @Override
-        public void getCustomerView(Window window, AlertDialog dlg) {
-            ListView lv_simple = (ListView) window
-                    .findViewById(R.id.lv_list_simple);// 找到listView
-            getListView(lv_simple, dlg);
-        }
-
-        public abstract void getListView(ListView lv_list, final AlertDialog dlg);
-
-    }
-
     /**
      * @param activity
      * @Description:选择拍照还是相册获取图片的对话框
@@ -387,6 +373,20 @@ public class DialogUtils {
         cdlg.setDismissIfClick(true);
         cdlg.setLayoutGravity(Gravity.CENTER);
         cdlg.showDlg();
+    }
+
+    public static abstract class ListDialogInterface implements
+            CustomerViewInterface {
+
+        @Override
+        public void getCustomerView(Window window, AlertDialog dlg) {
+            ListView lv_simple = (ListView) window
+                    .findViewById(R.id.lv_list_simple);// 找到listView
+            getListView(lv_simple, dlg);
+        }
+
+        public abstract void getListView(ListView lv_list, final AlertDialog dlg);
+
     }
 
     public static abstract class ReplayOKDialogInterface implements

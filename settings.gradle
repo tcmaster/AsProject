@@ -1,2 +1,2 @@
-include ':', ':app'
-include ':leCloudSDK_Release'
+include  ':app', 'leCloudSDK_Release'
+

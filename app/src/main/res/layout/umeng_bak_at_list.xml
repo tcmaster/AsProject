@@ -3,19 +3,20 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:background="#393D46"
-    android:orientation="vertical" >
+    android:orientation="vertical">
 
     <include layout="@layout/umeng_socialize_titile_bar" />
 
     <ViewSwitcher
-          android:id="@+id/umeng_socialize_switcher"
+        android:id="@+id/umeng_socialize_switcher"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent" >
+        android:layout_height="fill_parent">
 
         <RelativeLayout
             android:id="@+id/umeng_socialize_list_recently_fds_root"
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent" >
+            android:layout_height="fill_parent">
+
             <ListView
                 android:id="@+id/umeng_socialize_list_fds"
                 android:layout_width="fill_parent"
@@ -31,7 +32,7 @@
                 android:id="@+id/umeng_socialize_list_progress"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
-                android:visibility="gone" >
+                android:visibility="gone">
 
                 <ProgressBar
                     style="?android:attr/progressBarStyleSmall"
@@ -44,7 +45,7 @@
         <RelativeLayout
             android:id="@+id/umeng_socialize_list_fds_root"
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent" >
+            android:layout_height="fill_parent">
 
             <ListView
                 android:id="@id/umeng_socialize_list_fds"
@@ -61,7 +62,7 @@
                 android:id="@id/umeng_socialize_list_progress"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
-                android:visibility="gone" >
+                android:visibility="gone">
 
                 <ProgressBar
                     style="?android:attr/progressBarStyleSmall"

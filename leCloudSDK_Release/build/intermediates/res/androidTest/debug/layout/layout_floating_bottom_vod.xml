@@ -12,4 +12,4 @@
         android:id="@+id/pip_floating_buttom"
         layout="@layout/layout_floating_bottom_vod_pip" />
 
-</RelativeLayout><!-- From: file:/D:/as_workspace/AsProject/leCloudSDK_Release/src/main/res/layout/layout_floating_bottom_vod.xml --><!-- From: file:/D:/as_workspace/AsProject/leCloudSDK_Release/build/intermediates/bundles/debug/res/layout/layout_floating_bottom_vod.xml -->
+</RelativeLayout><!-- From: file:/D:/asworkspace/MyApplication/leCloudSDK_Release/src/main/res/layout/layout_floating_bottom_vod.xml --><!-- From: file:/D:/asworkspace/MyApplication/leCloudSDK_Release/build/intermediates/bundles/debug/res/layout/layout_floating_bottom_vod.xml -->

@@ -14,4 +14,4 @@
         android:drawable="@drawable/selector_sound_three"
         android:maxLevel="100"/>
 
-</level-list><!-- From: file:/D:/as_workspace/AsProject/leCloudSDK_Release/src/main/res/drawable/level_sound_image.xml -->
+</level-list><!-- From: file:/D:/asworkspace/MyApplication/leCloudSDK_Release/src/main/res/drawable/level_sound_image.xml -->

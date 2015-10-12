@@ -16,7 +16,7 @@
             android:layout_centerVertical="true"
             android:layout_margin="@dimen/common_margin_left"
             android:contentDescription="@string/app_name"
-            android:src="@mipmap/back_arrow"/>
+            android:src="@mipmap/back_arrow" />
 
         <RadioGroup
             android:id="@+id/rg_zhibochabo"
